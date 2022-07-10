@@ -9,6 +9,7 @@ import com.cursedcauldron.wildbackport.common.registry.WBGameEvents;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBMemoryModules;
 import com.cursedcauldron.wildbackport.common.tag.WBGameEventTags;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Dynamic;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
@@ -54,6 +55,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.gameevent.GameEventListener;
 import net.minecraft.world.level.gameevent.GameEventListenerRegistrar;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -366,7 +368,16 @@ public class Allay extends PathfinderMob implements InventoryCarrier, VibrationL
         if (tag.contains("listener", 10)) VibrationListenerSource.codec(this).parse(new Dynamic<>(NbtOps.INSTANCE, tag.getCompound("listener"))).resultOrPartial(WildBackport.LOGGER::error).ifPresent(listener -> this.listener = listener);
     }
 
-    //iterate pathfinding start node candidate positions
+    public Iterable<BlockPos> iteratePathfindingStartNodeCandidatePositions() {
+        AABB box = this.getBoundingBox();
+        int minX = Mth.floor(box.minX - 0.5D);
+        int maxX = Mth.floor(box.maxX + 0.5D);
+        int minY = Mth.floor(box.minY - 0.5D);
+        int maxY = Mth.floor(box.maxY + 0.5D);
+        int minZ = Mth.floor(box.minZ - 0.5D);
+        int maxZ = Mth.floor(box.maxZ + 0.5D);
+        return BlockPos.betweenClosed(minX, minY, minZ, maxX, maxY, maxZ);
+    }
 
     @Override
     public Vec3 getLeashOffset() {
