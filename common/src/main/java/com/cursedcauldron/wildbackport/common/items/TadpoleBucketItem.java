@@ -77,9 +77,7 @@ public class TadpoleBucketItem extends BucketItem {
 
                 components.add(new TranslatableComponent(TropicalFish.getFishTypeName(variant)).withStyle(format));
                 MutableComponent component = new TranslatableComponent(base);
-                if (!base.equals(pattern)) {
-                    component.append(", ").append(new TranslatableComponent(pattern));
-                }
+                if (!base.equals(pattern)) component.append(", ").append(new TranslatableComponent(pattern));
 
                 component.withStyle(format);
                 components.add(component);
