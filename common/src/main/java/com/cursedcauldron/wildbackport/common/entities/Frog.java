@@ -79,8 +79,8 @@ public class Frog extends Animal {
     public static final Ingredient FOOD = Ingredient.of(Items.SLIME_BALL);
     protected static final ImmutableList<? extends SensorType<? extends Sensor<? super Frog>>> SENSORS = ImmutableList.of(SensorType.NEAREST_LIVING_ENTITIES, SensorType.HURT_BY, WBSensorTypes.FROG_ATTACKABLES.get(), WBSensorTypes.FROG_TEMPTATIONS.get(), WBSensorTypes.IS_IN_WATER.get());
     protected static final ImmutableList<? extends MemoryModuleType<?>> MEMORIES = ImmutableList.of(MemoryModuleType.LOOK_TARGET, MemoryModuleType.NEAREST_LIVING_ENTITIES, MemoryModuleType.NEAREST_VISIBLE_LIVING_ENTITIES, MemoryModuleType.WALK_TARGET, MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE, MemoryModuleType.PATH, MemoryModuleType.BREED_TARGET, MemoryModuleType.LONG_JUMP_COOLDOWN_TICKS, MemoryModuleType.LONG_JUMP_MID_JUMP, MemoryModuleType.ATTACK_TARGET, MemoryModuleType.TEMPTING_PLAYER, MemoryModuleType.TEMPTATION_COOLDOWN_TICKS, MemoryModuleType.IS_TEMPTED, MemoryModuleType.HURT_BY, MemoryModuleType.HURT_BY_ENTITY, MemoryModuleType.NEAREST_ATTACKABLE, WBMemoryModules.IS_IN_WATER.get(), WBMemoryModules.IS_PREGNANT.get(), WBMemoryModules.UNREACHABLE_TONGUE_TARGETS.get());
-    private static final EntityDataAccessor<Integer> VARIANT_ID = SynchedEntityData.defineId(Frog.class, EntityDataSerializers.INT);
-    private static final EntityDataAccessor<OptionalInt> TARGET_ID = SynchedEntityData.defineId(Frog.class, EntityDataSerializers.OPTIONAL_UNSIGNED_INT);
+    private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Frog.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<OptionalInt> TARGET = SynchedEntityData.defineId(Frog.class, EntityDataSerializers.OPTIONAL_UNSIGNED_INT);
     public final AnimationState longJumpingAnimationState = new AnimationState();
     public final AnimationState croakingAnimationState = new AnimationState();
     public final AnimationState usingTongueAnimationState = new AnimationState();
@@ -115,20 +115,20 @@ public class Frog extends Animal {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(VARIANT_ID, 0);
-        this.entityData.define(TARGET_ID, OptionalInt.empty());
+        this.entityData.define(VARIANT, 0);
+        this.entityData.define(TARGET, OptionalInt.empty());
     }
 
     public void clearFrogTarget() {
-        this.entityData.set(TARGET_ID, OptionalInt.empty());
+        this.entityData.set(TARGET, OptionalInt.empty());
     }
 
     public Optional<Entity> getFrogTarget() {
-        return this.entityData.get(TARGET_ID).stream().mapToObj(this.level::getEntity).filter(Objects::nonNull).findFirst();
+        return this.entityData.get(TARGET).stream().mapToObj(this.level::getEntity).filter(Objects::nonNull).findFirst();
     }
 
     public void setFrogTarget(Entity entity) {
-        this.entityData.set(TARGET_ID, OptionalInt.of(entity.getId()));
+        this.entityData.set(TARGET, OptionalInt.of(entity.getId()));
     }
 
     @Override
@@ -142,11 +142,11 @@ public class Frog extends Animal {
     }
 
     public Variant getVariant() {
-        return Variant.byId(this.entityData.get(VARIANT_ID));
+        return Variant.byId(this.entityData.get(VARIANT));
     }
 
     public void setVariant(Variant variant) {
-        this.entityData.set(VARIANT_ID, variant.getId());
+        this.entityData.set(VARIANT, variant.getId());
     }
 
     @Override
@@ -166,11 +166,11 @@ public class Frog extends Animal {
         return true;
     }
 
-    private boolean isMovingOnLand() {
+    private boolean shouldWalk() {
         return this.onGround && this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-6D && !this.isInWaterOrBubble();
     }
 
-    private boolean isMovingOnWater() {
+    private boolean shouldSwim() {
         return this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-6D && this.isInWaterOrBubble();
     }
 
@@ -188,13 +188,13 @@ public class Frog extends Animal {
     @Override
     public void tick() {
         if (this.level.isClientSide()) {
-            if (this.isMovingOnLand()) {
+            if (this.shouldWalk()) {
                 this.walkingAnimationState.startIfNotRunning(this.tickCount);
             } else {
                 this.walkingAnimationState.stop();
             }
 
-            if (this.isMovingOnWater()) {
+            if (this.shouldSwim()) {
                 this.idlingInWaterAnimationState.stop();
                 this.swimmingAnimationState.startIfNotRunning(this.tickCount);
             } else if (this.isInWaterOrBubble()) {
@@ -282,7 +282,6 @@ public class Frog extends Animal {
         } else {
             this.setVariant(Variant.TEMPERATE);
         }
-
         FrogBrain.coolDownLongJump(this, accessor.getRandom());
         return super.finalizeSpawn(accessor, difficulty, spawnType, groupData, tag);
     }
@@ -328,19 +327,19 @@ public class Frog extends Animal {
     }
 
     @Override
-    public void travel(Vec3 motion) {
+    public void travel(Vec3 input) {
         if (this.isEffectiveAi() && this.isInWater()) {
-            this.moveRelative(this.getSpeed(), motion);
+            this.moveRelative(this.getSpeed(), input);
             this.move(MoverType.SELF, this.getDeltaMovement());
             this.setDeltaMovement(this.getDeltaMovement().scale(0.9D));
         } else {
-            super.travel(motion);
+            super.travel(input);
         }
     }
 
     @Override
-    public boolean canCutCorner(BlockPathTypes path) {
-        return super.canCutCorner(path) && path != BlockPathTypes.WATER_BORDER;
+    public boolean canCutCorner(BlockPathTypes type) {
+        return super.canCutCorner(type) && type != BlockPathTypes.WATER_BORDER;
     }
 
     public static boolean isValidFrogFood(LivingEntity entity) {
@@ -387,12 +386,13 @@ public class Frog extends Animal {
     }
 
     static class FrogPathNavigator extends WaterBoundPathNavigation {
-        FrogPathNavigator(Frog frog, Level world) {
-            super(frog, world);
+        FrogPathNavigator(Frog frog, Level level) {
+            super(frog, level);
         }
         @Override
         protected PathFinder createPathFinder(int range) {
             this.nodeEvaluator = new FrogNodeEvaluator(true);
+            this.nodeEvaluator.setCanPassDoors(true);
             return new PathFinder(this.nodeEvaluator, range);
         }
 

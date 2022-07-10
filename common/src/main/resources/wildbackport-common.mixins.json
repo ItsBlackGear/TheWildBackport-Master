@@ -24,6 +24,7 @@
     "common.BlockEntityTypeMixin",
     "common.FlyNodeEvaluatorMixin",
     "common.LivingEntityMixin",
+    "common.NoteBlockMixin",
     "common.PathfinderMobMixin",
     "common.PlayerMixin",
     "extension.BoatTypeMixin",

@@ -26,71 +26,70 @@ import java.util.function.Function;
 
 //<>
 
-public class GoAndGiveItemsToTarget<E extends LivingEntity & InventoryCarrier> extends Behavior<E> {
-    private final Function<LivingEntity, Optional<PositionTracker>> targetPosition;
-    private final float speedModifier;
+public class GiveInventoryToLookTarget<E extends LivingEntity & InventoryCarrier> extends Behavior<E> {
+    private final Function<LivingEntity, Optional<PositionTracker>> lookTarget;
+    private final float speed;
 
-    public GoAndGiveItemsToTarget(Function<LivingEntity, Optional<PositionTracker>> targetPosition, float speedModifier) {
+    public GiveInventoryToLookTarget(Function<LivingEntity, Optional<PositionTracker>> lookTarget, float speed) {
         super(ImmutableMap.of(MemoryModuleType.LOOK_TARGET, MemoryStatus.REGISTERED, MemoryModuleType.WALK_TARGET, MemoryStatus.REGISTERED, WBMemoryModules.ITEM_PICKUP_COOLDOWN_TICKS.get(), MemoryStatus.REGISTERED));
-        this.targetPosition = targetPosition;
-        this.speedModifier = speedModifier;
+        this.lookTarget = lookTarget;
+        this.speed = speed;
     }
 
     @Override
     protected boolean checkExtraStartConditions(ServerLevel level, E entity) {
-        return this.canThrowItemToTarget(entity);
+        return this.hasItemAndTarget(entity);
     }
 
     @Override
     protected boolean canStillUse(ServerLevel level, E entity, long time) {
-        return this.canThrowItemToTarget(entity);
+        return this.hasItemAndTarget(entity);
     }
 
     @Override
     protected void start(ServerLevel level, E entity, long time) {
-        this.targetPosition.apply(entity).ifPresent(target -> MobUtils.setWalkAndLookTargetMemories(entity, target, this.speedModifier, 3));
+        this.lookTarget.apply(entity).ifPresent(target -> MobUtils.walkTowards(entity, target, this.speed, 3));
     }
 
     @Override
     protected void tick(ServerLevel level, E entity, long time) {
-        Optional<PositionTracker> optional = this.targetPosition.apply(entity);
-        if (optional.isPresent()) {
-            PositionTracker tracker = optional.get();
-            double d0 = tracker.currentPosition().distanceTo(entity.getEyePosition());
-            if (d0 < 3.0D) {
-                ItemStack itemstack = entity.getInventory().removeItem(0, 1);
-                if (!itemstack.isEmpty()) {
-                    throwItem(entity, itemstack, getThrowPosition(tracker));
+        Optional<PositionTracker> lookTarget = this.lookTarget.apply(entity);
+        if (lookTarget.isPresent()) {
+            PositionTracker target = lookTarget.get();
+            double distance = target.currentPosition().distanceTo(entity.getEyePosition());
+            if (distance < 3.0D) {
+                ItemStack stack = entity.getInventory().removeItem(0, 1);
+                if (!stack.isEmpty()) {
+                    playThrowSound(entity, stack, offsetTarget(target));
                     if (entity instanceof Allay allay) {
-                        AllayBrain.getLikedPlayer(allay).ifPresent(p_217224_ -> this.triggerDropItemOnBlock(tracker, itemstack, p_217224_));
+                        AllayBrain.getLikedPlayer(allay).ifPresent(player -> this.triggerCriteria(target, stack, player));
                     }
 
                     entity.getBrain().setMemory(WBMemoryModules.ITEM_PICKUP_COOLDOWN_TICKS.get(), 60);
                 }
             }
-
         }
     }
 
-    private void triggerDropItemOnBlock(PositionTracker tracker, ItemStack stack, ServerPlayer player) {
-        BlockPos pos = tracker.currentBlockPosition().below();
+    private void triggerCriteria(PositionTracker target, ItemStack stack, ServerPlayer player) {
+        BlockPos pos = target.currentBlockPosition().below();
 //        WBCriteriaTriggers.ALLAY_DROP_ITEM_ON_BLOCK.trigger(player, pos, stack);
     }
 
-    private boolean canThrowItemToTarget(E entity) {
-        return !entity.getInventory().isEmpty() && this.targetPosition.apply(entity).isPresent();
+    private boolean hasItemAndTarget(E entity) {
+        return !entity.getInventory().isEmpty() && this.lookTarget.apply(entity).isPresent();
     }
 
-    private static Vec3 getThrowPosition(PositionTracker tracker) {
+    private static Vec3 offsetTarget(PositionTracker tracker) {
         return tracker.currentPosition().add(0.0D, 1.0D, 0.0D);
     }
 
-    public static void throwItem(LivingEntity entity, ItemStack stack, Vec3 position) {
-        Vec3 vec3 = new Vec3(0.2F, 0.3F, 0.2F);
-        MobUtils.throwItem(entity, stack, position, vec3, 0.2F);
+    public static void playThrowSound(LivingEntity entity, ItemStack stack, Vec3 pos) {
+        Vec3 velocity = new Vec3(0.2F, 0.3F, 0.2F);
+        MobUtils.give(entity, stack, pos, velocity, 0.2F);
         Level level = entity.level;
         if (level.getGameTime() % 7L == 0L && level.random.nextDouble() < 0.9D) {
-            float pitch = Util.getRandom(Allay.SOUND_PITCHES, level.getRandom());
+            float pitch = Util.getRandom(Allay.THROW_SOUND_PITCHES, level.getRandom());
             level.playSound(null, entity, WBSoundEvents.ALLAY_ITEM_THROW, SoundSource.NEUTRAL, 1.0F, pitch);
         }
     }

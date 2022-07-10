@@ -31,20 +31,20 @@ public class MobUtils {
         return Mth.lengthSquared(x, z) < Mth.square(xzRange) && Mth.square(y) < Mth.square(yRange);
     }
 
-    public static void setWalkAndLookTargetMemories(LivingEntity entity, PositionTracker tracker, float speedModifier, int closeEnough) {
-        WalkTarget target = new WalkTarget(tracker, speedModifier, closeEnough);
-        entity.getBrain().setMemory(MemoryModuleType.LOOK_TARGET, tracker);
-        entity.getBrain().setMemory(MemoryModuleType.WALK_TARGET, target);
+    public static void walkTowards(LivingEntity entity, PositionTracker target, float speed, int closeEnough) {
+        WalkTarget walkTarget = new WalkTarget(target, speed, closeEnough);
+        entity.getBrain().setMemory(MemoryModuleType.LOOK_TARGET, target);
+        entity.getBrain().setMemory(MemoryModuleType.WALK_TARGET, walkTarget);
     }
 
-    public static void throwItem(LivingEntity entity, ItemStack stack, Vec3 source, Vec3 target, float p_217138_) {
-        double y = entity.getEyeY() - (double)p_217138_;
-        ItemEntity itemEntity = new ItemEntity(entity.level, entity.getX(), y, entity.getZ(), stack);
-        itemEntity.setThrower(entity.getUUID());
-        Vec3 distance = source.subtract(entity.position());
-        distance = distance.normalize().multiply(target.x, target.y, target.z);
-        itemEntity.setDeltaMovement(distance);
-        itemEntity.setDefaultPickUpDelay();
-        entity.level.addFreshEntity(itemEntity);
+    public static void give(LivingEntity entity, ItemStack stack, Vec3 target, Vec3 velocity, float yOffset) {
+        double y = entity.getEyeY() - (double)yOffset;
+        ItemEntity item = new ItemEntity(entity.level, entity.getX(), y, entity.getZ(), stack);
+        item.setThrower(entity.getUUID());
+        Vec3 distance = target.subtract(entity.position());
+        distance = distance.normalize().multiply(velocity.x, velocity.y, velocity.z);
+        item.setDeltaMovement(distance);
+        item.setDefaultPickUpDelay();
+        entity.level.addFreshEntity(item);
     }
 }

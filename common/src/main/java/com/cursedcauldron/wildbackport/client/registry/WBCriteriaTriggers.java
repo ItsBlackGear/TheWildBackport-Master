@@ -3,6 +3,7 @@ package com.cursedcauldron.wildbackport.client.registry;
 import com.cursedcauldron.wildbackport.WildBackport;
 import com.cursedcauldron.wildbackport.core.mixin.access.CriteriaTriggersAccessor;
 import net.minecraft.advancements.CriterionTrigger;
+import net.minecraft.advancements.critereon.ItemUsedOnBlockTrigger;
 import net.minecraft.advancements.critereon.KilledTrigger;
 import net.minecraft.advancements.critereon.LocationTrigger;
 import net.minecraft.resources.ResourceLocation;

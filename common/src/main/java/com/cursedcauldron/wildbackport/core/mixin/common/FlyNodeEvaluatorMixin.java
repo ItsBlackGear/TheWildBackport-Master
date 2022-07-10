@@ -28,7 +28,7 @@ public abstract class FlyNodeEvaluatorMixin extends WalkNodeEvaluator {
     @Inject(method = "getStart", at = @At(value = "INVOKE", target = "Lcom/google/common/collect/ImmutableSet;of(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lcom/google/common/collect/ImmutableSet;", shift = At.Shift.AFTER), cancellable = true)
     private void wb$start(CallbackInfoReturnable<Node> cir) {
         if (this.mob instanceof Allay allay) {
-            for (BlockPos pos : allay.iteratePathfindingStartNodeCandidatePositions()) {
+            for (BlockPos pos : allay.getPotentialEscapePositions()) {
                 BlockPathTypes types = this.getCachedBlockPathType(pos.getX(), pos.getY(), pos.getZ());
                 if (this.mob.getPathfindingMalus(types) >= 0.0F) {
                     Node node = this.getNode(pos);
