@@ -1,0 +1,27 @@
+modLoader = "javafml"
+loaderVersion = "[40,)"
+license = "All Rights Reserved"
+
+[[mods]]
+modId = "wildbackport"
+version = "${version}"
+displayName = "The Wild Backport"
+logoFile = "icon.png"
+authors = "BlackGear, Orcinus, Dopadream"
+description = '''
+a mod that backports the features from the wild update
+'''
+
+[[dependencies.wildbackport]]
+    modId = "forge"
+    mandatory = true
+    versionRange = "[40,)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.wildbackport]]
+    modId = "minecraft"
+    mandatory = true
+    versionRange = "[1.18.2,1.19)"
+    ordering = "NONE"
+    side = "BOTH"

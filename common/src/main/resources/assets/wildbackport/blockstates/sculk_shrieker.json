@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "shrieking=false": {
+      "model": "wildbackport:block/sculk_shrieker"
+    },
+    "shrieking=true": {
+      "model": "wildbackport:block/sculk_shrieker"
+    }
+  }
+}

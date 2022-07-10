@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "wildbackport:entity_die",
+    "wildbackport:instrument_play",
+    "wildbackport:note_block_play"
+  ]
+}

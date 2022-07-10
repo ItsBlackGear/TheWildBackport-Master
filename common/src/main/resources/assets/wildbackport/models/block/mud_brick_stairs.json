@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "wildbackport:block/mud_bricks",
+    "top": "wildbackport:block/mud_bricks",
+    "side": "wildbackport:block/mud_bricks"
+  }
+}

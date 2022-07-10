@@ -1,0 +1,8 @@
+accessWidener v2 named
+
+transitive-accessible class net/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier
+transitive-accessible class net/minecraft/world/level/levelgen/structure/pools/JigsawPlacement$Placer
+transitive-accessible class net/minecraft/world/level/levelgen/structure/pools/JigsawPlacement$PieceState
+
+transitive-accessible method net/minecraft/client/particle/HugeExplosionParticle <init> (Lnet/minecraft/client/multiplayer/ClientLevel;DDDDLnet/minecraft/client/particle/SpriteSet;)V
+transitive-accessible method net/minecraft/world/level/block/MultifaceBlock hasFace (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z

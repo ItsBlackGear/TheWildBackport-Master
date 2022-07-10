@@ -1,0 +1,41 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.cursedcauldron.wildbackport.core.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "access.ActivityAccessor",
+    "access.CriteriaTriggersAccessor",
+    "access.DamageSourceAccessor",
+    "access.DoorBlockAccessor",
+    "access.MemoryModuleTypeAccessor",
+    "access.ModelPartAccessor",
+    "access.PressurePlateBlockAccessor",
+    "access.RecordItemAccessor",
+    "access.SensorTypeAccessor",
+    "access.SheetsAccessor",
+    "access.SimpleParticleTypeAccessor",
+    "access.StairBlockAccessor",
+    "access.StructureTemplatePoolAccessor",
+    "access.TrapDoorBlockAccessor",
+    "access.WoodButtonBlockAccessor",
+    "access.WoodTypeAccessor",
+    "common.BeardifierMixin",
+    "common.BlockEntityTypeMixin",
+    "common.LivingEntityMixin",
+    "common.PlayerMixin",
+    "extension.BoatTypeMixin",
+    "extension.PoseMixin",
+    "network.ServerGamePacketListenerImplMixin"
+  ],
+  "client": [
+    "client.LocalPlayerMixin",
+    "client.ModelPartMixin",
+    "client.PartDefinitionMixin",
+    "network.ClientPacketListenerMixin",
+    "network.MultiPlayerGameModeMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

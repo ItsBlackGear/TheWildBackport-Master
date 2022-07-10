@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:desert",
+    "minecraft:warm_ocean",
+    "#minecraft:is_jungle",
+    "#minecraft:has_structure/village_savanna",
+    "minecraft:savanna_plateau",
+    "minecraft:windswept_savanna",
+    "#minecraft:is_nether",
+    "#minecraft:is_badlands",
+    "wildbackport:mangrove_swamp"
+  ]
+}

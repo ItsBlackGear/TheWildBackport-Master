@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "bloom=false": {
+      "model": "wildbackport:block/sculk_catalyst"
+    },
+    "bloom=true": {
+      "model": "wildbackport:block/sculk_catalyst_bloom"
+    }
+  }
+}

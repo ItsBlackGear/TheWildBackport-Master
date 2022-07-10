@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "wildbackport:block/pearlescent_froglight_top",
+    "side": "wildbackport:block/pearlescent_froglight_side"
+  }
+}

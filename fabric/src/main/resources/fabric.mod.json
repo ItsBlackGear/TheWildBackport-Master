@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "wildbackport",
+  "version": "${version}",
+  "name": "Wildbackport",
+  "description": "a mod that backports the features from the wild update",
+  "authors": [
+    "BlackGear",
+    "Orcinus",
+    "Dopadream"
+  ],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.cursedcauldron.wildbackport.fabric.WildBackportFabric"
+    ],
+    "client": [
+      "com.cursedcauldron.wildbackport.fabric.WildBackportFabricClient"
+    ]
+  },
+  "mixins": [
+    "wildbackport.mixins.json",
+    "wildbackport-common.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.8",
+    "minecraft": ">=1.18.2"
+  }
+}

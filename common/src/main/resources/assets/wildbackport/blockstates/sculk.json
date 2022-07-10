@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "wildbackport:block/sculk"
+      },
+      {
+        "model": "wildbackport:block/sculk_mirrored"
+      },
+      {
+        "model": "wildbackport:block/sculk",
+        "y": 180
+      },
+      {
+        "model": "wildbackport:block/sculk_mirrored",
+        "y": 180
+      }
+    ]
+  }
+}

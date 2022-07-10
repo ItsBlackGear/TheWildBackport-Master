@@ -1,0 +1,2525 @@
+{
+  "music_disc.5": {
+    "sounds": [
+      {
+        "name": "wildbackport:records/5",
+        "stream": true
+      }
+    ]
+  },
+  "block.sculk.fall": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk/step1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step5",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step6",
+        "volume": 1
+      }
+    ]
+  },
+  "block.sculk.hit": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk/step1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step5",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step6",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.sculk.step": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk/step1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step5",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step6",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.sculk.place": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk/place1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/place2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/place3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/place4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/place5",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.sculk.break": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk/break1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/break2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/break3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/break4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/break5",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/break6",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/break7",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/break8",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/break9",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/break10",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/break11",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/break12",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/break13",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/break14",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.sculk.spread": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk/spread1",
+        "volume": 1,
+        "pitch": 0.9
+      },
+      {
+        "name": "wildbackport:block/sculk/spread2",
+        "volume": 1,
+        "pitch": 0.9
+      },
+      {
+        "name": "wildbackport:block/sculk/spread3",
+        "volume": 1,
+        "pitch": 0.9
+      },
+      {
+        "name": "wildbackport:block/sculk/spread4",
+        "volume": 1,
+        "pitch": 0.9
+      },
+      {
+        "name": "wildbackport:block/sculk/spread5",
+        "volume": 1,
+        "pitch": 0.9
+      }
+    ]
+  },
+  "block.sculk.charge": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk/charge1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/charge2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/charge3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/charge4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/charge5",
+        "volume": 1
+      }
+    ]
+  },
+  "block.sculk_catalyst.bloom": {
+    "sounds": [
+      {
+        "attenuation_distance": 12,
+        "name": "enchant/soulspeed/soulspeed1",
+        "volume": 0.25
+      },
+      {
+        "attenuation_distance": 12,
+        "name": "enchant/soulspeed/soulspeed2",
+        "volume": 0.25
+      },
+      {
+        "attenuation_distance": 12,
+        "name": "enchant/soulspeed/soulspeed3",
+        "volume": 0.25
+      },
+      {
+        "attenuation_distance": 12,
+        "name": "enchant/soulspeed/soulspeed4",
+        "volume": 0.25
+      },
+      {
+        "attenuation_distance": 12,
+        "name": "enchant/soulspeed/soulspeed5",
+        "volume": 0.25
+      },
+      {
+        "attenuation_distance": 12,
+        "name": "enchant/soulspeed/soulspeed6",
+        "volume": 0.25
+      },
+      {
+        "attenuation_distance": 12,
+        "name": "enchant/soulspeed/soulspeed7",
+        "volume": 0.25
+      },
+      {
+        "attenuation_distance": 12,
+        "name": "enchant/soulspeed/soulspeed8",
+        "volume": 0.25
+      },
+      {
+        "attenuation_distance": 12,
+        "name": "enchant/soulspeed/soulspeed9",
+        "volume": 0.25
+      },
+      {
+        "attenuation_distance": 12,
+        "name": "enchant/soulspeed/soulspeed10",
+        "volume": 0.25
+      },
+      {
+        "attenuation_distance": 12,
+        "name": "enchant/soulspeed/soulspeed11",
+        "volume": 0.25
+      },
+      {
+        "attenuation_distance": 12,
+        "name": "enchant/soulspeed/soulspeed12",
+        "volume": 0.25
+      },
+      {
+        "attenuation_distance": 12,
+        "name": "enchant/soulspeed/soulspeed13",
+        "volume": 0.25
+      }
+    ]
+  },
+  "block.sculk_catalyst.fall": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk_catalyst/step1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/step2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/step3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/step4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/step5",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/step6",
+        "volume": 1
+      }
+    ]
+  },
+  "block.sculk_catalyst.hit": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk_catalyst/step1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/step2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/step3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/step4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/step5",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/step6",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.sculk_catalyst.step": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk_catalyst/step1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/step2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/step3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/step4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/step5",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/step6",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.sculk_catalyst.place": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk_catalyst/place1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/place2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/place3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/place4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/place5",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.sculk_catalyst.break": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk_catalyst/break1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/break2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/break3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/break4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/break5",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/break6",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/break7",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/break8",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/break9",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk_catalyst/break10",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.sculk_vein.fall": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk/step1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step5",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step6",
+        "volume": 1
+      }
+    ]
+  },
+  "block.sculk_vein.hit": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk/step1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step5",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step6",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.sculk_vein.step": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk/step1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step5",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step6",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.sculk_vein.place": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk_vein/break1",
+        "pitch": 1.1,
+        "volume": 0.8
+      },
+      {
+        "name": "wildbackport:block/sculk_vein/break2",
+        "pitch": 1.1,
+        "volume": 0.8
+      },
+      {
+        "name": "wildbackport:block/sculk_vein/break3",
+        "pitch": 1.1,
+        "volume": 0.8
+      },
+      {
+        "name": "wildbackport:block/sculk_vein/break4",
+        "pitch": 1.1,
+        "volume": 0.8
+      },
+      {
+        "name": "wildbackport:block/sculk_vein/break5",
+        "pitch": 1.1,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.sculk_vein.break": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk_vein/break1",
+        "pitch": 1.1,
+        "volume": 0.8
+      },
+      {
+        "name": "wildbackport:block/sculk_vein/break2",
+        "pitch": 1.1,
+        "volume": 0.8
+      },
+      {
+        "name": "wildbackport:block/sculk_vein/break3",
+        "pitch": 1.1,
+        "volume": 0.8
+      },
+      {
+        "name": "wildbackport:block/sculk_vein/break4",
+        "pitch": 1.1,
+        "volume": 0.8
+      },
+      {
+        "name": "wildbackport:block/sculk_vein/break5",
+        "pitch": 1.1,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+
+  "block.sculk_shrieker.fall": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk/step1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step5",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step6",
+        "volume": 1
+      }
+    ]
+  },
+  "block.sculk_shrieker.hit": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk/step1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step5",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step6",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.sculk_shrieker.step": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk/step1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step5",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:block/sculk/step6",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.sculk_shrieker.place": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk_shrieker/place1",
+        "volume": 0.9
+      },
+      {
+        "name": "wildbackport:block/sculk_shrieker/place2",
+        "volume": 0.9
+      },
+      {
+        "name": "wildbackport:block/sculk_shrieker/place3",
+        "volume": 0.9
+      },
+      {
+        "name": "wildbackport:block/sculk_shrieker/place4",
+        "volume": 0.9
+      },
+      {
+        "name": "wildbackport:block/sculk_shrieker/place5",
+        "volume": 0.9
+      }
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.sculk_shrieker.break": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk_shrieker/break1",
+        "volume": 0.9
+      },
+      {
+        "name": "wildbackport:block/sculk_shrieker/break2",
+        "volume": 0.9
+      },
+      {
+        "name": "wildbackport:block/sculk_shrieker/break3",
+        "volume": 0.9
+      },
+      {
+        "name": "wildbackport:block/sculk_shrieker/break4",
+        "volume": 0.9
+      },
+      {
+        "name": "wildbackport:block/sculk_shrieker/break5",
+        "volume": 0.9
+      },
+      {
+        "name": "wildbackport:block/sculk_shrieker/break6",
+        "volume": 0.9
+      }
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.sculk_shrieker.shriek": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/sculk_shrieker/shriek1",
+        "volume": 0.85
+      },
+      {
+        "name": "wildbackport:block/sculk_shrieker/shriek2",
+        "volume": 0.85
+      },
+      {
+        "name": "wildbackport:block/sculk_shrieker/shriek3",
+        "volume": 0.85
+      },
+      {
+        "name": "wildbackport:block/sculk_shrieker/shriek4",
+        "volume": 0.85
+      },
+      {
+        "name": "wildbackport:block/sculk_shrieker/shriek5",
+        "volume": 0.85
+      }
+    ]
+  },
+  "block.froglight.break": {
+    "sounds": [
+      "wildbackport:block/froglight/break1",
+      "wildbackport:block/froglight/break2",
+      "wildbackport:block/froglight/break3",
+      "wildbackport:block/froglight/break4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.froglight.fall": {
+    "sounds": [
+      "wildbackport:block/froglight/step1",
+      "wildbackport:block/froglight/step2",
+      "wildbackport:block/froglight/step3",
+      "wildbackport:block/froglight/step4",
+      "wildbackport:block/froglight/step5",
+      "wildbackport:block/froglight/step6"
+    ]
+  },
+  "block.froglight.hit": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/froglight/step1",
+        "pitch": 1.3,
+        "volume": 0.83
+      },
+      {
+        "name": "wildbackport:block/froglight/step2",
+        "pitch": 1.3,
+        "volume": 0.83
+      },
+      {
+        "name": "wildbackport:block/froglight/step3",
+        "pitch": 1.3,
+        "volume": 0.83
+      },
+      {
+        "name": "wildbackport:block/froglight/step4",
+        "pitch": 1.3,
+        "volume": 0.83
+      },
+      {
+        "name": "wildbackport:block/froglight/step5",
+        "pitch": 1.3,
+        "volume": 0.83
+      },
+      {
+        "name": "wildbackport:block/froglight/step6",
+        "pitch": 1.3,
+        "volume": 0.83
+      }
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.froglight.place": {
+    "sounds": [
+      "wildbackport:block/froglight/break1",
+      "wildbackport:block/froglight/break2",
+      "wildbackport:block/froglight/break3",
+      "wildbackport:block/froglight/break4"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.froglight.step": {
+    "sounds": [
+      "wildbackport:block/froglight/step1",
+      "wildbackport:block/froglight/step2",
+      "wildbackport:block/froglight/step3",
+      "wildbackport:block/froglight/step4",
+      "wildbackport:block/froglight/step5",
+      "wildbackport:block/froglight/step6"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.frogspawn.break": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/frogspawn/break1",
+        "pitch": 1.2,
+        "volume": 0.1
+      },
+      {
+        "name": "wildbackport:block/frogspawn/break2",
+        "pitch": 1.2,
+        "volume": 0.1
+      },
+      {
+        "name": "wildbackport:block/frogspawn/break3",
+        "pitch": 1.2,
+        "volume": 0.1
+      },
+      {
+        "name": "wildbackport:block/frogspawn/break4",
+        "pitch": 1.2,
+        "volume": 0.1
+      }
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.frogspawn.fall": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/frogspawn/step1",
+        "pitch": 1.3,
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/frogspawn/step2",
+        "pitch": 1.3,
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/frogspawn/step3",
+        "pitch": 1.3,
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/frogspawn/step4",
+        "pitch": 1.3,
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/frogspawn/step5",
+        "pitch": 1.3,
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/frogspawn/step6",
+        "pitch": 1.3,
+        "volume": 0.3
+      }
+    ]
+  },
+  "block.frogspawn.hatch": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/frogspawn/hatch1",
+        "pitch": 1.2,
+        "volume": 0.6
+      },
+      {
+        "name": "wildbackport:block/frogspawn/hatch2",
+        "pitch": 1.2,
+        "volume": 0.6
+      },
+      {
+        "name": "wildbackport:block/frogspawn/hatch3",
+        "pitch": 1.2,
+        "volume": 0.6
+      },
+      {
+        "name": "wildbackport:block/frogspawn/hatch4",
+        "pitch": 1.2,
+        "volume": 0.6
+      }
+    ],
+    "subtitle": "subtitles.block.frogspawn.hatch"
+  },
+  "block.frogspawn.hit": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/frogspawn/step1",
+        "pitch": 1.3,
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/frogspawn/step2",
+        "pitch": 1.3,
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/frogspawn/step3",
+        "pitch": 1.3,
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/frogspawn/step4",
+        "pitch": 1.3,
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/frogspawn/step5",
+        "pitch": 1.3,
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/frogspawn/step6",
+        "pitch": 1.3,
+        "volume": 0.3
+      }
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.frogspawn.place": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/frogspawn/break1",
+        "pitch": 1.5,
+        "volume": 0.2
+      },
+      {
+        "name": "wildbackport:block/frogspawn/break2",
+        "pitch": 1.5,
+        "volume": 0.2
+      },
+      {
+        "name": "wildbackport:block/frogspawn/break3",
+        "pitch": 1.5,
+        "volume": 0.2
+      },
+      {
+        "name": "wildbackport:block/frogspawn/break4",
+        "pitch": 1.5,
+        "volume": 0.2
+      }
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.frogspawn.step": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/frogspawn/step1",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/frogspawn/step2",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/frogspawn/step3",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/frogspawn/step4",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/frogspawn/step5",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/frogspawn/step6",
+        "volume": 0.3
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.mangrove_roots.break": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/mangrove_roots/break1",
+        "pitch": 1.2,
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/break2",
+        "pitch": 1.2,
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/break3",
+        "pitch": 1.2,
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/break4",
+        "pitch": 1.2,
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/break5",
+        "pitch": 1.2,
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/break6",
+        "pitch": 1.2,
+        "volume": 0.25
+      }
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.mangrove_roots.fall": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/mangrove_roots/step1",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/step2",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/step3",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/step4",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/step5",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/step6",
+        "volume": 0.25
+      }
+    ]
+  },
+  "block.mangrove_roots.hit": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/mangrove_roots/step1",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/step2",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/step3",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/step4",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/step5",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/step6",
+        "volume": 0.25
+      }
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.mangrove_roots.place": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/mangrove_roots/break1",
+        "pitch": 1.2,
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/break2",
+        "pitch": 1.2,
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/break3",
+        "pitch": 1.2,
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/break4",
+        "pitch": 1.2,
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/break5",
+        "pitch": 1.2,
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/break6",
+        "pitch": 1.2,
+        "volume": 0.25
+      }
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.mangrove_roots.step": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/mangrove_roots/step1",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/step2",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/step3",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/step4",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/step5",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/mangrove_roots/step6",
+        "volume": 0.25
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.mud.break": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/mud/break1",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/break2",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/break3",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/break4",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/break5",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/break6",
+        "volume": 0.5
+      }
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.mud.fall": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/mud/step1",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/step2",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/step3",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/step4",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/step5",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/step6",
+        "volume": 0.5
+      }
+    ]
+  },
+  "block.mud.hit": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/mud/step1",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/step2",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/step3",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/step4",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/step5",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/step6",
+        "volume": 0.5
+      }
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.mud.place": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/mud/break1",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/break2",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/break3",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/break4",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/break5",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/break6",
+        "volume": 0.5
+      }
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.mud.step": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/mud/step1",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/step2",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/step3",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/step4",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/step5",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud/step6",
+        "volume": 0.5
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.mud_bricks.break": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/mud_bricks/break1",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/break2",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/break3",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/break4",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/break5",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/break6",
+        "volume": 0.5
+      }
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.mud_bricks.fall": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/mud_bricks/step1",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/step2",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/step3",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/step4",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/step5",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/step6",
+        "volume": 0.5
+      }
+    ]
+  },
+  "block.mud_bricks.hit": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/mud_bricks/step1",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/step2",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/step3",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/step4",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/step5",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/step6",
+        "volume": 0.5
+      }
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.mud_bricks.place": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/mud_bricks/break1",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/break2",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/break3",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/break4",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/break5",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/break6",
+        "volume": 0.5
+      }
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.mud_bricks.step": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/mud_bricks/step1",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/step2",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/step3",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/step4",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/step5",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:block/mud_bricks/step6",
+        "volume": 0.5
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.muddy_mangrove_roots.break": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/break1",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/break2",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/break3",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/break4",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/break5",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/break6",
+        "volume": 0.25
+      }
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.muddy_mangrove_roots.fall": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/step1",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/step2",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/step3",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/step4",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/step5",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/step6",
+        "volume": 0.25
+      }
+    ]
+  },
+  "block.muddy_mangrove_roots.hit": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/step1",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/step2",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/step3",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/step4",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/step5",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/step6",
+        "volume": 0.25
+      }
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.muddy_mangrove_roots.place": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/break1",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/break2",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/break3",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/break4",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/break5",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/break6",
+        "volume": 0.25
+      }
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.muddy_mangrove_roots.step": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/step1",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/step2",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/step3",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/step4",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/step5",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:block/muddy_mangrove_roots/step6",
+        "volume": 0.25
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.packed_mud.break": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/packed_mud/break1",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/break2",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/break3",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/break4",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/break5",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/break6",
+        "volume": 0.3
+      }
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.packed_mud.fall": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/packed_mud/step1",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/step2",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/step3",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/step4",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/step5",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/step6",
+        "volume": 0.3
+      }
+    ]
+  },
+  "block.packed_mud.hit": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/packed_mud/step1",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/step2",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/step3",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/step4",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/step5",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/step6",
+        "volume": 0.3
+      }
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.packed_mud.place": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/packed_mud/break1",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/break2",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/break3",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/break4",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/break5",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/break6",
+        "volume": 0.3
+      }
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.packed_mud.step": {
+    "sounds": [
+      {
+        "name": "wildbackport:block/packed_mud/step1",
+        "pitch": 0.95,
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/step2",
+        "pitch": 0.95,
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/step3",
+        "pitch": 0.95,
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/step4",
+        "pitch": 0.95,
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/step5",
+        "pitch": 0.95,
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:block/packed_mud/step6",
+        "pitch": 0.95,
+        "volume": 0.3
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "item.goat_horn.sound.0": {
+    "sounds": [
+      "wildbackport:item/goat_horn/call0"
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "item.goat_horn.sound.1": {
+    "sounds": [
+      "wildbackport:item/goat_horn/call1"
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "item.goat_horn.sound.2": {
+    "sounds": [
+      "wildbackport:item/goat_horn/call2"
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "item.goat_horn.sound.3": {
+    "sounds": [
+      "wildbackport:item/goat_horn/call3"
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "item.goat_horn.sound.4": {
+    "sounds": [
+      "wildbackport:item/goat_horn/call4"
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "item.goat_horn.sound.5": {
+    "sounds": [
+      "wildbackport:item/goat_horn/call5"
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "item.goat_horn.sound.6": {
+    "sounds": [
+      "wildbackport:item/goat_horn/call6"
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "item.goat_horn.sound.7": {
+    "sounds": [
+      "wildbackport:item/goat_horn/call7"
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "entity.warden.sonic_boom": {
+    "sounds": [
+      "wildbackport:mob/warden/sonic_boom1",
+      "wildbackport:mob/warden/sonic_boom2",
+      "wildbackport:mob/warden/sonic_boom3",
+      "wildbackport:mob/warden/sonic_boom4"
+    ]
+  },
+  "entity.warden.sonic_charge": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/sonic_charge1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/sonic_charge2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/sonic_charge3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/sonic_charge4",
+        "volume": 1
+      }
+    ]
+  },
+  "entity.warden.nearby_closest": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/nearby_closest_1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/nearby_closest_2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/nearby_closest_3",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.nearby_closest"
+  },
+  "entity.warden.nearby_closer": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/nearby_closer_1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/nearby_closer_2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/nearby_closer_3",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.nearby_closer"
+  },
+  "entity.warden.nearby_close": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/nearby_close_1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/nearby_close_2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/nearby_close_3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/nearby_close_4",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.nearby_close"
+  },
+  "entity.warden.roar": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/roar_1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/roar_2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/roar_3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/roar_4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/roar_5",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.roar"
+  },
+  "entity.warden.sniff": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/sniff_1",
+        "volume": 0.75
+      },
+      {
+        "name": "wildbackport:mob/warden/sniff_2",
+        "volume": 0.75
+      },
+      {
+        "name": "wildbackport:mob/warden/sniff_3",
+        "volume": 0.75
+      },
+      {
+        "name": "wildbackport:mob/warden/sniff_4",
+        "volume": 0.75
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.sniff"
+  },
+  "entity.warden.ambient": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/idle_1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/idle_2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/idle_3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/idle_4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/idle_5",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/idle_6",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/idle_7",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/idle_8",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/idle_9",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/idle_10",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/idle_11",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/idle_12",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.ambient"
+  },
+  "entity.warden.emerge": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/emerge",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.emerge"
+  },
+  "entity.warden.dig": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/dig",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.dig"
+  },
+  "entity.warden.tendril_clicks": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/tendril_clicks_1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/tendril_clicks_2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/tendril_clicks_3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/tendril_clicks_4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/tendril_clicks_5",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/tendril_clicks_6",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.tendril_clicks"
+  },
+  "entity.warden.heartbeat": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/heartbeat_1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/heartbeat_2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/heartbeat_3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/heartbeat_4",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.heartbeat"
+  },
+  "entity.warden.listening": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/listening_1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/listening_2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/listening_3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/listening_4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/listening_5",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.listening"
+  },
+  "entity.warden.listening_angry": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/listening_angry_1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/listening_angry_2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/listening_angry_3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/listening_angry_4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/listening_angry_5",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.listening_angry"
+  },
+  "entity.warden.step": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/step_1",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:mob/warden/step_2",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:mob/warden/step_3",
+        "volume": 0.3
+      },
+      {
+        "name": "wildbackport:mob/warden/step_4",
+        "volume": 0.3
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.step"
+  },
+  "entity.warden.death": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/death_1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/death_2",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.death"
+  },
+  "entity.warden.attack_impact": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/attack_impact_1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/attack_impact_2",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.attack_impact"
+  },
+  "entity.warden.hurt": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/hurt_1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/hurt_2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/hurt_3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/hurt_4",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.hurt"
+  },
+  "entity.warden.agitated": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/agitated_1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/agitated_2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/agitated_3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/agitated_4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/agitated_5",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/agitated_6",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.agitated"
+  },
+  "entity.warden.angry": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/warden/angry_1",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/angry_2",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/angry_3",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/angry_4",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/angry_5",
+        "volume": 1
+      },
+      {
+        "name": "wildbackport:mob/warden/angry_6",
+        "volume": 1
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.angry"
+  },
+  "entity.frog.ambient": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/frog/idle1",
+        "pitch": 0.95,
+        "volume": 0.8
+      },
+      {
+        "name": "wildbackport:mob/frog/idle2",
+        "pitch": 0.9
+      },
+      {
+        "name": "wildbackport:mob/frog/idle3",
+        "pitch": 0.9,
+        "volume": 0.9
+      },
+      {
+        "name": "wildbackport:mob/frog/idle4",
+        "pitch": 0.95,
+        "volume": 0.8
+      },
+      {
+        "name": "wildbackport:mob/frog/idle5",
+        "pitch": 0.9,
+        "volume": 0.85
+      },
+      {
+        "name": "wildbackport:mob/frog/idle6",
+        "pitch": 0.9,
+        "volume": 0.9
+      },
+      {
+        "name": "wildbackport:mob/frog/idle7",
+        "pitch": 0.9,
+        "volume": 0.7
+      },
+      {
+        "name": "wildbackport:mob/frog/idle8",
+        "pitch": 0.9,
+        "volume": 0.3
+      }
+    ],
+    "subtitle": "subtitles.entity.frog.ambient"
+  },
+  "entity.frog.death": {
+    "sounds": [
+      "wildbackport:mob/frog/death1",
+      "wildbackport:mob/frog/death2",
+      "wildbackport:mob/frog/death3"
+    ],
+    "subtitle": "subtitles.entity.frog.death"
+  },
+  "entity.frog.eat": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/frog/eat1",
+        "volume": 0.6
+      },
+      {
+        "name": "wildbackport:mob/frog/eat1",
+        "pitch": 0.9,
+        "volume": 0.6
+      },
+      {
+        "name": "wildbackport:mob/frog/eat2",
+        "volume": 0.6
+      },
+      {
+        "name": "wildbackport:mob/frog/eat2",
+        "pitch": 0.9,
+        "volume": 0.6
+      },
+      {
+        "name": "wildbackport:mob/frog/eat3",
+        "volume": 0.6
+      },
+      {
+        "name": "wildbackport:mob/frog/eat3",
+        "pitch": 0.9,
+        "volume": 0.6
+      },
+      {
+        "name": "wildbackport:mob/frog/eat4",
+        "volume": 0.6
+      },
+      {
+        "name": "wildbackport:mob/frog/eat4",
+        "pitch": 0.9,
+        "volume": 0.6
+      }
+    ],
+    "subtitle": "subtitles.entity.frog.eat"
+  },
+  "entity.frog.hurt": {
+    "sounds": [
+      "wildbackport:mob/frog/hurt1",
+      "wildbackport:mob/frog/hurt2",
+      "wildbackport:mob/frog/hurt3",
+      "wildbackport:mob/frog/hurt4",
+      "wildbackport:mob/frog/hurt5"
+    ],
+    "subtitle": "subtitles.entity.frog.hurt"
+  },
+  "entity.frog.lay_spawn": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/frog/lay_spawn1",
+        "volume": 0.25
+      },
+      {
+        "name": "wildbackport:mob/frog/lay_spawn2",
+        "volume": 0.25
+      }
+    ],
+    "subtitle": "subtitles.entity.frog.lay_spawn"
+  },
+  "entity.frog.long_jump": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/frog/long_jump1",
+        "volume": 0.12
+      },
+      {
+        "name": "wildbackport:mob/frog/long_jump1",
+        "pitch": 0.8,
+        "volume": 0.12
+      },
+      {
+        "name": "wildbackport:mob/frog/long_jump2",
+        "volume": 0.12
+      },
+      {
+        "name": "wildbackport:mob/frog/long_jump2",
+        "pitch": 0.8,
+        "volume": 0.12
+      },
+      {
+        "name": "wildbackport:mob/frog/long_jump3",
+        "volume": 0.12
+      },
+      {
+        "name": "wildbackport:mob/frog/long_jump3",
+        "pitch": 0.8,
+        "volume": 0.12
+      },
+      {
+        "name": "wildbackport:mob/frog/long_jump4",
+        "volume": 0.12
+      },
+      {
+        "name": "wildbackport:mob/frog/long_jump4",
+        "pitch": 0.8,
+        "volume": 0.12
+      }
+    ],
+    "subtitle": "subtitles.entity.frog.long_jump"
+  },
+  "entity.frog.step": {
+    "sounds": [
+      "wildbackport:mob/frog/step1",
+      "wildbackport:mob/frog/step2",
+      "wildbackport:mob/frog/step3",
+      "wildbackport:mob/frog/step4"
+    ]
+  },
+  "item.bucket.empty_tadpole": {
+    "sounds": [
+      {
+        "name": "item/bucket/empty_fish1",
+        "pitch": 1.5,
+        "volume": 0.5
+      },
+      {
+        "name": "item/bucket/empty_fish2",
+        "pitch": 1.5,
+        "volume": 0.5
+      },
+      {
+        "name": "item/bucket/empty_fish3",
+        "pitch": 1.5,
+        "volume": 0.5
+      }
+    ],
+    "subtitle": "subtitles.item.bucket.empty"
+  },
+  "entity.frog.tongue": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/frog/tounge1",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:mob/frog/tounge2",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:mob/frog/tounge3",
+        "volume": 0.5
+      },
+      {
+        "name": "wildbackport:mob/frog/tounge4",
+        "volume": 0.5
+      }
+    ]
+  },
+  "item.bucket.fill_tadpole": {
+    "sounds": [
+      {
+        "name": "item/bucket/fill_fish1",
+        "pitch": 1.5,
+        "volume": 0.5
+      },
+      {
+        "name": "item/bucket/fill_fish2",
+        "pitch": 1.5,
+        "volume": 0.5
+      },
+      {
+        "name": "item/bucket/fill_fish3",
+        "pitch": 1.5,
+        "volume": 0.5
+      }
+    ],
+    "subtitle": "subtitles.item.bucket.fill_tadpole"
+  },
+  "entity.tadpole.death": {
+    "sounds": [
+      "wildbackport:mob/tadpole/death1",
+      "wildbackport:mob/tadpole/death2"
+    ],
+    "subtitle": "subtitles.entity.tadpole.death"
+  },
+  "entity.tadpole.flop": {
+    "sounds": [
+      {
+        "name": "entity.tropical_fish.flop",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.tadpole.flop"
+  },
+  "entity.tadpole.grow_up": {
+    "sounds": [
+      {
+        "name": "wildbackport:mob/frog/idle1",
+        "pitch": 1.2,
+        "volume": 0.75
+      },
+      {
+        "name": "wildbackport:mob/frog/idle2",
+        "pitch": 1.2,
+        "volume": 0.75
+      },
+      {
+        "name": "wildbackport:mob/frog/idle3",
+        "pitch": 1.2,
+        "volume": 0.75
+      },
+      {
+        "name": "wildbackport:mob/frog/idle4",
+        "pitch": 1.2,
+        "volume": 0.75
+      },
+      {
+        "name": "wildbackport:mob/frog/idle5",
+        "pitch": 1.2,
+        "volume": 0.75
+      },
+      {
+        "name": "wildbackport:mob/frog/idle6",
+        "pitch": 1.2,
+        "volume": 0.75
+      },
+      {
+        "name": "wildbackport:mob/frog/idle7",
+        "pitch": 1.2,
+        "volume": 0.75
+      },
+      {
+        "name": "wildbackport:mob/frog/idle8",
+        "pitch": 1.2,
+        "volume": 0.75
+      }
+    ],
+    "subtitle": "subtitles.entity.tadpole.grow_up"
+  },
+  "entity.tadpole.hurt": {
+    "sounds": [
+      "wildbackport:mob/tadpole/hurt1",
+      "wildbackport:mob/tadpole/hurt2",
+      "wildbackport:mob/tadpole/hurt3",
+      "wildbackport:mob/tadpole/hurt4"
+    ],
+    "subtitle": "subtitles.entity.tadpole.hurt"
+  }
+}

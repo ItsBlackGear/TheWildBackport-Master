@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "wildbackport:block/reinforced_deepslate_top",
+    "north": "wildbackport:block/reinforced_deepslate_side",
+    "south": "wildbackport:block/reinforced_deepslate_side",
+    "east": "wildbackport:block/reinforced_deepslate_side",
+    "west": "wildbackport:block/reinforced_deepslate_side",
+    "up": "wildbackport:block/reinforced_deepslate_top",
+    "down": "wildbackport:block/reinforced_deepslate_bottom"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "wildbackport:block/muddy_mangrove_roots",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "wildbackport:block/muddy_mangrove_roots"
+    },
+    "axis=z": {
+      "model": "wildbackport:block/muddy_mangrove_roots",
+      "x": 90
+    }
+  }
+}
