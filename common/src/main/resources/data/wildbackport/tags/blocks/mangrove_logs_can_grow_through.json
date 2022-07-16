@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "wildbackport:mud",
+    "wildbackport:muddy_mangrove_roots",
+    "wildbackport:mangrove_roots",
+    "wildbackport:mangrove_leaves",
+    "wildbackport:mangrove_log",
+    "wildbackport:mangrove_propagule",
+    "minecraft:moss_carpet",
+    "minecraft:vine"
+  ]
+}

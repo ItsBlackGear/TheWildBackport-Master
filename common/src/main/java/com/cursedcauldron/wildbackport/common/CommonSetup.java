@@ -6,6 +6,8 @@ import com.cursedcauldron.wildbackport.common.entities.Tadpole;
 import com.cursedcauldron.wildbackport.common.entities.Warden;
 import com.cursedcauldron.wildbackport.common.events.StructureEvent;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBEntities;
+import com.cursedcauldron.wildbackport.common.registry.worldgen.WBWorldGeneration;
+import com.cursedcauldron.wildbackport.core.api.Environment;
 import com.cursedcauldron.wildbackport.core.api.MobRegistry;
 
 public class CommonSetup {
@@ -18,13 +20,15 @@ public class CommonSetup {
         MobRegistry.registerAttributes(WBEntities.FROG, Frog::createAttributes);
         MobRegistry.registerAttributes(WBEntities.TADPOLE, Tadpole::createAttributes);
         MobRegistry.registerAttributes(WBEntities.WARDEN, Warden::createAttributes);
-        StructureEvent.bootstrap();
+//        StructureEvent.bootstrap();
+        if (Environment.isFabric()) WBWorldGeneration.bootstrap();
     }
 
     /**
      * Runs features post bootstrap
      */
-    public static void onPostClient() {
-        StructureEvent.bootstrap();
+    public static void onPostCommon() {
+//        StructureEvent.bootstrap();
+        if (Environment.isForge()) WBWorldGeneration.bootstrap();
     }
 }

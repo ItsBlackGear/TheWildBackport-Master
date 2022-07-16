@@ -9,6 +9,10 @@ import com.cursedcauldron.wildbackport.common.registry.WBEnchantments;
 import com.cursedcauldron.wildbackport.common.registry.WBGameEvents;
 import com.cursedcauldron.wildbackport.common.registry.WBItems;
 import com.cursedcauldron.wildbackport.common.registry.WBPositionSources;
+import com.cursedcauldron.wildbackport.common.registry.worldgen.WBFeatures;
+import com.cursedcauldron.wildbackport.common.registry.worldgen.RootPlacerType;
+import com.cursedcauldron.wildbackport.common.registry.worldgen.WBTreeDecorators;
+import com.cursedcauldron.wildbackport.common.registry.worldgen.WBTrunkPlacers;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBActivities;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBEntities;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBMemoryModules;
@@ -36,12 +40,16 @@ public class WildBackport {
         WBEnchantments.ENCHANTMENTS.register();
         WBEntities.ENTITIES.register();
         WBGameEvents.EVENTS.register();
+        WBFeatures.FEATURES.register();
         WBItems.ITEMS.register();
         WBMemoryModules.MEMORIES.register();
         WBParticleTypes.PARTICLES.register();
         WBPositionSources.SOURCES.register();
+        RootPlacerType.PLACERS.register();
         WBSensorTypes.SENSORS.register();
         WBSoundEvents.SOUNDS.register();
+        WBTreeDecorators.DECORATORS.register();
+        WBTrunkPlacers.PLACERS.register();
 
         // Tags
         WBBiomeTags.TAGS.bootstrap();

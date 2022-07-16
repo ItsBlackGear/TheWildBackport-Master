@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:sculk_sensor",
+    "wildbackport:sculk",
+    "wildbackport:sculk_catalyst",
+    "wildbackport:sculk_vein",
+    "wildbackport:sculk_shrieker"
+  ]
+}

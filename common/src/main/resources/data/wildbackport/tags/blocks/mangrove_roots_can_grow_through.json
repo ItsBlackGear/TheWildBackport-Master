@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "wildbackport:mud",
+    "wildbackport:muddy_mangrove_roots",
+    "wildbackport:mangrove_roots",
+    "minecraft:moss_carpet",
+    "minecraft:vine",
+    "wildbackport:mangrove_propagule",
+    "minecraft:snow"
+  ]
+}

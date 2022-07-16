@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "wildbackport:mud_bricks",
+    "wildbackport:mud_brick_stairs",
+    "wildbackport:mud_brick_slab",
+    "wildbackport:packed_mud"
+  ]
+}
