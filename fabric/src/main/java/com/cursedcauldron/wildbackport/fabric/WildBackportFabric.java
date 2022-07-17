@@ -9,5 +9,6 @@ public class WildBackportFabric implements ModInitializer {
     public void onInitialize() {
         WildBackport.bootstrap();
         CommonSetup.onCommon();
+        CommonSetup.onPostCommon();
     }
 }

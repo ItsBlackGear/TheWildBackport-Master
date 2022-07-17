@@ -5,7 +5,7 @@ import com.cursedcauldron.wildbackport.common.entities.Frog;
 import com.cursedcauldron.wildbackport.common.entities.brain.frog.BiasedLongJumpTask;
 import com.cursedcauldron.wildbackport.common.entities.brain.frog.Croak;
 import com.cursedcauldron.wildbackport.common.entities.brain.frog.FrogEat;
-import com.cursedcauldron.wildbackport.common.entities.brain.frog.LayFrogSpawnTask;
+import com.cursedcauldron.wildbackport.common.entities.brain.frog.LayFrogSpawn;
 import com.cursedcauldron.wildbackport.common.entities.brain.frog.WalkTowardsLand;
 import com.cursedcauldron.wildbackport.common.entities.brain.frog.WalkTowardsWater;
 import com.cursedcauldron.wildbackport.common.registry.WBBlocks;
@@ -80,7 +80,7 @@ public class FrogBrain {
     }
 
     private static void addLaySpawnActivities(Brain<Frog> brain) {
-        brain.addActivityWithConditions(WBActivities.LAY_SPAWN.get(), ImmutableList.of(Pair.of(0, new RunSometimes<LivingEntity>(new SetEntityLookTarget(EntityType.PLAYER, 6.0F), UniformInt.of(30, 60))), Pair.of(1, new StartAttacking<>(FrogBrain::isNotBreeding, frog -> frog.getBrain().getMemory(MemoryModuleType.NEAREST_ATTACKABLE))), Pair.of(2, new WalkTowardsWater(8, 1.0F)), Pair.of(3, new LayFrogSpawnTask(WBBlocks.FROGSPAWN.get(), WBMemoryModules.IS_PREGNANT.get())), Pair.of(4, new RunOne<>(ImmutableList.of(Pair.of(new RandomStroll(1.0F), 2), Pair.of(new SetWalkTargetFromLookTarget(1.0F, 3), 1), Pair.of(new Croak(), 2), Pair.of(new RunIf<>(Entity::isOnGround, new DoNothing(5, 20)), 1))))), ImmutableSet.of(Pair.of(MemoryModuleType.LONG_JUMP_MID_JUMP, MemoryStatus.VALUE_ABSENT), Pair.of(WBMemoryModules.IS_PREGNANT.get(), MemoryStatus.VALUE_PRESENT)));
+        brain.addActivityWithConditions(WBActivities.LAY_SPAWN.get(), ImmutableList.of(Pair.of(0, new RunSometimes<LivingEntity>(new SetEntityLookTarget(EntityType.PLAYER, 6.0F), UniformInt.of(30, 60))), Pair.of(1, new StartAttacking<>(FrogBrain::isNotBreeding, frog -> frog.getBrain().getMemory(MemoryModuleType.NEAREST_ATTACKABLE))), Pair.of(2, new WalkTowardsWater(8, 1.0F)), Pair.of(3, new LayFrogSpawn(WBBlocks.FROGSPAWN.get(), WBMemoryModules.IS_PREGNANT.get())), Pair.of(4, new RunOne<>(ImmutableList.of(Pair.of(new RandomStroll(1.0F), 2), Pair.of(new SetWalkTargetFromLookTarget(1.0F, 3), 1), Pair.of(new Croak(), 2), Pair.of(new RunIf<>(Entity::isOnGround, new DoNothing(5, 20)), 1))))), ImmutableSet.of(Pair.of(MemoryModuleType.LONG_JUMP_MID_JUMP, MemoryStatus.VALUE_ABSENT), Pair.of(WBMemoryModules.IS_PREGNANT.get(), MemoryStatus.VALUE_PRESENT)));
     }
 
     private static void addLongJumpActivities(Brain<Frog> brain) {

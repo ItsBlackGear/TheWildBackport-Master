@@ -14,32 +14,33 @@ import net.minecraft.world.entity.ai.memory.MemoryStatus;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
-public class LayFrogSpawnTask extends Behavior<Frog> {
+public class LayFrogSpawn extends Behavior<Frog> {
     private final Block frogSpawn;
     private final MemoryModuleType<?> triggerMemory;
 
-    public LayFrogSpawnTask(Block block, MemoryModuleType<?> memoryModuleType) {
+    public LayFrogSpawn(Block block, MemoryModuleType<?> triggerMemory) {
         super(ImmutableMap.of(MemoryModuleType.ATTACK_TARGET, MemoryStatus.VALUE_ABSENT, MemoryModuleType.WALK_TARGET, MemoryStatus.VALUE_PRESENT, WBMemoryModules.IS_PREGNANT.get(), MemoryStatus.VALUE_PRESENT));
         this.frogSpawn = block;
-        this.triggerMemory = memoryModuleType;
+        this.triggerMemory = triggerMemory;
     }
 
     @Override
-    protected boolean checkExtraStartConditions(ServerLevel serverWorld, Frog arg) {
-        return !arg.isInWaterOrBubble() && arg.isOnGround();
+    protected boolean checkExtraStartConditions(ServerLevel level, Frog frog) {
+        return !frog.isInWaterOrBubble() && frog.isOnGround();
     }
 
     @Override
-    protected void start(ServerLevel serverWorld, Frog arg, long l) {
-        BlockPos blockPos = arg.blockPosition().below();
+    protected void start(ServerLevel level, Frog frog, long time) {
+        BlockPos blockPos = frog.blockPosition().below();
         for (Direction direction : Direction.Plane.HORIZONTAL) {
-            BlockPos blockPos3;
-            BlockPos blockPos2 = blockPos.relative(direction);
-            if (!serverWorld.getBlockState(blockPos2).is(Blocks.WATER) || !serverWorld.getBlockState(blockPos3 = blockPos2.above()).isAir()) continue;
-            serverWorld.setBlock(blockPos3, this.frogSpawn.defaultBlockState(), 3);
-            serverWorld.playSound(null, arg, WBSoundEvents.FROG_LAY_SPAWN, SoundSource.BLOCKS, 1.0f, 1.0f);
-            arg.getBrain().eraseMemory(this.triggerMemory);
-            return;
+            BlockPos offset = blockPos.relative(direction);
+            BlockPos above = offset.above();
+            if (level.getBlockState(offset).is(Blocks.WATER) && level.getBlockState(above).isAir()) {
+                level.setBlock(above, this.frogSpawn.defaultBlockState(), 3);
+                level.playSound(null, frog, WBSoundEvents.FROG_LAY_SPAWN, SoundSource.BLOCKS, 1.0F, 1.0F);
+                frog.getBrain().eraseMemory(this.triggerMemory);
+                return;
+            }
         }
     }
 }

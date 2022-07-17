@@ -4,10 +4,13 @@ import com.cursedcauldron.wildbackport.WildBackport;
 import com.cursedcauldron.wildbackport.common.blocks.MangrovePropaguleBlock;
 import com.cursedcauldron.wildbackport.common.registry.WBBlocks;
 import com.cursedcauldron.wildbackport.common.tag.WBBlockTags;
+import com.cursedcauldron.wildbackport.common.worldgen.PredicatedStateProvider;
+import com.cursedcauldron.wildbackport.common.worldgen.WorldGenerator;
 import com.cursedcauldron.wildbackport.common.worldgen.decorator.AttachedToLeavesDecorator;
 import com.cursedcauldron.wildbackport.common.worldgen.decorator.LayerRootDecorator;
 import com.cursedcauldron.wildbackport.common.worldgen.decorator.MangroveRootPlacement;
 import com.cursedcauldron.wildbackport.common.worldgen.decorator.WeightedLeaveVineDecorator;
+import com.cursedcauldron.wildbackport.common.worldgen.features.GrassDiskConfiguration;
 import com.cursedcauldron.wildbackport.common.worldgen.features.RootedTreeConfig;
 import com.cursedcauldron.wildbackport.common.worldgen.placers.MangroveRootPlacer;
 import com.cursedcauldron.wildbackport.common.worldgen.placers.UpwardBranchingTrunk;
@@ -16,6 +19,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.Registry;
+import net.minecraft.core.Vec3i;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -39,7 +43,9 @@ import net.minecraft.world.level.levelgen.placement.CountPlacement;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
+import net.minecraft.world.level.levelgen.placement.RandomOffsetPlacement;
 import net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter;
+import net.minecraft.world.level.material.Fluids;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,9 +53,12 @@ import java.util.Optional;
 //<>
 
 public class WBWorldGeneration {
-    public static void bootstrap() {}
+    public static void bootstrap() {
+        WorldGenerator.setup();
+    }
 
     // Mangrove Swamp
+    //TODO: fix mangroves not generating moss
 
     public static final Holder<ConfiguredFeature<RootedTreeConfig, ?>> MANGROVE                         = config("mangrove", WBFeatures.TREE.get(), new RootedTreeConfig.Builder(
             BlockStateProvider.simple(WBBlocks.MANGROVE_LOG.get()),
@@ -83,6 +92,8 @@ public class WBWorldGeneration {
     public static final Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> MANGROVE_VEGETATION    = config("mangrove_vegetation", Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(TALL_MANGROVE_CHECKED, 0.85F)), MANGROVE_CHECKED));
     public static final Holder<PlacedFeature> TREES_MANGROVE                                            = place("trees_mangrove", MANGROVE_VEGETATION, CountPlacement.of(25), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(5), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome(), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(WBBlocks.MANGROVE_PROPAGULE.get().defaultBlockState(), BlockPos.ZERO)));
 
+    public static final Holder<ConfiguredFeature<GrassDiskConfiguration, ?>> DISK_GRASS_CONFIG          = config("disk_grass", WBFeatures.DISK.get(), new GrassDiskConfiguration(new PredicatedStateProvider(BlockStateProvider.simple(Blocks.DIRT), List.of(new PredicatedStateProvider.Rule(BlockPredicate.not(BlockPredicate.allOf(BlockPredicate.solid(Direction.UP.getNormal()), BlockPredicate.matchesFluid(Fluids.WATER, Direction.UP.getNormal()))), BlockStateProvider.simple(Blocks.GRASS_BLOCK)))), BlockPredicate.matchesBlocks(List.of(Blocks.DIRT, WBBlocks.MUD.get())), UniformInt.of(2, 6), 2));
+    public static final Holder<PlacedFeature> DISK_GRASS                                                = place("disk_grass", DISK_GRASS_CONFIG, CountPlacement.of(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BlockPredicateFilter.forPredicate(BlockPredicate.matchesBlock(WBBlocks.MUD.get(), Vec3i.ZERO)), BiomeFilter.biome());
 
     // Deep Dark
 
