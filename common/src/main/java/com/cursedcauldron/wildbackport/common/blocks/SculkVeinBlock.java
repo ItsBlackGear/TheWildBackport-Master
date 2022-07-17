@@ -116,7 +116,7 @@ public class SculkVeinBlock extends MultifaceBlock implements SculkSpreadable, S
                 if (blockState.is(replaceable)) {
                     BlockState sculk = WBBlocks.SCULK.get().defaultBlockState();
                     level.setBlock(blockPos, sculk, 3);
-                    Block.pushEntitiesUp(blockState, sculk, (ServerLevel)level, pos);
+                    if (level instanceof ServerLevel server) Block.pushEntitiesUp(blockState, sculk, server, pos);
                     level.playSound(null, blockPos, WBSoundEvents.BLOCK_SCULK_SPREAD, SoundSource.BLOCKS, 1.0F, 1.0F);
                     this.allGrowTypeGrower.grow(sculk, level, blockPos, spreadManager.isWorldGen());
                     Direction opposite = direction.getOpposite();
