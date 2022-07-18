@@ -14,6 +14,7 @@ import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -34,7 +35,7 @@ public class MangroveRootPlacer extends RootPlacer {
 
     @Override
     public boolean generate(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> replacer, Random random, BlockPos pos, BlockPos origin, RootedTreeConfig config) {
-        List<BlockPos> positions = Lists.newArrayList();
+        ArrayList<BlockPos> positions = Lists.newArrayList();
         BlockPos.MutableBlockPos mutable = pos.mutable();
 
         while(mutable.getY() < origin.getY()) {
@@ -44,10 +45,9 @@ public class MangroveRootPlacer extends RootPlacer {
         }
 
         positions.add(origin.below());
-
         for(Direction direction : Direction.Plane.HORIZONTAL) {
             BlockPos position = origin.relative(direction);
-            List<BlockPos> offshootPositions = Lists.newArrayList();
+            ArrayList<BlockPos> offshootPositions = Lists.newArrayList();
             if (!this.canGrow(level, random, position, direction, origin, offshootPositions, 0)) return false;
 
             positions.addAll(offshootPositions);
@@ -62,7 +62,7 @@ public class MangroveRootPlacer extends RootPlacer {
     private boolean canGrow(LevelSimulatedReader level, Random random, BlockPos pos, Direction direction, BlockPos origin, List<BlockPos> offshootPositions, int rootLength) {
         int length = this.mangroveRootPlacement.maxRootLength();
         if (rootLength != length && offshootPositions.size() <= length) {
-            for(BlockPos position : this.potentialRootPositions(pos, direction, random, origin)) {
+            for(BlockPos position : this.getOffshootPositions(pos, direction, random, origin)) {
                 if (this.canGrowThrough(level, position)) {
                     offshootPositions.add(position);
                     if (!this.canGrow(level, random, position, direction, origin, offshootPositions, rootLength + 1)) return false;
@@ -75,7 +75,7 @@ public class MangroveRootPlacer extends RootPlacer {
         }
     }
 
-    protected List<BlockPos> potentialRootPositions(BlockPos pos, Direction direction, Random random, BlockPos origin) {
+    protected List<BlockPos> getOffshootPositions(BlockPos pos, Direction direction, Random random, BlockPos origin) {
         BlockPos below = pos.below();
         BlockPos offset = pos.relative(direction);
         int distance = pos.distManhattan(origin);

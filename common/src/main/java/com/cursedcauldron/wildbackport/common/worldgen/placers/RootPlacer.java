@@ -37,7 +37,7 @@ public abstract class RootPlacer {
         }));
     }
 
-    protected RootPlacer(IntProvider trunkOffsetY, BlockStateProvider rootProvider, Optional<LayerRootDecorator> aboveRootPlacement) {
+    public RootPlacer(IntProvider trunkOffsetY, BlockStateProvider rootProvider, Optional<LayerRootDecorator> aboveRootPlacement) {
         this.trunkOffsetY = trunkOffsetY;
         this.rootProvider = rootProvider;
         this.aboveRootPlacement = aboveRootPlacement;
@@ -56,8 +56,8 @@ public abstract class RootPlacer {
             replacer.accept(pos, this.applyWaterlogging(level, pos, this.rootProvider.getState(random, pos)));
             if (this.aboveRootPlacement.isPresent()) {
                 LayerRootDecorator decorator = this.aboveRootPlacement.get();
-                BlockPos aboveRoot = pos.above();
-                if (random.nextFloat() < decorator.aboveRootPlacementChance() && level.isStateAtPosition(pos, BlockBehaviour.BlockStateBase::isAir)) replacer.accept(aboveRoot, this.applyWaterlogging(level, aboveRoot, decorator.aboveRootProvider().getState(random, aboveRoot)));
+                BlockPos above = pos.above();
+                if (random.nextFloat() < decorator.aboveRootPlacementChance() && level.isStateAtPosition(above, BlockBehaviour.BlockStateBase::isAir)) replacer.accept(above, this.applyWaterlogging(level, above, decorator.aboveRootProvider().getState(random, above)));
             }
         }
     }

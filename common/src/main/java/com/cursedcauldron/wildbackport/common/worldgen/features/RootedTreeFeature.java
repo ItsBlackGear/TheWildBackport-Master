@@ -77,8 +77,8 @@ public class RootedTreeFeature extends Feature<RootedTreeConfig> {
             for (int x = -size; x <= size; ++x) {
                 for (int z = -size; z <= size; ++z) {
                     mutable.setWithOffset(pos, x, y, z);
-                    boolean isValid = (TreeFeature.validTreePos(level, pos) || level.isStateAtPosition(pos, state -> state.is(BlockTags.LOGS))) || (config.trunkPlacer instanceof UpwardBranchingTrunk placer && level.isStateAtPosition(pos, state -> state.is(placer.canGrowThrough)));
-                    if (!isValid || !config.ignoreVines && TreeFeatureAccessor.isVine(level, mutable)) return y - 2;
+                    boolean isValid = TreeFeature.validTreePos(level, pos) || level.isStateAtPosition(pos, state -> state.is(BlockTags.LOGS)) || (config.trunkPlacer instanceof UpwardBranchingTrunk trunk && level.isStateAtPosition(pos, state -> state.is(trunk.canGrowThrough)));
+                    if (!isValid || (!config.ignoreVines && TreeFeatureAccessor.isVine(level, mutable))) return y - 2;
                 }
             }
         }
@@ -87,7 +87,7 @@ public class RootedTreeFeature extends Feature<RootedTreeConfig> {
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<RootedTreeConfig> context) {
+    public final boolean place(FeaturePlaceContext<RootedTreeConfig> context) {
         WorldGenLevel level = context.level();
         Random random = context.random();
         BlockPos pos = context.origin();
@@ -172,51 +172,5 @@ public class RootedTreeFeature extends Feature<RootedTreeConfig> {
             }
         }
         return shape;
-
-//        ArrayList<Set<BlockPos>> positions = Lists.newArrayList();
-//        BitSetDiscreteVoxelShape shape = new BitSetDiscreteVoxelShape(box.getXSpan(), box.getYSpan(), box.getZSpan());
-//
-//        for (int tries = 0; tries < 6; ++tries) positions.add(Sets.newHashSet());
-//
-//        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
-//        for (BlockPos pos : Lists.newArrayList(decoratorPositions)) if (box.isInside(pos)) shape.fill(pos.getX() - box.minX(), pos.getY() - box.minY(), pos.getZ() - box.minZ());
-//
-//        for (BlockPos pos : Lists.newArrayList(trunkPositions)) {
-//            if (box.isInside(pos)) shape.fill(pos.getX() - box.minX(), pos.getY() - box.minY(), pos.getZ() - box.minZ());
-//
-//            for (Direction direction : Direction.values()) {
-//                mutable.setWithOffset(pos, direction);
-//                if (trunkPositions.contains(mutable)) {
-//                    BlockState state = level.getBlockState(mutable);
-//                    if (state.hasProperty(BlockStateProperties.DISTANCE)) {
-//                        positions.get(0).add(mutable.immutable());
-//                        TreeFeatureAccessor.setBlockKnownShape(level, mutable, state.setValue(BlockStateProperties.DISTANCE, 1));
-//                        if (box.isInside(mutable)) shape.fill(mutable.getX() - box.minX(), mutable.getY() - box.minY(), mutable.getZ() - box.minZ());
-//                    }
-//                }
-//            }
-//        }
-//
-//        for (int tries = 1; tries < 6; ++tries) {
-//            Set<BlockPos> trunkPos = positions.get(tries - 1);
-//            Set<BlockPos> foliagePos = positions.get(tries);
-//            for (BlockPos pos : trunkPos) {
-//                if (box.isInside(pos)) shape.fill(pos.getX() - box.minX(), pos.getY() - box.minY(), pos.getZ() - box.minZ());
-//
-//                for (Direction direction : Direction.values()) {
-//                    mutable.setWithOffset(pos, direction);
-//                    if (!trunkPos.contains(mutable) && !foliagePos.contains(mutable)) {
-//                        BlockState state = level.getBlockState(mutable);
-//                        if (state.hasProperty(BlockStateProperties.DISTANCE) && state.getValue(BlockStateProperties.DISTANCE) > tries + 1) {
-//                            BlockState foliage = state.setValue(BlockStateProperties.DISTANCE, tries + 1);
-//                            TreeFeatureAccessor.setBlockKnownShape(level, mutable, foliage);
-//                            if (box.isInside(mutable)) (shape).fill(mutable.getX() - box.minX(), mutable.getY() - box.minY(), mutable.getZ() - box.minZ());
-//                            foliagePos.add(mutable.immutable());
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        return shape;
     }
 }

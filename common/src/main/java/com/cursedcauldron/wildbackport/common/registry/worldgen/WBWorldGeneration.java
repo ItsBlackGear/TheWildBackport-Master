@@ -60,7 +60,6 @@ public class WBWorldGeneration {
     }
 
     // Mangrove Swamp
-    //TODO: fix mangroves not generating moss
 
     public static final Holder<ConfiguredFeature<RootedTreeConfig, ?>> MANGROVE                                 = config("mangrove", WBFeatures.TREE.get(), new RootedTreeConfig.Builder(
             BlockStateProvider.simple(WBBlocks.MANGROVE_LOG.get()),
