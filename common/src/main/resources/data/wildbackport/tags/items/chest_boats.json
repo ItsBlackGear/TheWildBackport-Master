@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "wildbackport:oak_chest_boat",
+    "wildbackport:spruce_chest_boat",
+    "wildbackport:birch_chest_boat",
+    "wildbackport:jungle_chest_boat",
+    "wildbackport:acacia_chest_boat",
+    "wildbackport:dark_oak_chest_boat",
+    "wildbackport:mangrove_chest_boat"
+  ]
+}

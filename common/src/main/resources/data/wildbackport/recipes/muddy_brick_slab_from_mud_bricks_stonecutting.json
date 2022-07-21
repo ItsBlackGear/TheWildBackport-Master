@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "wildbackport:mud_bricks"
+  },
+  "result": "wildbackport:mud_brick_slab"
+}

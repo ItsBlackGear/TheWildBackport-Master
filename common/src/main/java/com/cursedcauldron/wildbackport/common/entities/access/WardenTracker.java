@@ -7,6 +7,10 @@ public interface WardenTracker {
     WardenSpawnTracker getWardenSpawnTracker();
 
     static WardenSpawnTracker getWardenSpawnTracker(Player player) {
-        return ((WardenTracker)player).getWardenSpawnTracker();
+        return of(player).getWardenSpawnTracker();
+    }
+
+    static WardenTracker of(Player player) {
+        return (WardenTracker)player;
     }
 }

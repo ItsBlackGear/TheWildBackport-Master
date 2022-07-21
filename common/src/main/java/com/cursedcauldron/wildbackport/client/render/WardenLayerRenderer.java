@@ -45,12 +45,12 @@ public class WardenLayerRenderer<T extends Warden, M extends WardenModel<T>> ext
 
     private void updateModelPartVisibility() {
         List<ModelPart> parts = this.modelPartVisibility.getPartsToDraw(this.getParentModel());
-        this.getParentModel().root().getAllParts().forEach(part -> ((Drawable)(Object)part).setSkipDraw(true));
-        parts.forEach(part -> ((Drawable)(Object)part).setSkipDraw(false));
+        this.getParentModel().root().getAllParts().forEach(part -> Drawable.of(part).setSkipDraw(true));
+        parts.forEach(part -> Drawable.of(part).setSkipDraw(false));
     }
 
     private void unhideAllModelParts() {
-        this.getParentModel().root().getAllParts().forEach(part -> ((Drawable)(Object)part).setSkipDraw(false));
+        this.getParentModel().root().getAllParts().forEach(part -> Drawable.of(part).setSkipDraw(false));
     }
 
     public interface AnimationAngleAdjuster<T extends Warden> {

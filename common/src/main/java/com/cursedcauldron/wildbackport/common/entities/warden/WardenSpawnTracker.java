@@ -74,14 +74,14 @@ public class WardenSpawnTracker {
                 players.add(player);
             }
 
-            if (players.stream().anyMatch(playerIn -> ((WardenTracker)playerIn).getWardenSpawnTracker().onCooldown())) {
+            if (players.stream().anyMatch(playerIn -> WardenTracker.of(playerIn).getWardenSpawnTracker().onCooldown())) {
                 return OptionalInt.empty();
             }
 
             Optional<WardenSpawnTracker> optional = players.stream().map(WardenTracker::getWardenSpawnTracker).max(Comparator.comparingInt(tracker -> tracker.warningLevel));
             WardenSpawnTracker tracker = optional.get();
             tracker.increaseWarningLevel();
-            players.forEach(playerIn -> ((WardenTracker)playerIn).getWardenSpawnTracker().copyData(tracker));
+            players.forEach(playerIn -> WardenTracker.of(playerIn).getWardenSpawnTracker().copyData(tracker));
             return OptionalInt.of(tracker.warningLevel);
         } else {
             return OptionalInt.empty();

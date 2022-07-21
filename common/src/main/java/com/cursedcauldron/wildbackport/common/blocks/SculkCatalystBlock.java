@@ -74,9 +74,6 @@ public class SculkCatalystBlock extends BaseEntityBlock {
 
     @Override
     public void spawnAfterBreak(BlockState state, ServerLevel level, BlockPos pos, ItemStack stack) {
-        super.spawnAfterBreak(state, level, pos, stack);
-        if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, stack) == 0) {
-            this.popExperience(level, pos, 20);
-        }
+        if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, stack) == 0) this.popExperience(level, pos, 5);
     }
 }

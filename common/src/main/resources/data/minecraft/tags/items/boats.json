@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "wildbackport:mangrove_boat",
+    "#wildbackport:chest_boats"
+  ]
+}

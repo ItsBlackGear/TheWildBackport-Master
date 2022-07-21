@@ -2,9 +2,7 @@ package com.cursedcauldron.wildbackport.common.tag;
 
 import com.cursedcauldron.wildbackport.WildBackport;
 import com.cursedcauldron.wildbackport.core.api.TagRegistry;
-import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 
