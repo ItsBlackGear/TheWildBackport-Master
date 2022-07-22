@@ -95,15 +95,15 @@ public class WardenBrain {
     }
 
     private static void initIdleActivity(Brain<Warden> brain) {
-        brain.addActivity(Activity.IDLE, 10, ImmutableList.of(new SetRoarTarget<>(Warden::getEntityAngryAt), new TryToSniff(), new RunOne<>(ImmutableMap.of(WBMemoryModules.IS_SNIFFING.get(), MemoryStatus.VALUE_ABSENT), ImmutableList.of(Pair.of(new RandomStroll(0.5F), 2), Pair.of(new DoNothing(30, 60), 1)))));
+        brain.addActivity(Activity.IDLE, 10, ImmutableList.of(new SetRoarTarget<>(Warden::getPrimeSuspect), new TryToSniff(), new RunOne<>(ImmutableMap.of(WBMemoryModules.IS_SNIFFING.get(), MemoryStatus.VALUE_ABSENT), ImmutableList.of(Pair.of(new RandomStroll(0.5F), 2), Pair.of(new DoNothing(30, 60), 1)))));
     }
 
     private static void initInvestigateActivity(Brain<Warden> brain) {
-        brain.addActivityAndRemoveMemoryWhenStopped(WBActivities.INVESTIGATE.get(), 5, ImmutableList.of(new SetRoarTarget<>(Warden::getEntityAngryAt), new GoToTargetLocation<>(WBMemoryModules.DISTURBANCE_LOCATION.get(), 2, 0.7F)), WBMemoryModules.DISTURBANCE_LOCATION.get());
+        brain.addActivityAndRemoveMemoryWhenStopped(WBActivities.INVESTIGATE.get(), 5, ImmutableList.of(new SetRoarTarget<>(Warden::getPrimeSuspect), new GoToTargetLocation<>(WBMemoryModules.DISTURBANCE_LOCATION.get(), 2, 0.7F)), WBMemoryModules.DISTURBANCE_LOCATION.get());
     }
 
     private static void initSniffingActivity(Brain<Warden> brain) {
-        brain.addActivityAndRemoveMemoryWhenStopped(WBActivities.SNIFF.get(), 5, ImmutableList.of(new SetRoarTarget<>(Warden::getEntityAngryAt), new Sniffing<>(SNIFFING_DURATION)), WBMemoryModules.IS_SNIFFING.get());
+        brain.addActivityAndRemoveMemoryWhenStopped(WBActivities.SNIFF.get(), 5, ImmutableList.of(new SetRoarTarget<>(Warden::getPrimeSuspect), new Sniffing<>(SNIFFING_DURATION)), WBMemoryModules.IS_SNIFFING.get());
     }
 
     private static void initRoarActivity(Brain<Warden> brain) {
@@ -132,7 +132,7 @@ public class WardenBrain {
     }
 
     public static void setDisturbanceLocation(Warden warden, BlockPos pos) {
-        if (warden.level.getWorldBorder().isWithinBounds(pos) && warden.getEntityAngryAt().isEmpty() && warden.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET).isEmpty()) {
+        if (warden.level.getWorldBorder().isWithinBounds(pos) && warden.getPrimeSuspect().isEmpty() && warden.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET).isEmpty()) {
             setDigCooldown(warden);
             warden.getBrain().setMemoryWithExpiry(WBMemoryModules.SNIFF_COOLDOWN.get(), Unit.INSTANCE, 100L);
             warden.getBrain().setMemoryWithExpiry(MemoryModuleType.LOOK_TARGET, new BlockPosTracker(pos), 100L);

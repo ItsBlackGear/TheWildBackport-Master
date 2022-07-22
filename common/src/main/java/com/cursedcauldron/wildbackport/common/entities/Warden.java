@@ -3,13 +3,14 @@ package com.cursedcauldron.wildbackport.common.entities;
 import com.cursedcauldron.wildbackport.WildBackport;
 import com.cursedcauldron.wildbackport.client.animation.api.AnimationState;
 import com.cursedcauldron.wildbackport.client.registry.WBSoundEvents;
+import com.cursedcauldron.wildbackport.common.entities.access.api.Poses;
 import com.cursedcauldron.wildbackport.common.entities.brain.WardenBrain;
 import com.cursedcauldron.wildbackport.common.entities.brain.warden.SonicBoom;
-import com.cursedcauldron.wildbackport.common.entities.access.api.Poses;
 import com.cursedcauldron.wildbackport.common.entities.warden.Angriness;
 import com.cursedcauldron.wildbackport.common.entities.warden.MobPositionSource;
 import com.cursedcauldron.wildbackport.common.entities.warden.VibrationListenerSource;
 import com.cursedcauldron.wildbackport.common.entities.warden.WardenAngerManager;
+import com.cursedcauldron.wildbackport.common.registry.WBMobEffects;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBEntities;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBMemoryModules;
 import com.cursedcauldron.wildbackport.common.tag.WBGameEventTags;
@@ -35,7 +36,6 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.IndirectEntityDamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntitySelector;
@@ -68,6 +68,7 @@ import java.util.Random;
 
 //<>
 
+//TODO: fix warden not detecting vibrations by players
 public class Warden extends Monster implements VibrationListenerSource.VibrationConfig {
     private static final EntityDataAccessor<Integer> ANGER = SynchedEntityData.defineId(Warden.class, EntityDataSerializers.INT);
     private int tendrilPitchEnd;
@@ -266,7 +267,7 @@ public class Warden extends Monster implements VibrationListenerSource.Vibration
     }
 
     private int getHeartRate() {
-        return 40 - Mth.floor(Mth.clamp((float)this.getAnger() / (float) Angriness.ANGRY.getThreshold(), 0.0F, 1.0F) * 30.0F);
+        return 40 - Mth.floor(Mth.clamp((float)this.getAnger() / (float)Angriness.ANGRY.getThreshold(), 0.0F, 1.0F) * 30.0F);
     }
 
     public float getTendrilPitch(float tickDelta) {
@@ -353,7 +354,7 @@ public class Warden extends Monster implements VibrationListenerSource.Vibration
     }
 
     public static void addDarknessEffectToClosePlayers(ServerLevel level, Vec3 pos, @Nullable Entity entity, int range) {
-        MobEffectInstance instance = new MobEffectInstance(MobEffects.BLINDNESS, 260, 0, false, false);
+        MobEffectInstance instance = new MobEffectInstance(WBMobEffects.DARKNESS.get(), 260, 0, false, false);
         MobUtils.addEffectToPlayersWithinDistance(level, entity, pos, range, instance, 200);
     }
 
@@ -408,7 +409,7 @@ public class Warden extends Monster implements VibrationListenerSource.Vibration
         }
     }
 
-    public Optional<LivingEntity> getEntityAngryAt() {
+    public Optional<LivingEntity> getPrimeSuspect() {
         return this.getAngriness().isAngry() ? this.angerManager.getPrimeSuspect() : Optional.empty();
     }
 
@@ -423,7 +424,7 @@ public class Warden extends Monster implements VibrationListenerSource.Vibration
     }
 
     @Nullable @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor accessor, DifficultyInstance difficulty, MobSpawnType spawn, @Nullable SpawnGroupData groupData, @Nullable CompoundTag tag) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawn, @Nullable SpawnGroupData groupData, @Nullable CompoundTag tag) {
         this.getBrain().setMemoryWithExpiry(WBMemoryModules.DIG_COOLDOWN.get(), Unit.INSTANCE, 1200L);
         if (spawn == MobSpawnType.TRIGGERED) {
             this.setPose(Poses.EMERGING.get());
@@ -431,7 +432,7 @@ public class Warden extends Monster implements VibrationListenerSource.Vibration
             this.playSound(WBSoundEvents.WARDEN_AGITATED, 5.0F, 1.0F);
         }
 
-        return super.finalizeSpawn(accessor, difficulty, spawn, groupData, tag);
+        return super.finalizeSpawn(level, difficulty, spawn, groupData, tag);
     }
 
     @Override
@@ -452,8 +453,8 @@ public class Warden extends Monster implements VibrationListenerSource.Vibration
 
     public void updateAttackTarget(LivingEntity entity) {
         this.getBrain().eraseMemory(WBMemoryModules.ROAR_TARGET.get());
-        entity.getBrain().setMemory(MemoryModuleType.ATTACK_TARGET, entity);
-        entity.getBrain().eraseMemory(MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE);
+        this.getBrain().setMemory(MemoryModuleType.ATTACK_TARGET, entity);
+        this.getBrain().eraseMemory(MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE);
         SonicBoom.setCooldown(this, 200);
     }
 

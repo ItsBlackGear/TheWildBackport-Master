@@ -20,4 +20,7 @@ public class WBBlockTags {
     // Deep Dark
     public static final TagKey<Block> SCULK_REPLACEABLE                 = TAGS.create("sculk_replaceable");
     public static final TagKey<Block> SCULK_REPLACEABLE_WORLD_GEN       = TAGS.create("sculk_replaceable_world_gen");
+
+    // Compatibility
+    public static final TagKey<Block> MUD                               = TAGS.create("mud");
 }

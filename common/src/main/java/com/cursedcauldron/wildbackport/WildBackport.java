@@ -8,6 +8,7 @@ import com.cursedcauldron.wildbackport.common.registry.WBBlocks;
 import com.cursedcauldron.wildbackport.common.registry.WBEnchantments;
 import com.cursedcauldron.wildbackport.common.registry.WBGameEvents;
 import com.cursedcauldron.wildbackport.common.registry.WBItems;
+import com.cursedcauldron.wildbackport.common.registry.WBMobEffects;
 import com.cursedcauldron.wildbackport.common.registry.WBPositionSources;
 import com.cursedcauldron.wildbackport.common.registry.worldgen.WBFeatures;
 import com.cursedcauldron.wildbackport.common.registry.worldgen.RootPlacerType;
@@ -43,6 +44,7 @@ public class WildBackport {
         WBFeatures.FEATURES.register();
         WBItems.ITEMS.register();
         WBMemoryModules.MEMORIES.register();
+        WBMobEffects.EFFECTS.register();
         WBParticleTypes.PARTICLES.register();
         WBPositionSources.SOURCES.register();
         RootPlacerType.PLACERS.register();
