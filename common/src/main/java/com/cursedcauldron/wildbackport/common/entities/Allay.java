@@ -4,7 +4,7 @@ import com.cursedcauldron.wildbackport.WildBackport;
 import com.cursedcauldron.wildbackport.client.registry.WBSoundEvents;
 import com.cursedcauldron.wildbackport.common.entities.brain.AllayBrain;
 import com.cursedcauldron.wildbackport.common.entities.warden.MobPositionSource;
-import com.cursedcauldron.wildbackport.common.entities.warden.VibrationListenerSource;
+import com.cursedcauldron.wildbackport.common.entities.warden.VibrationHandler;
 import com.cursedcauldron.wildbackport.common.registry.WBGameEvents;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBMemoryModules;
 import com.cursedcauldron.wildbackport.common.tag.WBGameEventTags;
@@ -64,12 +64,12 @@ import java.util.UUID;
 
 //<>
 
-public class Allay extends PathfinderMob implements InventoryCarrier, VibrationListenerSource.VibrationConfig {
+public class Allay extends PathfinderMob implements InventoryCarrier, VibrationHandler.VibrationConfig {
     protected static final ImmutableList<? extends SensorType<? extends Sensor<? super Allay>>> SENSORS = ImmutableList.of(SensorType.NEAREST_LIVING_ENTITIES, SensorType.NEAREST_PLAYERS, SensorType.HURT_BY, SensorType.NEAREST_ITEMS);
     protected static final ImmutableList<MemoryModuleType<?>> MEMORIES = ImmutableList.of(MemoryModuleType.PATH, MemoryModuleType.LOOK_TARGET, MemoryModuleType.NEAREST_VISIBLE_LIVING_ENTITIES, MemoryModuleType.WALK_TARGET, MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE, MemoryModuleType.HURT_BY, MemoryModuleType.NEAREST_VISIBLE_WANTED_ITEM, WBMemoryModules.LIKED_PLAYER.get(), WBMemoryModules.LIKED_NOTEBLOCK.get(), WBMemoryModules.LIKED_NOTEBLOCK_COOLDOWN_TICKS.get(), WBMemoryModules.ITEM_PICKUP_COOLDOWN_TICKS.get());
     public static final ImmutableList<Float> THROW_SOUND_PITCHES = ImmutableList.of(0.5625F, 0.625F, 0.75F, 0.9375F, 1.0F, 1.0F, 1.125F, 1.25F, 1.5F, 1.875F, 2.0F, 2.25F, 2.5F, 3.0F, 3.75F, 4.0F);
     private final GameEventListenerRegistrar registrar;
-    private VibrationListenerSource listener;
+    private VibrationHandler listener;
     private final SimpleContainer inventory = new SimpleContainer(1);
     private float holdingTicks;
     private float holdingTicksOld;
@@ -78,7 +78,7 @@ public class Allay extends PathfinderMob implements InventoryCarrier, VibrationL
         super(type, level);
         this.moveControl = new FlyingMoveControl(this, 20, true);
         this.setCanPickUpLoot(this.canPickUpLoot());
-        this.listener = new VibrationListenerSource(new MobPositionSource(this, this.getEyeHeight()), 16, this, null, 0.0F, 0);
+        this.listener = new VibrationHandler(new MobPositionSource(this, this.getEyeHeight()), 16, this, null, 0.0F, 0);
         this.registrar = new GameEventListenerRegistrar(this.listener);
     }
 
@@ -355,14 +355,14 @@ public class Allay extends PathfinderMob implements InventoryCarrier, VibrationL
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.put("Inventory", this.inventory.createTag());
-        VibrationListenerSource.codec(this).encodeStart(NbtOps.INSTANCE, this.listener).resultOrPartial(WildBackport.LOGGER::error).ifPresent(listener -> tag.put("listener", listener));
+        VibrationHandler.codec(this).encodeStart(NbtOps.INSTANCE, this.listener).resultOrPartial(WildBackport.LOGGER::error).ifPresent(listener -> tag.put("listener", listener));
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         this.inventory.fromTag(tag.getList("Inventory", 10));
-        if (tag.contains("listener", 10)) VibrationListenerSource.codec(this).parse(new Dynamic<>(NbtOps.INSTANCE, tag.getCompound("listener"))).resultOrPartial(WildBackport.LOGGER::error).ifPresent(listener -> this.listener = listener);
+        if (tag.contains("listener", 10)) VibrationHandler.codec(this).parse(new Dynamic<>(NbtOps.INSTANCE, tag.getCompound("listener"))).resultOrPartial(WildBackport.LOGGER::error).ifPresent(listener -> this.listener = listener);
     }
 
     public Iterable<BlockPos> getPotentialEscapePositions() {

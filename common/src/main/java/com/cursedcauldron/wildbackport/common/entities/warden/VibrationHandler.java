@@ -32,7 +32,7 @@ import java.util.UUID;
 
 //<>
 
-public class VibrationListenerSource implements GameEventListener {
+public class VibrationHandler implements GameEventListener {
     protected final PositionSource source;
     protected final int range;
     protected final VibrationConfig config;
@@ -40,7 +40,7 @@ public class VibrationListenerSource implements GameEventListener {
     protected float distance;
     protected int delay;
 
-    public static Codec<VibrationListenerSource> codec(VibrationConfig config) {
+    public static Codec<VibrationHandler> codec(VibrationConfig config) {
         return RecordCodecBuilder.create(instance -> {
             return instance.group(PositionSource.CODEC.fieldOf("source").forGetter(listener -> {
                 return listener.source;
@@ -53,18 +53,22 @@ public class VibrationListenerSource implements GameEventListener {
             }), ExtraCodecs.NON_NEGATIVE_INT.fieldOf("event_delay").orElse(0).forGetter(listener -> {
                 return listener.delay;
             })).apply(instance, (source, range, event, distance, delay) -> {
-                return new VibrationListenerSource(source, range, config, event.orElse(null), distance, delay);
+                return new VibrationHandler(source, range, config, event.orElse(null), distance, delay);
             });
         });
     }
 
-    public VibrationListenerSource(PositionSource source, int range, VibrationConfig config, @Nullable Vibration event, float distance, int delay) {
+    public VibrationHandler(PositionSource source, int range, VibrationConfig config, @Nullable Vibration event, float distance, int delay) {
         this.source = source;
         this.range = range;
         this.config = config;
         this.event = event;
         this.distance = distance;
         this.delay = delay;
+    }
+
+    public VibrationHandler(PositionSource source, int range, VibrationConfig config) {
+        this(source, range, config, null, 0.0F, 0);
     }
 
     public void tick(Level level) {

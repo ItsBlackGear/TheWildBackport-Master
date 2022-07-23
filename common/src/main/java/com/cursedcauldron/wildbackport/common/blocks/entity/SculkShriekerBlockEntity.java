@@ -4,7 +4,7 @@ import com.cursedcauldron.wildbackport.WildBackport;
 import com.cursedcauldron.wildbackport.client.particle.ShriekParticleOptions;
 import com.cursedcauldron.wildbackport.client.registry.WBSoundEvents;
 import com.cursedcauldron.wildbackport.common.blocks.SculkShriekerBlock;
-import com.cursedcauldron.wildbackport.common.entities.warden.VibrationListenerSource;
+import com.cursedcauldron.wildbackport.common.entities.warden.VibrationHandler;
 import com.cursedcauldron.wildbackport.common.entities.Warden;
 import com.cursedcauldron.wildbackport.common.entities.warden.WardenSpawnHelper;
 import com.cursedcauldron.wildbackport.common.entities.warden.WardenSpawnTracker;
@@ -41,7 +41,7 @@ import java.util.OptionalInt;
 
 //<>
 
-public class SculkShriekerBlockEntity extends BlockEntity implements VibrationListenerSource.VibrationConfig {
+public class SculkShriekerBlockEntity extends BlockEntity implements VibrationHandler.VibrationConfig {
     private static final Int2ObjectMap<SoundEvent> SOUND_BY_LEVEL = Util.make(new Int2ObjectOpenHashMap<>(), map -> {
         map.put(1, WBSoundEvents.WARDEN_NEARBY_CLOSE);
         map.put(2, WBSoundEvents.WARDEN_NEARBY_CLOSER);
@@ -49,13 +49,13 @@ public class SculkShriekerBlockEntity extends BlockEntity implements VibrationLi
         map.put(4, WBSoundEvents.WARDEN_LISTENING_ANGRY);
     });
     private int warningLevel;
-    private VibrationListenerSource listener = new VibrationListenerSource(new BlockPositionSource(this.worldPosition), 8, this, null, 0.0F, 0);
+    private VibrationHandler listener = new VibrationHandler(new BlockPositionSource(this.worldPosition), 8, this, null, 0.0F, 0);
 
     public SculkShriekerBlockEntity(BlockPos pos, BlockState state) {
         super(WBBlockEntities.SCULK_SHRIEKER.get(), pos, state);
     }
 
-    public VibrationListenerSource getListener() {
+    public VibrationHandler getListener() {
         return this.listener;
     }
 
@@ -67,7 +67,7 @@ public class SculkShriekerBlockEntity extends BlockEntity implements VibrationLi
         }
 
         if (tag.contains("listener", 10)) {
-            VibrationListenerSource.codec(this).parse(new Dynamic<>(NbtOps.INSTANCE, tag.getCompound("listener"))).resultOrPartial(WildBackport.LOGGER::error).ifPresent(listener -> this.listener = listener);
+            VibrationHandler.codec(this).parse(new Dynamic<>(NbtOps.INSTANCE, tag.getCompound("listener"))).resultOrPartial(WildBackport.LOGGER::error).ifPresent(listener -> this.listener = listener);
         }
     }
 
@@ -75,7 +75,7 @@ public class SculkShriekerBlockEntity extends BlockEntity implements VibrationLi
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.putInt("warning_level", this.warningLevel);
-        VibrationListenerSource.codec(this).encodeStart(NbtOps.INSTANCE, this.listener).resultOrPartial(WildBackport.LOGGER::error).ifPresent(listener -> tag.put("listener", listener));
+        VibrationHandler.codec(this).encodeStart(NbtOps.INSTANCE, this.listener).resultOrPartial(WildBackport.LOGGER::error).ifPresent(listener -> tag.put("listener", listener));
     }
 
     @Override
@@ -160,7 +160,7 @@ public class SculkShriekerBlockEntity extends BlockEntity implements VibrationLi
                 this.playWardenReplySound();
             }
 
-            Warden.addDarknessEffectToClosePlayers(level, Vec3.atCenterOf(this.getBlockPos()), null, 40);
+            Warden.addDarknessToClosePlayers(level, Vec3.atCenterOf(this.getBlockPos()), null, 40);
         }
     }
 
