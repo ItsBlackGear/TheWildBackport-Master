@@ -11,4 +11,5 @@ public class WBBiomeTags {
 
     public static final TagKey<Biome> SPAWNS_WARM_VARIANT_FROGS = TAGS.create("spawns_warm_variant_frogs");
     public static final TagKey<Biome> SPAWNS_COLD_VARIANT_FROGS = TAGS.create("spawns_cold_variant_frogs");
+    public static final TagKey<Biome> ALLOWS_SURFACE_SLIME_SPAWNS = TAGS.create("allows_surface_slime_spawns");
 }

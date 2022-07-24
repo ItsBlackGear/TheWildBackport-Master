@@ -41,6 +41,7 @@
     "common.PointedDripstoneBlockMixin",
     "common.SculkSensorBlockEntityMixin",
     "common.SculkSensorBlockMixin",
+    "common.SlimeMixin",
     "common.VibrationListenerMixin",
     "extension.BoatTypeMixin",
     "extension.PoseMixin",
