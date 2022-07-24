@@ -10,6 +10,7 @@ import com.cursedcauldron.wildbackport.common.entities.warden.WardenSpawnHelper;
 import com.cursedcauldron.wildbackport.common.entities.warden.WardenSpawnTracker;
 import com.cursedcauldron.wildbackport.common.registry.WBBlockEntities;
 import com.cursedcauldron.wildbackport.common.registry.WBGameEvents;
+import com.cursedcauldron.wildbackport.common.registry.entity.WBEntities;
 import com.cursedcauldron.wildbackport.common.tag.WBGameEventTags;
 import com.mojang.serialization.Dynamic;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -176,7 +177,7 @@ public class SculkShriekerBlockEntity extends BlockEntity implements VibrationHa
     }
 
     private boolean trySummonWarden(ServerLevel level) {
-        return this.warningLevel >= 4 && WardenSpawnHelper.trySpawnMob(EntityType.IRON_GOLEM, MobSpawnType.TRIGGERED, level, this.getBlockPos(), 20, 5, 6).isPresent();
+        return this.warningLevel >= 4 && WardenSpawnHelper.trySpawnMob(WBEntities.WARDEN.get(), MobSpawnType.TRIGGERED, level, this.getBlockPos(), 20, 5, 6).isPresent();
     }
 
     @Override
