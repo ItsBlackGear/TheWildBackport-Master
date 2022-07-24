@@ -54,20 +54,20 @@ public class SonicBoom extends Behavior<Warden> {
         if (!warden.getBrain().hasMemoryValue(WBMemoryModules.SONIC_BOOM_SOUND_DELAY.get()) && !warden.getBrain().hasMemoryValue(WBMemoryModules.SONIC_BOOM_SOUND_COOLDOWN.get())) {
             warden.getBrain().setMemoryWithExpiry(WBMemoryModules.SONIC_BOOM_SOUND_COOLDOWN.get(), Unit.INSTANCE, DURATION - TICKS_BEFORE_PLAYING_SOUND);
             warden.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET).filter(warden::isValidTarget).filter(target -> MobUtils.closerThan(warden, target, 15.0D, 20.0D)).ifPresent(target -> {
-                Vec3 wardenPos = warden.position().add(0.0D, 1.6F, 0.0D);
-                Vec3 distance = target.getEyePosition().subtract(wardenPos);
+                Vec3 source = warden.position().add(0.0D, 1.6F, 0.0D);
+                Vec3 distance = target.getEyePosition().subtract(source);
                 Vec3 position = distance.normalize();
 
-                for (int i = 1; i < Mth.floor(distance.length()) + 7; i++) {
-                    Vec3 rayCharge = wardenPos.add(position.scale(i));
-                    level.sendParticles(WBParticleTypes.SONIC_BOOM.get(), rayCharge.x, rayCharge.y, rayCharge.z, 1, 0.0D, 0.0D, 0.0D, 0.0D);
+                for(int i = 1; i < Mth.floor(distance.length()) + 7; ++i) {
+                    Vec3 charge = source.add(position.scale(i));
+                    level.sendParticles(WBParticleTypes.SONIC_BOOM.get(), charge.x, charge.y, charge.z, 1, 0.0D, 0.0D, 0.0D, 0.0D);
                 }
 
                 warden.playSound(WBSoundEvents.WARDEN_SONIC_BOOM, 3.0F, 1.0F);
                 target.hurt(sonicBoom(warden), 10.0F);
-                double yForce = 0.5D * (1.0D - target.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
-                double xzForce = 2.5D * (1.0D - target.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
-                target.push(position.x * xzForce, position.y * yForce, position.z * xzForce);
+                double yKnockback = 0.5D * (1.0D - target.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
+                double xzKnockback = 2.5D * (1.0D - target.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
+                target.push(position.x() * xzKnockback, position.y() * yKnockback, position.z() * xzKnockback);
             });
         }
     }

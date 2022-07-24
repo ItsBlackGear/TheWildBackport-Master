@@ -24,10 +24,10 @@ public class Roar extends Behavior<Warden> {
     protected void start(ServerLevel level, Warden warden, long time) {
         warden.getBrain().setMemoryWithExpiry(WBMemoryModules.ROAR_SOUND_DELAY.get(), Unit.INSTANCE, 25L);
         warden.getBrain().eraseMemory(MemoryModuleType.WALK_TARGET);
-        LivingEntity entity = warden.getBrain().getMemory(WBMemoryModules.ROAR_TARGET.get()).get();
-        BehaviorUtils.lookAtEntity(warden, entity);
+        LivingEntity target = warden.getBrain().getMemory(WBMemoryModules.ROAR_TARGET.get()).get();
+        BehaviorUtils.lookAtEntity(warden, target);
         warden.setPose(Poses.ROARING.get());
-        warden.increaseAngerAt(entity, 20, false);
+        warden.increaseAngerAt(target, 20, false);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.cursedcauldron.wildbackport.common.entities.brain;
 
-import com.cursedcauldron.wildbackport.common.entities.brain.warden.ForgetAttackTargetTask;
+import com.cursedcauldron.wildbackport.common.entities.brain.warden.ForgetAttackTarget;
 import com.cursedcauldron.wildbackport.common.entities.brain.warden.Digging;
 import com.cursedcauldron.wildbackport.common.entities.brain.warden.Dismount;
 import com.cursedcauldron.wildbackport.common.entities.brain.warden.Emerging;
@@ -111,7 +111,7 @@ public class WardenBrain {
     }
 
     private static void initFightActivity(Warden warden, Brain<Warden> brain) {
-        brain.addActivityAndRemoveMemoryWhenStopped(Activity.FIGHT, 10, ImmutableList.of(DIG_COOLDOWN_SETTER, new ForgetAttackTargetTask<>(target -> {
+        brain.addActivityAndRemoveMemoryWhenStopped(Activity.FIGHT, 10, ImmutableList.of(DIG_COOLDOWN_SETTER, new ForgetAttackTarget<>(target -> {
             return !warden.getAngriness().isAngry() || !warden.isValidTarget(target);
         }, WardenBrain::onTargetInvalid, false), new SetEntityLookTarget(target -> {
             return isTarget(warden, target);

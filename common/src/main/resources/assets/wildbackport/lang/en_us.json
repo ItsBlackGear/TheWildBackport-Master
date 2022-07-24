@@ -91,5 +91,6 @@
   "commands.warden_spawn_tracker.clear.success.single": "Removed warnings from %s",
   "commands.warden_spawn_tracker.clear.success.multiple": "Removed warnings from %s players",
   "death.attack.sonic_boom": "%1$s was obliterated by a sonically-charged shriek",
-  "death.attack.sonic_boom.player": "%1$s was obliterated by a sonically-charged shriek whilst trying to escape %2$s"
+  "death.attack.sonic_boom.player": "%1$s was obliterated by a sonically-charged shriek whilst trying to escape %2$s",
+  "gamerule.doWardenSpawning": "Spawn Wardens"
 }

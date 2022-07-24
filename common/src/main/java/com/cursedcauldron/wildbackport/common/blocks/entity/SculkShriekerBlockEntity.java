@@ -10,6 +10,7 @@ import com.cursedcauldron.wildbackport.common.entities.warden.WardenSpawnHelper;
 import com.cursedcauldron.wildbackport.common.entities.warden.WardenSpawnTracker;
 import com.cursedcauldron.wildbackport.common.registry.WBBlockEntities;
 import com.cursedcauldron.wildbackport.common.registry.WBGameEvents;
+import com.cursedcauldron.wildbackport.common.registry.WBGameRules;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBEntities;
 import com.cursedcauldron.wildbackport.common.tag.WBGameEventTags;
 import com.mojang.serialization.Dynamic;
@@ -27,7 +28,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -81,7 +81,7 @@ public class SculkShriekerBlockEntity extends BlockEntity implements VibrationHa
 
     @Override
     public TagKey<GameEvent> getListenableEvents() {
-        return WBGameEventTags.WARDEN_CAN_LISTEN;
+        return WBGameEventTags.SHRIEKER_CAN_LISTEN;
     }
 
     @Override
@@ -151,8 +151,7 @@ public class SculkShriekerBlockEntity extends BlockEntity implements VibrationHa
     }
 
     private boolean canRespond(ServerLevel level) {
-        //TODO: add gamerule for warden spawning
-        return this.getBlockState().getValue(SculkShriekerBlock.CAN_SUMMON) && level.getDifficulty() != Difficulty.PEACEFUL;
+        return this.getBlockState().getValue(SculkShriekerBlock.CAN_SUMMON) && level.getDifficulty() != Difficulty.PEACEFUL && level.getGameRules().getBoolean(WBGameRules.DO_WARDEN_SPAWNING);
     }
 
     public void tryRespond(ServerLevel level) {

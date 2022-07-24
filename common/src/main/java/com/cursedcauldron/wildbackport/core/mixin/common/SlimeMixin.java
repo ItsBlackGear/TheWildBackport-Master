@@ -16,12 +16,10 @@ import java.util.Random;
 
 @Mixin(Slime.class)
 public class SlimeMixin {
-
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/LevelAccessor;getDifficulty()Lnet/minecraft/world/Difficulty;", shift = At.Shift.AFTER), method = "checkSlimeSpawnRules", cancellable = true)
-    private static void WB$checkSlimeSpawnRules(EntityType<Slime> entityType, LevelAccessor levelAccessor, MobSpawnType mobSpawnType, BlockPos blockPos, Random randomSource, CallbackInfoReturnable<Boolean> cir) {
-        if (levelAccessor.getBiome(blockPos).is(WBBiomeTags.ALLOWS_SURFACE_SLIME_SPAWNS) && blockPos.getY() > 50 && blockPos.getY() < 70 && randomSource.nextFloat() < 0.5F && randomSource.nextFloat() < levelAccessor.getMoonBrightness() && levelAccessor.getMaxLocalRawBrightness(blockPos) <= randomSource.nextInt(8)) {
-            cir.setReturnValue(Mob.checkMobSpawnRules(entityType, levelAccessor, mobSpawnType, blockPos, randomSource));
+    private static void WB$checkSlimeSpawnRules(EntityType<Slime> entity, LevelAccessor level, MobSpawnType spawn, BlockPos pos, Random random, CallbackInfoReturnable<Boolean> cir) {
+        if (level.getBiome(pos).is(WBBiomeTags.ALLOWS_SURFACE_SLIME_SPAWNS) && pos.getY() > 50 && pos.getY() < 70 && random.nextFloat() < 0.5F && random.nextFloat() < level.getMoonBrightness() && level.getMaxLocalRawBrightness(pos) <= random.nextInt(8)) {
+            cir.setReturnValue(Mob.checkMobSpawnRules(entity, level, spawn, pos, random));
         }
     }
-
 }

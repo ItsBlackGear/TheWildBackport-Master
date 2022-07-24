@@ -6,10 +6,12 @@
   "mixins": [
     "access.ActivityAccessor",
     "access.AxeItemAccessor",
+    "access.BooleanValueAccessor",
     "access.CriteriaTriggersAccessor",
     "access.DamageSourceAccessor",
     "access.DoorBlockAccessor",
     "access.FireBlockAccessor",
+    "access.GameRulesAccessor",
     "access.MemoryModuleTypeAccessor",
     "access.MobEffectAccessor",
     "access.ModelPartAccessor",

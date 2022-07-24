@@ -7,6 +7,7 @@ import com.cursedcauldron.wildbackport.common.registry.WBBlockEntities;
 import com.cursedcauldron.wildbackport.common.registry.WBBlocks;
 import com.cursedcauldron.wildbackport.common.registry.WBEnchantments;
 import com.cursedcauldron.wildbackport.common.registry.WBGameEvents;
+import com.cursedcauldron.wildbackport.common.registry.WBGameRules;
 import com.cursedcauldron.wildbackport.common.registry.WBItems;
 import com.cursedcauldron.wildbackport.common.registry.WBMobEffects;
 import com.cursedcauldron.wildbackport.common.registry.WBPositionSources;
@@ -52,6 +53,8 @@ public class WildBackport {
         WBSoundEvents.SOUNDS.register();
         WBTreeDecorators.DECORATORS.register();
         WBTrunkPlacers.PLACERS.register();
+
+        WBGameRules.setup();
 
         // Tags
         WBBiomeTags.TAGS.bootstrap();

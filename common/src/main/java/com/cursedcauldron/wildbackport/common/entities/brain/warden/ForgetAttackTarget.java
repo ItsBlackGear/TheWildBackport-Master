@@ -12,12 +12,12 @@ import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 
-public class ForgetAttackTargetTask<E extends Mob> extends Behavior<E> {
+public class ForgetAttackTarget<E extends Mob> extends Behavior<E> {
     private final Predicate<LivingEntity> stopAttackingWhen;
     private final BiConsumer<E, LivingEntity> onTargetErased;
     private final boolean canGrowTiredOfTryingToReachTarget;
 
-    public ForgetAttackTargetTask(Predicate<LivingEntity> stopAttackingWhen, BiConsumer<E, LivingEntity> onTargetEased, boolean canGrowTiredOfTryingToReachTarget) {
+    public ForgetAttackTarget(Predicate<LivingEntity> stopAttackingWhen, BiConsumer<E, LivingEntity> onTargetEased, boolean canGrowTiredOfTryingToReachTarget) {
         super(ImmutableMap.of(MemoryModuleType.ATTACK_TARGET, MemoryStatus.VALUE_PRESENT, MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE, MemoryStatus.REGISTERED));
         this.stopAttackingWhen = stopAttackingWhen;
         this.onTargetErased = onTargetEased;
