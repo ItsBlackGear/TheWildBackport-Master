@@ -1,4 +1,4 @@
-package com.cursedcauldron.wildbackport.core.mixin.client;
+package com.cursedcauldron.wildbackport.core.mixin.forge.client;
 
 import com.cursedcauldron.wildbackport.common.effects.EffectFactor;
 import com.cursedcauldron.wildbackport.common.registry.WBMobEffects;
@@ -21,12 +21,10 @@ public class FogRendererMixin {
     @Shadow private static float fogRed;
     @Shadow private static float fogGreen;
     @Shadow private static float fogBlue;
-    private static float fogPartialTicks;
 
     @Inject(method = "setupColor", at = @At("TAIL"))
     private static void applyDarknessColor(Camera camera, float partialTicks, ClientLevel level, int viewDistance, float skyDarkness, CallbackInfo ci) {
         FogType type = camera.getFluidInCamera();
-        fogPartialTicks = partialTicks;
 
         double colorModifier = (camera.getPosition().y - (double)level.getMinBuildHeight()) * level.getLevelData().getClearColorScale();
         if (camera.getEntity() instanceof LivingEntity living && living.hasEffect(WBMobEffects.DARKNESS.get())) {
@@ -58,8 +56,8 @@ public class FogRendererMixin {
         RenderSystem.clearColor(fogRed, fogGreen, fogBlue, 0.0F);
     }
 
-    @Inject(method = "setupFog", at = @At("TAIL"), remap = false)
-    private static void applyDarknessFog(Camera camera, FogRenderer.FogMode mode, float viewDistance, boolean thickFog, CallbackInfo ci) {
+    @Inject(method = "setupFog(Lnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/FogRenderer$FogMode;FZF)V", at = @At("TAIL"), remap = false)
+    private static void applyDarknessFog(Camera camera, FogRenderer.FogMode mode, float viewDistance, boolean thickFog, float partialTicks, CallbackInfo ci) {
         FogType fogtype = camera.getFluidInCamera();
 
         if (fogtype != FogType.WATER) {
@@ -69,7 +67,7 @@ public class FogRendererMixin {
                 if (effect != null) {
                     EffectFactor.Instance instance = EffectFactor.Instance.of(effect);
                     if (instance.getFactorCalculationData().isPresent()) {
-                        float modifier = Mth.lerp(instance.getFactorCalculationData().get().lerp(living, fogPartialTicks), viewDistance, 15.0F);
+                        float modifier = Mth.lerp(instance.getFactorCalculationData().get().lerp(living, partialTicks), viewDistance, 15.0F);
                         float start = mode == FogRenderer.FogMode.FOG_SKY ? 0.0F : modifier * 0.75F;
 
                         RenderSystem.setShaderFogStart(start);

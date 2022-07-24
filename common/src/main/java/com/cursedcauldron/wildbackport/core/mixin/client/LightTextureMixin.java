@@ -30,11 +30,10 @@ public abstract class LightTextureMixin {
     @Shadow protected abstract float getBrightness(Level level, int i);
     @Shadow @Final private DynamicTexture lightTexture;
     @Shadow @Final private NativeImage lightPixels;
-    @Shadow protected abstract float notGamma(float f);
     @Shadow @Final private GameRenderer renderer;
 
     private LocalPlayer getPlayer() {
-        assert this.minecraft.player != null;
+//        assert this.minecraft.player != null;
         return this.minecraft.player;
     }
 
@@ -52,7 +51,7 @@ public abstract class LightTextureMixin {
     }
 
     //TODO simplify
-    @Inject(method = "updateLightTexture", at = @At("HEAD"))
+    @Inject(method = "updateLightTexture(F)V", at = @At("HEAD"))
     private void updateLight(float delta, CallbackInfo ci) {
         if (this.updateLightTexture) {
             this.updateLightTexture = false;
@@ -129,5 +128,10 @@ public abstract class LightTextureMixin {
                 this.lightTexture.upload();
             }
         }
+    }
+
+    private float notGamma(float f) {
+        float g = 1.0f - f;
+        return 1.0f - g * g * g * g;
     }
 }

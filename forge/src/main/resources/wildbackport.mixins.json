@@ -1,11 +1,12 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.cursedcauldron.wildbackport.mixin.forge",
+  "package": "com.cursedcauldron.wildbackport.core.mixin.forge",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
   ],
   "client": [
+    "client.FogRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
