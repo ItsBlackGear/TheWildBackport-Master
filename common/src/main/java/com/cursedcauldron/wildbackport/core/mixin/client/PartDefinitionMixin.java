@@ -17,7 +17,7 @@ public class PartDefinitionMixin {
 
     @Inject(method = "bake", at = @At(value = "RETURN"), cancellable = true)
     private void wb$bake(int i, int j, CallbackInfoReturnable<ModelPart> cir) {
-        ((Animated)(Object)cir.getReturnValue()).setDefaultPose(this.partPose);
+        Animated.of(cir.getReturnValue()).setDefault(this.partPose);
         cir.setReturnValue(cir.getReturnValue());
     }
 }

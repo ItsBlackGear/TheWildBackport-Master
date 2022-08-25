@@ -7,6 +7,10 @@ import net.minecraft.client.model.geom.PartPose;
 //<>
 
 public interface Animated {
+    static Animated of(ModelPart part) {
+        return Animated.class.cast(part);
+    }
+
     static void translate(ModelPart part, Vector3f vec) {
         part.x += vec.x();
         part.y += vec.y();
@@ -19,35 +23,35 @@ public interface Animated {
         part.zRot += vec.z();
     }
 
-    static void scale(ModelPart part, Vector3f vec) {
-        ((Animated)(Object)part).increaseXScale(vec.x());
-        ((Animated)(Object)part).increaseYScale(vec.y());
-        ((Animated)(Object)part).increaseZScale(vec.z());
+    static void scaleY(ModelPart part, Vector3f vec) {
+        Animated.of(part).scaleXTo(vec.x());
+        Animated.of(part).scaleYTo(vec.y());
+        Animated.of(part).scaleZTo(vec.z());
     }
 
-    PartPose getDefaultPose();
+    PartPose resetToDefault();
 
-    void setDefaultPose(PartPose pose);
+    void setDefault(PartPose pose);
 
-    static void resetPose(ModelPart part) {
-        part.loadPose(((Animated)(Object)part).getDefaultPose());
+    static void resetToDefault(ModelPart part) {
+        part.loadPose(Animated.of(part).resetToDefault());
     }
 
-    float xScale();
+    float scaleX();
 
-    void setXScale(float x);
+    void scaleX(float x);
 
-    void increaseXScale(float x);
+    void scaleXTo(float x);
 
-    float yScale();
+    float scaleY();
 
-    void setYScale(float y);
+    void scaleY(float y);
 
-    void increaseYScale(float y);
+    void scaleYTo(float y);
 
-    float zScale();
+    float scaleZ();
 
-    void setZScale(float z);
+    void scaleZ(float z);
 
-    void increaseZScale(float z);
+    void scaleZTo(float z);
 }

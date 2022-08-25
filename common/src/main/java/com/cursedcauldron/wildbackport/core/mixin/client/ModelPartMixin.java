@@ -27,40 +27,40 @@ public abstract class ModelPartMixin implements Animated, Drawable {
     @Shadow @Final private Map<String, ModelPart> children;
     @Shadow public abstract void translateAndRotate(PoseStack pose);
 
-    private float xScale = 1.0F;
-    private float yScale = 1.0F;
-    private float zScale = 1.0F;
+    private float scaleX = 1.0F;
+    private float scaleY = 1.0F;
+    private float scaleZ = 1.0F;
     private PartPose defaultPose = PartPose.ZERO;
     private boolean skipDraw;
 
     @Override
-    public PartPose getDefaultPose() {
+    public PartPose resetToDefault() {
         return this.defaultPose;
     }
 
     @Override
-    public void setDefaultPose(PartPose pose) {
+    public void setDefault(PartPose pose) {
         this.defaultPose = pose;
     }
 
     @Inject(method = "loadPose", at = @At("TAIL"))
     private void wb$load(PartPose pose, CallbackInfo ci) {
-        this.xScale = 1.0F;
-        this.yScale = 1.0F;
-        this.zScale = 1.0F;
+        this.scaleX = 1.0F;
+        this.scaleY = 1.0F;
+        this.scaleZ = 1.0F;
     }
 
     @Inject(method = "copyFrom", at = @At("TAIL"))
     private void wb$copy(ModelPart part, CallbackInfo ci) {
-        this.setXScale(((Animated)(Object)part).xScale());
-        this.setYScale(((Animated)(Object)part).yScale());
-        this.setZScale(((Animated)(Object)part).zScale());
+        this.scaleX(Animated.of(part).scaleX());
+        this.scaleY(Animated.of(part).scaleY());
+        this.scaleZ(Animated.of(part).scaleZ());
     }
 
     @Inject(method = "translateAndRotate", at = @At("TAIL"))
     private void wb$moveAndScale(PoseStack stack, CallbackInfo ci) {
-        if (this.xScale != 1.0F || this.yScale != 1.0F || this.zScale != 1.0F) {
-            stack.scale(this.xScale, this.yScale, this.zScale);
+        if (this.scaleX != 1.0F || this.scaleY != 1.0F || this.scaleZ != 1.0F) {
+            stack.scale(this.scaleX, this.scaleY, this.scaleZ);
         }
     }
 
@@ -72,60 +72,59 @@ public abstract class ModelPartMixin implements Animated, Drawable {
                     pose.pushPose();
                     this.translateAndRotate(pose);
 
-                    for (ModelPart part : this.children.values()) {
-                        part.render(pose, consumer, light, delta, red, green, blue, alpha);
-                    }
+                    for (ModelPart part : this.children.values()) part.render(pose, consumer, light, delta, red, green, blue, alpha);
 
                     pose.popPose();
                 }
             }
+
             ci.cancel();
         }
     }
 
     @Override
-    public float xScale() {
-        return this.xScale;
+    public float scaleX() {
+        return this.scaleX;
     }
 
     @Override
-    public void setXScale(float x) {
-        this.xScale = x;
+    public void scaleX(float x) {
+        this.scaleX = x;
     }
 
     @Override
-    public void increaseXScale(float x) {
-        this.xScale += x;
+    public void scaleXTo(float x) {
+        this.scaleX += x;
     }
 
     @Override
-    public float yScale() {
-        return this.yScale;
+    public float scaleY() {
+        return this.scaleY;
     }
 
     @Override
-    public void setYScale(float y) {
-        this.yScale = y;
+    public void scaleY(float y) {
+        this.scaleY = y;
     }
 
     @Override
-    public void increaseYScale(float y) {
-        this.yScale += y;
+    public void scaleYTo(float y) {
+        this.scaleY += y;
     }
 
     @Override
-    public float zScale() {
-        return this.zScale;
+    public float scaleZ() {
+        return this.scaleZ;
     }
 
     @Override
-    public void setZScale(float z) {
-        this.zScale = z;
+    public void scaleZ(float z) {
+        this.scaleZ = z;
     }
 
     @Override
-    public void increaseZScale(float z) {
-        this.zScale += z;
+    public void scaleZTo(float z) {
+        this.scaleZ += z;
     }
 
     @Override

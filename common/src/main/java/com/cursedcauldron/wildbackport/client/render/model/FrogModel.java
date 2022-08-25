@@ -61,7 +61,7 @@ public class FrogModel<T extends Frog> extends AnimatedModel<T> {
 
     @Override
     public void setupAnim(T entity, float angle, float distance, float animationProgress, float yaw, float pitch) {
-        this.root.getAllParts().forEach(Animated::resetPose);
+        this.root.getAllParts().forEach(Animated::resetToDefault);
         float speedMultiplier = Math.min((float)entity.getDeltaMovement().lengthSqr() * 200.0F, 8.0F);
         this.animate(entity.longJumpingAnimationState, FrogAnimations.LONG_JUMPING, animationProgress);
         this.animate(entity.croakingAnimationState, FrogAnimations.CROAKING, animationProgress);

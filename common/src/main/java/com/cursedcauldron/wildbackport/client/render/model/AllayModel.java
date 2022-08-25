@@ -52,7 +52,7 @@ public class AllayModel extends HierarchicalModel<Allay> implements ArmedModel {
 
     @Override
     public void setupAnim(Allay entity, float angle, float distance, float animationProgress, float yaw, float pitch) {
-        this.root().getAllParts().forEach(Animated::resetPose);
+        this.root().getAllParts().forEach(Animated::resetToDefault);
         this.head.xRot = pitch * ((float)Math.PI / 180F);
         this.head.yRot = yaw * ((float)Math.PI / 180F);
         float f = animationProgress * 20.0F * ((float)Math.PI / 180F) + distance;

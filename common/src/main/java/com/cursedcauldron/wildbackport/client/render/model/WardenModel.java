@@ -75,7 +75,7 @@ public class WardenModel<T extends Warden> extends AnimatedModel<T> {
 
     @Override
     public void setupAnim(T entity, float angle, float distance, float animationProgress, float yaw, float pitch) {
-        this.root.getAllParts().forEach(Animated::resetPose);
+        this.root.getAllParts().forEach(Animated::resetToDefault);
         float tickDelta = animationProgress - (float)entity.tickCount;
         this.setHeadAngle(yaw, pitch);
         this.setLimbAngles(angle, distance);

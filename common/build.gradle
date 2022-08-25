@@ -5,7 +5,7 @@ dependencies {
 }
 
 architectury {
-    common()
+    common("forge", "fabric")
 }
 
 loom {
@@ -20,8 +20,5 @@ publishing {
         }
     }
 
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-    repositories {
-        // Add repositories to publish to here.
-    }
+    repositories {}
 }

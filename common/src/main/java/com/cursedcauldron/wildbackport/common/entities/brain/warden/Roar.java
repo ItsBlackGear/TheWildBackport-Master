@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Unit;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.behavior.Behavior;
 import net.minecraft.world.entity.ai.behavior.BehaviorUtils;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
@@ -22,9 +23,10 @@ public class Roar extends Behavior<Warden> {
 
     @Override
     protected void start(ServerLevel level, Warden warden, long time) {
-        warden.getBrain().setMemoryWithExpiry(WBMemoryModules.ROAR_SOUND_DELAY.get(), Unit.INSTANCE, 25L);
-        warden.getBrain().eraseMemory(MemoryModuleType.WALK_TARGET);
-        LivingEntity target = warden.getBrain().getMemory(WBMemoryModules.ROAR_TARGET.get()).get();
+        Brain<Warden> brain = warden.getBrain();
+        brain.setMemoryWithExpiry(WBMemoryModules.ROAR_SOUND_DELAY.get(), Unit.INSTANCE, 25L);
+        brain.eraseMemory(MemoryModuleType.WALK_TARGET);
+        LivingEntity target = brain.getMemory(WBMemoryModules.ROAR_TARGET.get()).get();
         BehaviorUtils.lookAtEntity(warden, target);
         warden.setPose(Poses.ROARING.get());
         warden.increaseAngerAt(target, 20, false);

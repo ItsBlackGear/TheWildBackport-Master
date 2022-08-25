@@ -33,7 +33,7 @@ public record Transformation(Target target, Keyframe... keyframes) {
     public static class Targets {
         public static final Target TRANSLATE    = Animated::translate;
         public static final Target ROTATE       = Animated::rotate;
-        public static final Target SCALE        = Animated::scale;
+        public static final Target SCALE        = Animated::scaleY;
     }
 
     public interface Interpolation {
