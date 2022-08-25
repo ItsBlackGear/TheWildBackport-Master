@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "id": "wildbackport",
   "version": "${version}",
-  "name": "Wildbackport",
-  "description": "a mod that backports the features from the wild update",
+  "name": "TheWildBackport",
+  "description": "backport features from the wild update",
   "authors": [
     "BlackGear",
     "Orcinus",
@@ -30,6 +30,7 @@
   ],
   "depends": {
     "fabricloader": ">=0.14.8",
-    "minecraft": ">=1.18.2"
+    "minecraft": ">=1.18.2",
+    "terrablender": ">=1.0.0.59"
   }
 }

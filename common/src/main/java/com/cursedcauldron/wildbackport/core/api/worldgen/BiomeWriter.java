@@ -20,11 +20,21 @@ public abstract class BiomeWriter {
         for (ResourceKey<Biome> biome : biomes) if (this.is(biome)) writer.accept(this);
     }
 
+    public final void add(Consumer<BiomeWriter> writer, Biome.BiomeCategory... categories) {
+        for (Biome.BiomeCategory category : categories) if (this.is(category)) writer.accept(this);
+    }
+
     public boolean is(ResourceKey<Biome> biome) {
         return biome == ResourceKey.create(Registry.BIOME_REGISTRY, this.name());
     }
 
+    public boolean is(Biome.BiomeCategory category) {
+        return category == this.category();
+    }
+
     public abstract ResourceLocation name();
+
+    public abstract Biome.BiomeCategory category();
 
     public abstract void addFeature(GenerationStep.Decoration step, Holder<PlacedFeature> feature);
 

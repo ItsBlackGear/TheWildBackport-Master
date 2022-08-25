@@ -5,7 +5,6 @@ import com.cursedcauldron.wildbackport.common.entities.access.api.Poses;
 import com.cursedcauldron.wildbackport.common.entities.Warden;
 import com.cursedcauldron.wildbackport.common.entities.brain.WardenBrain;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBMemoryModules;
-import com.cursedcauldron.wildbackport.common.utils.MobUtils;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Pose;
@@ -36,12 +35,12 @@ public class Sniffing<E extends Warden> extends Behavior<E> {
 
         entity.getBrain().eraseMemory(WBMemoryModules.IS_SNIFFING.get());
         entity.getBrain().getMemory(MemoryModuleType.NEAREST_ATTACKABLE).filter(entity::isValidTarget).ifPresent(target -> {
-            if (MobUtils.closerThan(entity, target, 6.0D, 20.0D)) {
+            if (entity.closerThan(target, 6.0D, 20.0D)) {
                 entity.increaseAngerAt(target);
             }
 
             if (!entity.getBrain().hasMemoryValue(WBMemoryModules.DISTURBANCE_LOCATION.get())) {
-                WardenBrain.setDisturbanceLocation(entity, target.blockPosition());
+                WardenBrain.lookAtDisturbance(entity, target.blockPosition());
             }
         });
     }

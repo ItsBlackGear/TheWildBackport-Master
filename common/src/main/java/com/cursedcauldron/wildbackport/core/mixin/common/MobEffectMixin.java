@@ -63,8 +63,7 @@ public class MobEffectMixin implements EffectFactor {
 
         @Inject(method = "update", at = @At("HEAD"), cancellable = true)
         private void wb$update(MobEffectInstance instance, CallbackInfoReturnable<Boolean> cir) {
-            int i = instance.getDuration();
-//            int i = this.duration;
+            int i = this.duration;
             if (i != this.duration) {
                 this.factorCalculationData.ifPresent(data -> data.effectChangedTimestamp += this.duration - i);
                 cir.setReturnValue(true);

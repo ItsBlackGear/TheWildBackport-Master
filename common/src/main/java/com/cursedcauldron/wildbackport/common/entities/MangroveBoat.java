@@ -2,7 +2,7 @@ package com.cursedcauldron.wildbackport.common.entities;
 
 import com.cursedcauldron.wildbackport.common.entities.access.api.BoatTypes;
 import com.cursedcauldron.wildbackport.common.registry.WBItems;
-import com.cursedcauldron.wildbackport.common.registry.entity.WBEntities;
+import com.cursedcauldron.wildbackport.common.registry.entity.WBEntityTypes;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
@@ -20,7 +20,7 @@ public class MangroveBoat extends Boat {
     }
 
     public MangroveBoat(Level level, double x, double y, double z) {
-        super(WBEntities.MANGROVE_BOAT.get(), level);
+        super(WBEntityTypes.MANGROVE_BOAT.get(), level);
         this.setPos(x, y, z);
         this.xo = x;
         this.yo = y;

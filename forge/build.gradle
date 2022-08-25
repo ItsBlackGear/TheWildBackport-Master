@@ -1,8 +1,6 @@
 buildscript {
     repositories {
-        maven {
-            url = 'https://maven.minecraftforge.net/'
-        }
+        maven { url = 'https://maven.minecraftforge.net/' }
     }
 }
 
@@ -10,18 +8,21 @@ plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
+architectury {
+    platformSetupLoomIde()
+    forge()
+}
+
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
 
     forge {
+        mixinConfig "wildbackport-common.mixins.json"
+        mixinConfig "wildbackport.mixins.json"
+
         convertAccessWideners = true
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
     }
-}
-
-architectury {
-    platformSetupLoomIde()
-    forge()
 }
 
 configurations {
@@ -34,11 +35,7 @@ configurations {
 
 dependencies {
     forge "net.minecraftforge:forge:${rootProject.forge_version}"
-//    forge "net.minecraftforge:forge:${rootProject.forge_version}"
-
-
-    modApi ("com.github.glitchfiend:TerraBlender-forge:${minecraft_version}-${terrablender_version}")
-//    implementation fg.deobf('com.github.glitchfiend:TerraBlender-forge:x.x.x-y.y.y.y')
+    modApi "com.github.glitchfiend:TerraBlender-forge:${minecraft_version}-${terrablender_version}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }

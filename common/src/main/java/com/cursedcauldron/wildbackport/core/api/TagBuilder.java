@@ -6,9 +6,9 @@ import net.minecraft.tags.TagKey;
 
 //<>
 
-public record TagRegistry<T>(Registry<T> registry, String modId) {
-    public static <T> TagRegistry<T> create(Registry<T> key, String modId) {
-        return new TagRegistry<>(key, modId);
+public record TagBuilder<T>(Registry<T> registry, String modId) {
+    public static <T> TagBuilder<T> create(Registry<T> key, String modId) {
+        return new TagBuilder<>(key, modId);
     }
 
     public TagKey<T> create(String key) {

@@ -10,7 +10,7 @@ import com.cursedcauldron.wildbackport.common.entities.brain.frog.WalkTowardsLan
 import com.cursedcauldron.wildbackport.common.entities.brain.frog.WalkTowardsWater;
 import com.cursedcauldron.wildbackport.common.registry.WBBlocks;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBActivities;
-import com.cursedcauldron.wildbackport.common.registry.entity.WBEntities;
+import com.cursedcauldron.wildbackport.common.registry.entity.WBEntityTypes;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBMemoryModules;
 import com.cursedcauldron.wildbackport.common.tag.WBBlockTags;
 import com.google.common.collect.ImmutableList;
@@ -72,7 +72,7 @@ public class FrogBrain {
     }
 
     private static void addIdleActivities(Brain<Frog> brain) {
-        brain.addActivityWithConditions(Activity.IDLE, ImmutableList.of(Pair.of(0, new RunSometimes<LivingEntity>(new SetEntityLookTarget(EntityType.PLAYER, 6.0F), UniformInt.of(30, 60))), Pair.of(0, new AnimalMakeLove(WBEntities.FROG.get(), 1.0F)), Pair.of(1, new FollowTemptation(entity -> 1.25F)), Pair.of(2, new StartAttacking<>(FrogBrain::isNotBreeding, frog -> frog.getBrain().getMemory(MemoryModuleType.NEAREST_ATTACKABLE))), Pair.of(3, new WalkTowardsLand(6, 1.0F)), Pair.of(4, new RunOne<>(ImmutableMap.of(MemoryModuleType.WALK_TARGET, MemoryStatus.VALUE_ABSENT), ImmutableList.of(Pair.of(new RandomStroll(1.0F), 1), Pair.of(new SetWalkTargetFromLookTarget(1.0F, 3), 1), Pair.of(new Croak(), 3), Pair.of(new RunIf<>(Entity::isOnGround, new DoNothing(5, 20)), 2))))), ImmutableSet.of(Pair.of(MemoryModuleType.LONG_JUMP_MID_JUMP, MemoryStatus.VALUE_ABSENT), Pair.of(WBMemoryModules.IS_IN_WATER.get(), MemoryStatus.VALUE_ABSENT)));
+        brain.addActivityWithConditions(Activity.IDLE, ImmutableList.of(Pair.of(0, new RunSometimes<LivingEntity>(new SetEntityLookTarget(EntityType.PLAYER, 6.0F), UniformInt.of(30, 60))), Pair.of(0, new AnimalMakeLove(WBEntityTypes.FROG.get(), 1.0F)), Pair.of(1, new FollowTemptation(entity -> 1.25F)), Pair.of(2, new StartAttacking<>(FrogBrain::isNotBreeding, frog -> frog.getBrain().getMemory(MemoryModuleType.NEAREST_ATTACKABLE))), Pair.of(3, new WalkTowardsLand(6, 1.0F)), Pair.of(4, new RunOne<>(ImmutableMap.of(MemoryModuleType.WALK_TARGET, MemoryStatus.VALUE_ABSENT), ImmutableList.of(Pair.of(new RandomStroll(1.0F), 1), Pair.of(new SetWalkTargetFromLookTarget(1.0F, 3), 1), Pair.of(new Croak(), 3), Pair.of(new RunIf<>(Entity::isOnGround, new DoNothing(5, 20)), 2))))), ImmutableSet.of(Pair.of(MemoryModuleType.LONG_JUMP_MID_JUMP, MemoryStatus.VALUE_ABSENT), Pair.of(WBMemoryModules.IS_IN_WATER.get(), MemoryStatus.VALUE_ABSENT)));
     }
 
     private static void addSwimActivities(Brain<Frog> brain) {

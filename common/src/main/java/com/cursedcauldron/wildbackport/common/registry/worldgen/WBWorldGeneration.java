@@ -7,7 +7,7 @@ import com.cursedcauldron.wildbackport.common.tag.WBBlockTags;
 import com.cursedcauldron.wildbackport.common.worldgen.PredicatedStateProvider;
 import com.cursedcauldron.wildbackport.common.worldgen.WorldGenerator;
 import com.cursedcauldron.wildbackport.common.worldgen.decorator.AttachedToLeavesDecorator;
-import com.cursedcauldron.wildbackport.common.worldgen.decorator.LayerRootDecorator;
+import com.cursedcauldron.wildbackport.common.worldgen.decorator.AboveRootPlacement;
 import com.cursedcauldron.wildbackport.common.worldgen.decorator.MangroveRootPlacement;
 import com.cursedcauldron.wildbackport.common.worldgen.decorator.WeightedLeaveVineDecorator;
 import com.cursedcauldron.wildbackport.common.worldgen.features.GrassDiskConfiguration;
@@ -66,7 +66,7 @@ public class WBWorldGeneration {
             new UpwardBranchingTrunk(2, 1, 4, UniformInt.of(1, 4), 0.5F, UniformInt.of(0, 1), Registry.BLOCK.getOrCreateTag(WBBlockTags.MANGROVE_LOGS_CAN_GROW_THROUGH)),
             BlockStateProvider.simple(WBBlocks.MANGROVE_LEAVES.get()),
             new RandomSpreadFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), ConstantInt.of(2), 70),
-            Optional.of(new MangroveRootPlacer(UniformInt.of(1, 3), BlockStateProvider.simple(WBBlocks.MANGROVE_ROOTS.get()), Optional.of(new LayerRootDecorator(BlockStateProvider.simple(Blocks.MOSS_CARPET), 0.5F)), new MangroveRootPlacement(Registry.BLOCK.getOrCreateTag(WBBlockTags.MANGROVE_ROOTS_CAN_GROW_THROUGH), HolderSet.direct(Block::builtInRegistryHolder, WBBlocks.MUD.get(), WBBlocks.MUDDY_MANGROVE_ROOTS.get()), BlockStateProvider.simple(WBBlocks.MUDDY_MANGROVE_ROOTS.get()), 8, 15, 0.2F))),
+            Optional.of(new MangroveRootPlacer(UniformInt.of(1, 3), BlockStateProvider.simple(WBBlocks.MANGROVE_ROOTS.get()), Optional.of(new AboveRootPlacement(BlockStateProvider.simple(Blocks.MOSS_CARPET), 0.5F)), new MangroveRootPlacement(Registry.BLOCK.getOrCreateTag(WBBlockTags.MANGROVE_ROOTS_CAN_GROW_THROUGH), HolderSet.direct(Block::builtInRegistryHolder, WBBlocks.MUD.get(), WBBlocks.MUDDY_MANGROVE_ROOTS.get()), BlockStateProvider.simple(WBBlocks.MUDDY_MANGROVE_ROOTS.get()), 8, 15, 0.2F))),
             new TwoLayersFeatureSize(2, 0, 2)
     ).decorators(List.of(
         new WeightedLeaveVineDecorator(0.125F),
@@ -79,7 +79,7 @@ public class WBWorldGeneration {
             new UpwardBranchingTrunk(4, 1, 9, UniformInt.of(1, 6), 0.5F, UniformInt.of(0, 1), Registry.BLOCK.getOrCreateTag(WBBlockTags.MANGROVE_LOGS_CAN_GROW_THROUGH)),
             BlockStateProvider.simple(WBBlocks.MANGROVE_LEAVES.get()),
             new RandomSpreadFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), ConstantInt.of(2), 70),
-            Optional.of(new MangroveRootPlacer(UniformInt.of(3, 7), BlockStateProvider.simple(WBBlocks.MANGROVE_ROOTS.get()), Optional.of(new LayerRootDecorator(BlockStateProvider.simple(Blocks.MOSS_CARPET), 0.5F)), new MangroveRootPlacement(Registry.BLOCK.getOrCreateTag(WBBlockTags.MANGROVE_ROOTS_CAN_GROW_THROUGH), HolderSet.direct(Block::builtInRegistryHolder, WBBlocks.MUD.get(), WBBlocks.MUDDY_MANGROVE_ROOTS.get()), BlockStateProvider.simple(WBBlocks.MUDDY_MANGROVE_ROOTS.get()), 8, 15, 0.2F))),
+            Optional.of(new MangroveRootPlacer(UniformInt.of(3, 7), BlockStateProvider.simple(WBBlocks.MANGROVE_ROOTS.get()), Optional.of(new AboveRootPlacement(BlockStateProvider.simple(Blocks.MOSS_CARPET), 0.5F)), new MangroveRootPlacement(Registry.BLOCK.getOrCreateTag(WBBlockTags.MANGROVE_ROOTS_CAN_GROW_THROUGH), HolderSet.direct(Block::builtInRegistryHolder, WBBlocks.MUD.get(), WBBlocks.MUDDY_MANGROVE_ROOTS.get()), BlockStateProvider.simple(WBBlocks.MUDDY_MANGROVE_ROOTS.get()), 8, 15, 0.2F))),
             new TwoLayersFeatureSize(3, 0, 2)
     ).decorators(List.of(
             new WeightedLeaveVineDecorator(0.125F),

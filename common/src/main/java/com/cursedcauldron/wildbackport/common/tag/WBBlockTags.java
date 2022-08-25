@@ -1,13 +1,13 @@
 package com.cursedcauldron.wildbackport.common.tag;
 
 import com.cursedcauldron.wildbackport.WildBackport;
-import com.cursedcauldron.wildbackport.core.api.TagRegistry;
+import com.cursedcauldron.wildbackport.core.api.TagBuilder;
 import net.minecraft.core.Registry;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
 public class WBBlockTags {
-    public static final TagRegistry<Block> TAGS = TagRegistry.create(Registry.BLOCK, WildBackport.MOD_ID);
+    public static final TagBuilder<Block> TAGS = TagBuilder.create(Registry.BLOCK, WildBackport.MOD_ID);
 
     // Mangrove Swamp
     public static final TagKey<Block> CONVERTABLE_TO_MUD                = TAGS.create("convertable_to_mud");

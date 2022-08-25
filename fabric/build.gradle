@@ -8,7 +8,7 @@ architectury {
 }
 
 loom {
-    accessWidenerPath.set(project(":common").file("src/main/resources/wildbackport.accesswidener"))
+    accessWidenerPath = project(":common").loom.accessWidenerPath
 }
 
 configurations {
@@ -20,15 +20,14 @@ configurations {
 }
 
 repositories {
-    maven {
-        url = 'https://maven.minecraftforge.net/'
-    }
+    maven { url = 'https://maven.minecraftforge.net/' }
 }
 
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
-
+    // Remove the next line if you don't want to depend on the API
+//    modApi "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
     modImplementation("com.github.glitchfiend:TerraBlender-fabric:${minecraft_version}-${terrablender_version}")
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
@@ -51,6 +50,7 @@ shadowJar {
 }
 
 remapJar {
+    injectAccessWidener = true
     input.set shadowJar.archiveFile
     dependsOn shadowJar
     classifier null

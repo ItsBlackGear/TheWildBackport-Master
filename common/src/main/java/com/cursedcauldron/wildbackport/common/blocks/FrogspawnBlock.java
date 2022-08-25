@@ -2,7 +2,7 @@ package com.cursedcauldron.wildbackport.common.blocks;
 
 import com.cursedcauldron.wildbackport.client.registry.WBSoundEvents;
 import com.cursedcauldron.wildbackport.common.entities.Tadpole;
-import com.cursedcauldron.wildbackport.common.registry.entity.WBEntities;
+import com.cursedcauldron.wildbackport.common.registry.entity.WBEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -28,8 +28,6 @@ import java.util.Random;
 
 public class FrogspawnBlock extends Block {
     protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.5D, 16.0D);
-    private static final int MIN_HATCH_TIME = 3600;
-    private static final int MAX_HATCH_TIME = 12000;
 
     public FrogspawnBlock(Properties properties) {
         super(properties);
@@ -51,7 +49,7 @@ public class FrogspawnBlock extends Block {
     }
 
     private static int hatchTime(Random random) {
-        return random.nextInt(MIN_HATCH_TIME, MAX_HATCH_TIME);
+        return random.nextInt(3600, 12000);
     }
 
     @Override
@@ -95,7 +93,7 @@ public class FrogspawnBlock extends Block {
         int i = random.nextInt(2, 6);
 
         for (int index = 1; index <= i; ++index) {
-            Tadpole tadpole = WBEntities.TADPOLE.get().create(level);
+            Tadpole tadpole = WBEntityTypes.TADPOLE.get().create(level);
             if (tadpole != null) {
                 double x = (double)pos.getX() + this.getSpawnOffset(random);
                 double z = (double)pos.getZ() + this.getSpawnOffset(random);
@@ -108,7 +106,6 @@ public class FrogspawnBlock extends Block {
     }
 
     private double getSpawnOffset(Random random) {
-        double d = Tadpole.WIDTH / 2.0F;
-        return Mth.clamp(random.nextDouble(), d, 1.0 - d);
+        return Mth.clamp(random.nextDouble(), 0.2F, 0.8F);
     }
 }

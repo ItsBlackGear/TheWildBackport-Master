@@ -1,8 +1,8 @@
 package com.cursedcauldron.wildbackport.common.entities.brain.warden;
 
 import com.cursedcauldron.wildbackport.client.registry.WBSoundEvents;
-import com.cursedcauldron.wildbackport.common.entities.access.api.Poses;
 import com.cursedcauldron.wildbackport.common.entities.Warden;
+import com.cursedcauldron.wildbackport.common.entities.access.api.Poses;
 import com.cursedcauldron.wildbackport.common.entities.brain.WardenBrain;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBMemoryModules;
 import com.google.common.collect.ImmutableMap;
@@ -23,10 +23,10 @@ public class Roar extends Behavior<Warden> {
 
     @Override
     protected void start(ServerLevel level, Warden warden, long time) {
-        Brain<Warden> brain = warden.getBrain();
-        brain.setMemoryWithExpiry(WBMemoryModules.ROAR_SOUND_DELAY.get(), Unit.INSTANCE, 25L);
+        Brain<?> brain = warden.getBrain();
+        brain.setMemoryWithExpiry(WBMemoryModules.ROAR_SOUND_DELAY.get(), Unit.INSTANCE, 26L);
         brain.eraseMemory(MemoryModuleType.WALK_TARGET);
-        LivingEntity target = brain.getMemory(WBMemoryModules.ROAR_TARGET.get()).get();
+        LivingEntity target = warden.getBrain().getMemory(WBMemoryModules.ROAR_TARGET.get()).get();
         BehaviorUtils.lookAtEntity(warden, target);
         warden.setPose(Poses.ROARING.get());
         warden.increaseAngerAt(target, 20, false);
@@ -48,7 +48,6 @@ public class Roar extends Behavior<Warden> {
     @Override
     protected void stop(ServerLevel level, Warden warden, long time) {
         if (warden.hasPose(Poses.ROARING.get())) warden.setPose(Pose.STANDING);
-
         warden.getBrain().getMemory(WBMemoryModules.ROAR_TARGET.get()).ifPresent(warden::updateAttackTarget);
         warden.getBrain().eraseMemory(WBMemoryModules.ROAR_TARGET.get());
     }

@@ -28,7 +28,7 @@ import java.util.Random;
 //<>
 
 public class SculkCatalystBlock extends BaseEntityBlock {
-    public static final BooleanProperty BLOOM = BlockProperties.BLOOM;
+    public static final BooleanProperty BLOOM = StateProperties.BLOOM;
 
     public SculkCatalystBlock(Properties properties) {
         super(properties);

@@ -42,7 +42,7 @@ public class TadpoleBrain {
     }
 
     private static void addIdleActivities(Brain<Tadpole> brain) {
-        brain.addActivity(Activity.IDLE, ImmutableList.of(Pair.of(0, new RunSometimes<LivingEntity>(new SetEntityLookTarget(EntityType.PLAYER, 6.0f), UniformInt.of(30, 60))), Pair.of(3, new TryFindWater(6, 0.15f)), Pair.of(4, new GateBehavior<>(ImmutableMap.of(MemoryModuleType.WALK_TARGET, MemoryStatus.VALUE_ABSENT), ImmutableSet.of(), GateBehavior.OrderPolicy.ORDERED, GateBehavior.RunningPolicy.TRY_ALL, ImmutableList.of(Pair.of(new RandomSwim(0.5f), 2), Pair.of(new RandomStroll(0.15f), 2), Pair.of(new SetWalkTargetFromLookTarget(0.5f, 3), 3), Pair.of(new RunIf<>(Entity::isInWaterOrBubble, new DoNothing(30, 60)), 5))))));
+        brain.addActivity(Activity.IDLE, ImmutableList.of(Pair.of(0, new RunSometimes<LivingEntity>(new SetEntityLookTarget(EntityType.PLAYER, 6.0f), UniformInt.of(30, 60))), Pair.of(3, new TryFindWater(6, 0.15f)), Pair.of(4, new GateBehavior<>(ImmutableMap.of(MemoryModuleType.WALK_TARGET, MemoryStatus.VALUE_ABSENT), ImmutableSet.of(), GateBehavior.OrderPolicy.ORDERED, GateBehavior.RunningPolicy.TRY_ALL, ImmutableList.of(Pair.of(new RandomSwim(0.5F), 2), Pair.of(new RandomStroll(0.15F), 2), Pair.of(new SetWalkTargetFromLookTarget(0.5f, 3), 3), Pair.of(new RunIf<>(Entity::isInWaterOrBubble, new DoNothing(30, 60)), 5))))));
     }
 
     public static void updateActivities(Tadpole tadpole) {

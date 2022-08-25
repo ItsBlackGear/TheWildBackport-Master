@@ -3,14 +3,12 @@ loaderVersion = "[40,)"
 license = "All Rights Reserved"
 
 [[mods]]
-modId = "wildbackport"
-version = "${version}"
-displayName = "The Wild Backport"
-logoFile = "icon.png"
-authors = "BlackGear, Orcinus, Dopadream"
-description = '''
-a mod that backports the features from the wild update
-'''
+    modId = "wildbackport"
+    version = "${version}"
+    displayName = "TheWildBackport"
+    logoFile = "icon.png"
+    authors = "BlackGear, Orcinus, Dopadream"
+    description = '''backport features from the wild update'''
 
 [[dependencies.wildbackport]]
     modId = "forge"
@@ -25,3 +23,10 @@ a mod that backports the features from the wild update
     versionRange = "[1.18.2,1.19)"
     ordering = "NONE"
     side = "BOTH"
+
+[[dependencies.wildbackport]]
+    modId="terrablender"
+    mandatory=true
+    versionRange="[1.0.0.59,)"
+    ordering="NONE"
+    side="BOTH"

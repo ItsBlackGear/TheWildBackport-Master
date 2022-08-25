@@ -17,6 +17,4 @@ public class WBBlockEntities {
 
     public static final Supplier<BlockEntityType<SculkCatalystBlockEntity>> SCULK_CATALYST  = BLOCKS.register("sculk_catalyst", () -> BlockEntityType.Builder.of(SculkCatalystBlockEntity::new, WBBlocks.SCULK_CATALYST.get()).build(null));
     public static final Supplier<BlockEntityType<SculkShriekerBlockEntity>> SCULK_SHRIEKER  = BLOCKS.register("sculk_shrieker", () -> BlockEntityType.Builder.of(SculkShriekerBlockEntity::new, WBBlocks.SCULK_SHRIEKER.get()).build(null));
-//    public static final Supplier<BlockEntityType<MangroveSignBlockEntity>> MANGROVE_SIGN    = BLOCKS.register("mangrove_sign", () -> BlockEntityType.Builder.of(MangroveSignBlockEntity::new, WBBlocks.MANGROVE_SIGN.get(), WBBlocks.MANGROVE_WALL_SIGN.get()).build(null));
-//    public static final Supplier<BlockEntityType<MangroveSignBlockEntity>> MANGROVE_SIGN    = BLOCKS.register("mangrove_sign", () -> BlockEntityType.Builder.of(MangroveSignBlockEntity::new, WBBlocks.MANGROVE_SIGN.getFirst().get(), WBBlocks.MANGROVE_SIGN.getSecond().get()).build(null));
 }

@@ -12,24 +12,24 @@ import net.minecraft.world.entity.ai.memory.MemoryStatus;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class SetRoarTarget<E extends Warden> extends Behavior<E> {
+public class FindRoarTarget<E extends Warden> extends Behavior<E> {
     private final Function<E, Optional<? extends LivingEntity>> targetFinder;
 
-    public SetRoarTarget(Function<E, Optional<? extends LivingEntity>> target) {
+    public FindRoarTarget(Function<E, Optional<? extends LivingEntity>> targetFinder) {
         super(ImmutableMap.of(WBMemoryModules.ROAR_TARGET.get(), MemoryStatus.VALUE_ABSENT, MemoryModuleType.ATTACK_TARGET, MemoryStatus.VALUE_ABSENT, MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE, MemoryStatus.REGISTERED));
-        this.targetFinder = target;
+        this.targetFinder = targetFinder;
     }
 
     @Override
-    protected boolean checkExtraStartConditions(ServerLevel level, E entity) {
-        return this.targetFinder.apply(entity).filter(entity::isValidTarget).isPresent();
+    protected boolean checkExtraStartConditions(ServerLevel level, E warden) {
+        return this.targetFinder.apply(warden).filter(warden::isValidTarget).isPresent();
     }
 
     @Override
-    protected void start(ServerLevel level, E entity, long time) {
-        this.targetFinder.apply(entity).ifPresent(target -> {
-            entity.getBrain().setMemory(WBMemoryModules.ROAR_TARGET.get(), target);
-            entity.getBrain().eraseMemory(MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE);
+    protected void start(ServerLevel level, E warden, long time) {
+        this.targetFinder.apply(warden).ifPresent(target -> {
+            warden.getBrain().setMemory(WBMemoryModules.ROAR_TARGET.get(), target);
+            warden.getBrain().eraseMemory(MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE);
         });
     }
 }

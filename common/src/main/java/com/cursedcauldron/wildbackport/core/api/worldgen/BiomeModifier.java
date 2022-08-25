@@ -9,7 +9,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 
 public class BiomeModifier {
-    private static final Map<Consumer<BiomeWriter>, ResourceKey<Biome>[]> FEATURES = new ConcurrentHashMap<>();
+    private static final Map<Consumer<BiomeWriter>, ResourceKey<Biome>[]> FEATURES_PER_BIOME = new ConcurrentHashMap<>();
+    private static final Map<Consumer<BiomeWriter>, Biome.BiomeCategory[]> FEATURES_PER_CATEGORY = new ConcurrentHashMap<>();
     public static final BiomeModifier INSTANCE = new BiomeModifier();
 
     @ExpectPlatform
@@ -18,11 +19,16 @@ public class BiomeModifier {
     }
 
     public void register(BiomeWriter writer) {
-        FEATURES.forEach(writer::add);
+        FEATURES_PER_BIOME.forEach(writer::add);
+        FEATURES_PER_CATEGORY.forEach(writer::add);
     }
 
     @SafeVarargs
     public static void add(Consumer<BiomeWriter> writer, ResourceKey<Biome>... biomes) {
-        FEATURES.put(writer, biomes);
+        FEATURES_PER_BIOME.put(writer, biomes);
+    }
+
+    public static void add(Consumer<BiomeWriter> writer, Biome.BiomeCategory... biomes) {
+        FEATURES_PER_CATEGORY.put(writer, biomes);
     }
 }

@@ -18,8 +18,8 @@ public class MangroveLeavesBlock extends LeavesBlock implements BonemealableBloc
     }
 
     @Override
-    public boolean isValidBonemealTarget(BlockGetter getter, BlockPos pos, BlockState state, boolean bl) {
-        return getter.getBlockState(pos.below()).isAir();
+    public boolean isValidBonemealTarget(BlockGetter block, BlockPos pos, BlockState state, boolean flag) {
+        return block.getBlockState(pos.below()).isAir();
     }
 
     @Override

@@ -13,34 +13,34 @@ import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 
 public class ForgetAttackTarget<E extends Mob> extends Behavior<E> {
-    private final Predicate<LivingEntity> stopAttackingWhen;
-    private final BiConsumer<E, LivingEntity> onTargetErased;
-    private final boolean canGrowTiredOfTryingToReachTarget;
+    private final Predicate<LivingEntity> alternativeCondition;
+    private final BiConsumer<E, LivingEntity> forgetCallback;
+    private final boolean shouldForgetIfTargetUnreachable;
 
-    public ForgetAttackTarget(Predicate<LivingEntity> stopAttackingWhen, BiConsumer<E, LivingEntity> onTargetEased, boolean canGrowTiredOfTryingToReachTarget) {
+    public ForgetAttackTarget(Predicate<LivingEntity> alternativeCondition, BiConsumer<E, LivingEntity> forgetCallback, boolean shouldForgetIfTargetUnreachable) {
         super(ImmutableMap.of(MemoryModuleType.ATTACK_TARGET, MemoryStatus.VALUE_PRESENT, MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE, MemoryStatus.REGISTERED));
-        this.stopAttackingWhen = stopAttackingWhen;
-        this.onTargetErased = onTargetEased;
-        this.canGrowTiredOfTryingToReachTarget = canGrowTiredOfTryingToReachTarget;
+        this.alternativeCondition = alternativeCondition;
+        this.forgetCallback = forgetCallback;
+        this.shouldForgetIfTargetUnreachable = shouldForgetIfTargetUnreachable;
     }
 
     @Override
     protected void start(ServerLevel level, E entity, long time) {
         LivingEntity target = this.getAttackTarget(entity);
         if (!entity.canAttack(target)) {
-            this.clearAttackTarget(entity);
-        } else if (this.canGrowTiredOfTryingToReachTarget && isTiredOfTryingToReachTarget(entity)) {
-            this.clearAttackTarget(entity);
-        } else if (this.isCurrentTargetDeadOrRemoved(entity)) {
-            this.clearAttackTarget(entity);
-        } else if (this.isCurrentTargetInDifferentLevel(entity)) {
-            this.clearAttackTarget(entity);
-        } else if (this.stopAttackingWhen.test(this.getAttackTarget(entity))) {
-            this.clearAttackTarget(entity);
+            this.forgetAttackTarget(entity);
+        } else if (this.shouldForgetIfTargetUnreachable && cannotReachTarget(entity)) {
+            this.forgetAttackTarget(entity);
+        } else if (this.isAttackTargetDead(entity)) {
+            this.forgetAttackTarget(entity);
+        } else if (this.isAttackTargetInAnotherWorld(entity)) {
+            this.forgetAttackTarget(entity);
+        } else if (this.alternativeCondition.test(this.getAttackTarget(entity))) {
+            this.forgetAttackTarget(entity);
         }
     }
 
-    private boolean isCurrentTargetInDifferentLevel(E entity) {
+    private boolean isAttackTargetInAnotherWorld(E entity) {
         return this.getAttackTarget(entity).level != entity.level;
     }
 
@@ -48,18 +48,18 @@ public class ForgetAttackTarget<E extends Mob> extends Behavior<E> {
         return entity.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET).get();
     }
 
-    private static <E extends LivingEntity> boolean isTiredOfTryingToReachTarget(E entity) {
+    private static <E extends LivingEntity> boolean cannotReachTarget(E entity) {
         Optional<Long> time = entity.getBrain().getMemory(MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE);
         return time.isPresent() && entity.level.getGameTime() - time.get() > 200L;
     }
 
-    private boolean isCurrentTargetDeadOrRemoved(E entity) {
+    private boolean isAttackTargetDead(E entity) {
         Optional<LivingEntity> target = entity.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET);
         return target.isPresent() && !target.get().isAlive();
     }
 
-    protected void clearAttackTarget(E entity) {
-        this.onTargetErased.accept(entity, this.getAttackTarget(entity));
+    protected void forgetAttackTarget(E entity) {
+        this.forgetCallback.accept(entity, this.getAttackTarget(entity));
         entity.getBrain().eraseMemory(MemoryModuleType.ATTACK_TARGET);
     }
 }

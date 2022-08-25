@@ -1,7 +1,7 @@
 package com.cursedcauldron.wildbackport.common.worldgen.placers;
 
 import com.cursedcauldron.wildbackport.common.registry.worldgen.RootPlacerType;
-import com.cursedcauldron.wildbackport.common.worldgen.decorator.LayerRootDecorator;
+import com.cursedcauldron.wildbackport.common.worldgen.decorator.AboveRootPlacement;
 import com.cursedcauldron.wildbackport.common.worldgen.decorator.MangroveRootPlacement;
 import com.cursedcauldron.wildbackport.common.worldgen.features.RootedTreeConfig;
 import com.google.common.collect.Lists;
@@ -28,7 +28,7 @@ public class MangroveRootPlacer extends RootPlacer {
     });
     private final MangroveRootPlacement mangroveRootPlacement;
 
-    public MangroveRootPlacer(IntProvider trunkOffsetY, BlockStateProvider rootProvider, Optional<LayerRootDecorator> aboveRootPlacement, MangroveRootPlacement mangroveRootPlacement) {
+    public MangroveRootPlacer(IntProvider trunkOffsetY, BlockStateProvider rootProvider, Optional<AboveRootPlacement> aboveRootPlacement, MangroveRootPlacement mangroveRootPlacement) {
         super(trunkOffsetY, rootProvider, aboveRootPlacement);
         this.mangroveRootPlacement = mangroveRootPlacement;
     }

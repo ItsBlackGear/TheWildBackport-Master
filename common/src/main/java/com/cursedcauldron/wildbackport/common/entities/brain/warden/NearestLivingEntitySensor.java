@@ -17,18 +17,18 @@ import java.util.Set;
 public class NearestLivingEntitySensor<T extends LivingEntity> extends Sensor<T> {
     @Override
     protected void doTick(ServerLevel level, T entity) {
-        AABB box = entity.getBoundingBox().inflate(this.radiusXZ(), this.radiusY(), this.radiusXZ());
-        List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, box, (target) -> target != entity && target.isAlive());
+        AABB box = entity.getBoundingBox().inflate(this.getHorizontalExpansion(), this.getHeightExpansion(), this.getHorizontalExpansion());
+        List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, box, target -> target != entity && target.isAlive());
         entities.sort(Comparator.comparingDouble(entity::distanceToSqr));
         entity.getBrain().setMemory(MemoryModuleType.NEAREST_LIVING_ENTITIES, entities);
         entity.getBrain().setMemory(MemoryModuleType.NEAREST_VISIBLE_LIVING_ENTITIES, new NearestVisibleLivingEntities(entity, entities));
     }
 
-    protected int radiusXZ() {
+    protected int getHorizontalExpansion() {
         return 16;
     }
 
-    protected int radiusY() {
+    protected int getHeightExpansion() {
         return 16;
     }
 

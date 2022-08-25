@@ -16,7 +16,7 @@ import com.cursedcauldron.wildbackport.common.registry.worldgen.RootPlacerType;
 import com.cursedcauldron.wildbackport.common.registry.worldgen.WBTreeDecorators;
 import com.cursedcauldron.wildbackport.common.registry.worldgen.WBTrunkPlacers;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBActivities;
-import com.cursedcauldron.wildbackport.common.registry.entity.WBEntities;
+import com.cursedcauldron.wildbackport.common.registry.entity.WBEntityTypes;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBMemoryModules;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBSensorTypes;
 import com.cursedcauldron.wildbackport.common.tag.WBBiomeTags;
@@ -40,7 +40,7 @@ public class WildBackport {
         WBBlockEntities.BLOCKS.register();
         WBBlocks.BLOCKS.register();
         WBEnchantments.ENCHANTMENTS.register();
-        WBEntities.ENTITIES.register();
+        WBEntityTypes.ENTITIES.register();
         WBGameEvents.EVENTS.register();
         WBFeatures.FEATURES.register();
         WBItems.ITEMS.register();

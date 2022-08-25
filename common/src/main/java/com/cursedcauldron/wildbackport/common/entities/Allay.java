@@ -1,10 +1,9 @@
 package com.cursedcauldron.wildbackport.common.entities;
 
-import com.cursedcauldron.wildbackport.WildBackport;
 import com.cursedcauldron.wildbackport.client.registry.WBSoundEvents;
+import com.cursedcauldron.wildbackport.common.entities.access.Vibration;
 import com.cursedcauldron.wildbackport.common.entities.brain.AllayBrain;
 import com.cursedcauldron.wildbackport.common.entities.warden.MobPositionSource;
-import com.cursedcauldron.wildbackport.common.entities.warden.VibrationHandler;
 import com.cursedcauldron.wildbackport.common.registry.WBGameEvents;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBMemoryModules;
 import com.cursedcauldron.wildbackport.common.tag.WBGameEventTags;
@@ -13,12 +12,10 @@ import com.mojang.serialization.Dynamic;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.protocol.game.DebugPackets;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -54,6 +51,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.gameevent.GameEventListener;
 import net.minecraft.world.level.gameevent.GameEventListenerRegistrar;
+import net.minecraft.world.level.gameevent.vibrations.VibrationListener;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
@@ -64,12 +62,12 @@ import java.util.UUID;
 
 //<>
 
-public class Allay extends PathfinderMob implements InventoryCarrier, VibrationHandler.VibrationConfig {
+public class Allay extends PathfinderMob implements InventoryCarrier {
     protected static final ImmutableList<? extends SensorType<? extends Sensor<? super Allay>>> SENSORS = ImmutableList.of(SensorType.NEAREST_LIVING_ENTITIES, SensorType.NEAREST_PLAYERS, SensorType.HURT_BY, SensorType.NEAREST_ITEMS);
     protected static final ImmutableList<MemoryModuleType<?>> MEMORIES = ImmutableList.of(MemoryModuleType.PATH, MemoryModuleType.LOOK_TARGET, MemoryModuleType.NEAREST_VISIBLE_LIVING_ENTITIES, MemoryModuleType.WALK_TARGET, MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE, MemoryModuleType.HURT_BY, MemoryModuleType.NEAREST_VISIBLE_WANTED_ITEM, WBMemoryModules.LIKED_PLAYER.get(), WBMemoryModules.LIKED_NOTEBLOCK.get(), WBMemoryModules.LIKED_NOTEBLOCK_COOLDOWN_TICKS.get(), WBMemoryModules.ITEM_PICKUP_COOLDOWN_TICKS.get());
     public static final ImmutableList<Float> THROW_SOUND_PITCHES = ImmutableList.of(0.5625F, 0.625F, 0.75F, 0.9375F, 1.0F, 1.0F, 1.125F, 1.25F, 1.5F, 1.875F, 2.0F, 2.25F, 2.5F, 3.0F, 3.75F, 4.0F);
-    private final GameEventListenerRegistrar registrar;
-    private VibrationHandler listener;
+//    private final GameEventListenerRegistrar registrar;
+//    private final VibrationListener listener;
     private final SimpleContainer inventory = new SimpleContainer(1);
     private float holdingTicks;
     private float holdingTicksOld;
@@ -78,8 +76,14 @@ public class Allay extends PathfinderMob implements InventoryCarrier, VibrationH
         super(type, level);
         this.moveControl = new FlyingMoveControl(this, 20, true);
         this.setCanPickUpLoot(this.canPickUpLoot());
-        this.listener = new VibrationHandler(new MobPositionSource(this, this.getEyeHeight()), 16, this, null, 0.0F, 0);
-        this.registrar = new GameEventListenerRegistrar(this.listener);
+//        this.listener = new VibrationListener(new MobPositionSource(this, this.getEyeHeight()), 16, new VibrationListenerCallback()) {
+//            @Override
+//            public boolean handleGameEvent(Level level, GameEvent event, @Nullable Entity entity, BlockPos pos) {
+//                boolean flag = super.handleGameEvent(level, event, entity, pos);
+//                return flag || event.is(WBGameEventTags.ALLAY_CAN_LISTEN);
+//            }
+//        };
+//        this.registrar = new GameEventListenerRegistrar(this.listener);
     }
 
     @Override
@@ -214,7 +218,7 @@ public class Allay extends PathfinderMob implements InventoryCarrier, VibrationH
                 this.holdingTicks = Mth.clamp(this.holdingTicks - 1.0F, 0.0F, 5.0F);
             }
         } else {
-            this.listener.tick(this.level);
+//            this.listener.tick(this.level);
         }
     }
 
@@ -302,10 +306,10 @@ public class Allay extends PathfinderMob implements InventoryCarrier, VibrationH
         return !this.isOnGround();
     }
 
-    @Override @Nullable
-    public GameEventListenerRegistrar getGameEventListenerRegistrar() {
-        return this.registrar;
-    }
+//    @Override @Nullable
+//    public GameEventListenerRegistrar getGameEventListenerRegistrar() {
+//        return this.registrar;
+//    }
 
     public float getHoldingItemAnimationProgress(float animationProgress) {
         return Mth.lerp(animationProgress, this.holdingTicksOld, this.holdingTicks) / 5.0F;
@@ -328,41 +332,15 @@ public class Allay extends PathfinderMob implements InventoryCarrier, VibrationH
     }
 
     @Override
-    public boolean shouldListen(ServerLevel level, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity) {
-        if (this.level == level && !this.isRemoved() && !this.isNoAi()) {
-            if (!this.brain.hasMemoryValue(WBMemoryModules.LIKED_NOTEBLOCK.get())) {
-                return true;
-            } else {
-                Optional<GlobalPos> likedNoteblock = this.brain.getMemory(WBMemoryModules.LIKED_NOTEBLOCK.get());
-                return likedNoteblock.isPresent() && likedNoteblock.get().dimension() == level.dimension() && likedNoteblock.get().pos() == pos;
-            }
-        } else {
-            return false;
-        }
-    }
-
-    @Override
-    public void onSignalReceive(ServerLevel level, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity, @Nullable Entity source, float distance) {
-        if (event == WBGameEvents.NOTE_BLOCK_PLAY.get()) AllayBrain.rememberNoteBlock(this, new BlockPos(pos));
-    }
-
-    @Override
-    public TagKey<GameEvent> getListenableEvents() {
-        return WBGameEventTags.ALLAY_CAN_LISTEN;
-    }
-
-    @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.put("Inventory", this.inventory.createTag());
-        VibrationHandler.codec(this).encodeStart(NbtOps.INSTANCE, this.listener).resultOrPartial(WildBackport.LOGGER::error).ifPresent(listener -> tag.put("listener", listener));
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         this.inventory.fromTag(tag.getList("Inventory", 10));
-        if (tag.contains("listener", 10)) VibrationHandler.codec(this).parse(new Dynamic<>(NbtOps.INSTANCE, tag.getCompound("listener"))).resultOrPartial(WildBackport.LOGGER::error).ifPresent(listener -> this.listener = listener);
     }
 
     public Iterable<BlockPos> getPotentialEscapePositions() {
@@ -380,4 +358,28 @@ public class Allay extends PathfinderMob implements InventoryCarrier, VibrationH
     public Vec3 getLeashOffset() {
         return new Vec3(0.0D, this.getEyeHeight() * 0.6D, this.getBbWidth() * 0.1D);
     }
+
+//    class VibrationListenerCallback implements VibrationListener.VibrationListenerConfig {
+//        @Override
+//        public void onSignalReceive(Level level, GameEventListener listener, GameEvent event, int distance) {
+//            Vibration.Instance instance = Vibration.Instance.of(Allay.this.listener);
+//            if (event == WBGameEvents.NOTE_BLOCK_PLAY.get()) {
+//                AllayBrain.rememberNoteBlock(Allay.this, new BlockPos(instance.getPos()));
+//            }
+//        }
+//
+//        @Override
+//        public boolean shouldListen(Level level, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity) {
+//            if (Allay.this.getLevel() != level || Allay.this.isRemoved() || Allay.this.isNoAi()) {
+//                return false;
+//            } else {
+//                Optional<GlobalPos> position = Allay.this.getBrain().getMemory(WBMemoryModules.LIKED_NOTEBLOCK.get());
+//                if (position.isEmpty()) {
+//                    return true;
+//                } else {
+//                    return position.get().dimension().equals(level.dimension()) && position.get().pos().equals(pos);
+//                }
+//            }
+//        }
+//    }
 }

@@ -29,16 +29,15 @@ public class MangroveRootsBlock extends Block implements SimpleWaterloggedBlock 
         return stateFrom.is(WBBlocks.MANGROVE_ROOTS.get()) && direction.getAxis() == Direction.Axis.Y;
     }
 
-    @Override @Nullable
+    @Override @Nullable @SuppressWarnings("ConstantConditions")
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        FluidState state = ctx.getLevel().getFluidState(ctx.getClickedPos());
-        return super.getStateForPlacement(ctx).setValue(WATERLOGGED, state.getType() == Fluids.WATER);
+        return super.getStateForPlacement(ctx).setValue(WATERLOGGED, ctx.getLevel().getFluidState(ctx.getClickedPos()).getType() == Fluids.WATER);
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor accessor, BlockPos pos, BlockPos neighborPos) {
-        if (state.getValue(WATERLOGGED)) accessor.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(accessor));
-        return super.updateShape(state, direction, neighborState, accessor, pos, neighborPos);
+    public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos) {
+        if (state.getValue(WATERLOGGED)) level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+        return super.updateShape(state, direction, newState, level, pos, newPos);
     }
 
     @Override

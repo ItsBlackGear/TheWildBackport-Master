@@ -1,7 +1,7 @@
 package com.cursedcauldron.wildbackport.common.entities;
 
 import com.cursedcauldron.wildbackport.common.registry.WBItems;
-import com.cursedcauldron.wildbackport.common.registry.entity.WBEntities;
+import com.cursedcauldron.wildbackport.common.registry.entity.WBEntityTypes;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -49,7 +49,7 @@ public class ChestBoat extends MangroveBoat implements Container, MenuProvider {
     }
 
     public ChestBoat(Level level, double x, double y, double z) {
-        super(WBEntities.CHEST_BOAT.get(), level);
+        super(WBEntityTypes.CHEST_BOAT.get(), level);
         this.setPos(x, y, z);
         this.xo = x;
         this.yo = y;

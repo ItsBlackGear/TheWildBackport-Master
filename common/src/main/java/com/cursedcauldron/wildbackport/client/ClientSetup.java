@@ -17,7 +17,7 @@ import com.cursedcauldron.wildbackport.client.render.model.FrogModel;
 import com.cursedcauldron.wildbackport.client.render.model.TadpoleModel;
 import com.cursedcauldron.wildbackport.client.render.model.WardenModel;
 import com.cursedcauldron.wildbackport.common.registry.WBBlocks;
-import com.cursedcauldron.wildbackport.common.registry.entity.WBEntities;
+import com.cursedcauldron.wildbackport.common.registry.entity.WBEntityTypes;
 import com.cursedcauldron.wildbackport.core.api.ColorRegistry;
 import com.cursedcauldron.wildbackport.core.api.ParticleRegistry;
 import com.cursedcauldron.wildbackport.core.api.RenderRegistry;
@@ -40,16 +40,16 @@ public class ClientSetup {
 
         // Entity Renderers
         RenderRegistry.setLayerDefinition(AllayRenderer.MODEL_LAYER, AllayModel::createBodyLayer);
-        RenderRegistry.setEntityRender(WBEntities.ALLAY, AllayRenderer::new);
+        RenderRegistry.setEntityRender(WBEntityTypes.ALLAY, AllayRenderer::new);
         RenderRegistry.setLayerDefinition(WardenRenderer.MODEL_LAYER, WardenModel::createBodyLayer);
-        RenderRegistry.setEntityRender(WBEntities.WARDEN, WardenRenderer::new);
+        RenderRegistry.setEntityRender(WBEntityTypes.WARDEN, WardenRenderer::new);
         RenderRegistry.setLayerDefinition(FrogRenderer.MODEL_LAYER, FrogModel::createBodyLayer);
-        RenderRegistry.setEntityRender(WBEntities.FROG, FrogRenderer::new);
+        RenderRegistry.setEntityRender(WBEntityTypes.FROG, FrogRenderer::new);
         RenderRegistry.setLayerDefinition(TadpoleRenderer.MODEL_LAYER, TadpoleModel::createBodyLayer);
-        RenderRegistry.setEntityRender(WBEntities.TADPOLE, TadpoleRenderer::new);
+        RenderRegistry.setEntityRender(WBEntityTypes.TADPOLE, TadpoleRenderer::new);
         for (Boat.Type type : Boat.Type.values()) RenderRegistry.setLayerDefinition(ChestBoatModel.createChestBoat(type), () -> ChestBoatModel.createBodyModel(true));
-        RenderRegistry.setEntityRender(WBEntities.MANGROVE_BOAT, context -> new ChestBoatRenderer(context, false));
-        RenderRegistry.setEntityRender(WBEntities.CHEST_BOAT, context -> new ChestBoatRenderer(context, true));
+        RenderRegistry.setEntityRender(WBEntityTypes.MANGROVE_BOAT, context -> new ChestBoatRenderer(context, false));
+        RenderRegistry.setEntityRender(WBEntityTypes.CHEST_BOAT, context -> new ChestBoatRenderer(context, true));
 
         // Particle Renderers
         ParticleRegistry.create(WBParticleTypes.SCULK_SOUL, SculkSoulParticle.Provider::new);

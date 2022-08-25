@@ -342,7 +342,7 @@ public class SculkSpreadManager {
         if (level == null) return;
 
         Random random = level.getRandom();
-        ClientLevel client = level instanceof ClientLevel side ? side : null;
+        ClientLevel client = level.isClientSide() && level instanceof ClientLevel side ? side : null;
         ServerLevel server = level instanceof ServerLevel side ? side : null;
 
         int charge = data >> 6;

@@ -37,8 +37,8 @@ import java.util.Random;
 //<>
 
 public class SculkShriekerBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
-    public static final BooleanProperty SHRIEKING = BlockProperties.SHRIEKING;
-    public static final BooleanProperty CAN_SUMMON = BlockProperties.CAN_SUMMON;
+    public static final BooleanProperty SHRIEKING = StateProperties.SHRIEKING;
+    public static final BooleanProperty CAN_SUMMON = StateProperties.CAN_SUMMON;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
     public static final double TOP_Y = SHAPE.max(Direction.Axis.Y);
@@ -50,9 +50,7 @@ public class SculkShriekerBlock extends BaseEntityBlock implements SimpleWaterlo
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(SHRIEKING);
-        builder.add(WATERLOGGED);
-        builder.add(CAN_SUMMON);
+        builder.add(SHRIEKING, WATERLOGGED, CAN_SUMMON);
     }
 
     @Override

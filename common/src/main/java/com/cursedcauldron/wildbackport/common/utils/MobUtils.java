@@ -2,7 +2,6 @@ package com.cursedcauldron.wildbackport.common.utils;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -22,13 +21,6 @@ public class MobUtils {
         MobEffect mobeffect = instance.getEffect();
         List<ServerPlayer> players = level.getPlayers(player -> player.gameMode.isSurvival() && (entity == null || !entity.isAlliedTo(player)) && position.closerThan(player.position(), distance) && (!player.hasEffect(mobeffect) || player.getEffect(mobeffect).getAmplifier() < instance.getAmplifier() || player.getEffect(mobeffect).getDuration() < duration));
         players.forEach(player -> player.addEffect(new MobEffectInstance(instance), entity));
-    }
-
-    public static boolean closerThan(Entity source, Entity entity, double xzRange, double yRange) {
-        double x = entity.getX() - source.getX();
-        double y = entity.getY() - source.getY();
-        double z = entity.getZ() - source.getZ();
-        return Mth.lengthSquared(x, z) < Mth.square(xzRange) && Mth.square(y) < Mth.square(yRange);
     }
 
     public static void walkTowards(LivingEntity entity, PositionTracker target, float speed, int closeEnough) {

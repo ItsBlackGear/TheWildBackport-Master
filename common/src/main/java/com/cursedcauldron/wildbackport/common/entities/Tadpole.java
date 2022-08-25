@@ -3,7 +3,7 @@ package com.cursedcauldron.wildbackport.common.entities;
 import com.cursedcauldron.wildbackport.client.registry.WBSoundEvents;
 import com.cursedcauldron.wildbackport.common.entities.brain.TadpoleBrain;
 import com.cursedcauldron.wildbackport.common.registry.WBItems;
-import com.cursedcauldron.wildbackport.common.registry.entity.WBEntities;
+import com.cursedcauldron.wildbackport.common.registry.entity.WBEntityTypes;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Dynamic;
 import net.minecraft.core.particles.ParticleTypes;
@@ -38,8 +38,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class Tadpole extends AbstractFish {
     public static final int MAX_TADPOLE_AGE = Math.abs(-24000);
-    public static final float WIDTH = 0.4F;
-    public static final float HEIGHT = 0.3F;
     private int age;
     protected static final ImmutableList<SensorType<? extends Sensor<? super Tadpole>>> SENSORS = ImmutableList.of(SensorType.NEAREST_LIVING_ENTITIES, SensorType.NEAREST_PLAYERS, SensorType.HURT_BY);
     protected static final ImmutableList<MemoryModuleType<?>> MEMORIES = ImmutableList.of(MemoryModuleType.LOOK_TARGET, MemoryModuleType.NEAREST_VISIBLE_LIVING_ENTITIES, MemoryModuleType.WALK_TARGET, MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE, MemoryModuleType.PATH, MemoryModuleType.NEAREST_VISIBLE_ADULT);
@@ -51,8 +49,8 @@ public class Tadpole extends AbstractFish {
     }
 
     @Override
-    protected PathNavigation createNavigation(Level world) {
-        return new WaterBoundPathNavigation(this, world);
+    protected PathNavigation createNavigation(Level level) {
+        return new WaterBoundPathNavigation(this, level);
     }
 
     @Override
@@ -93,21 +91,19 @@ public class Tadpole extends AbstractFish {
     @Override
     public void aiStep() {
         super.aiStep();
-        if (!this.level.isClientSide()) {
-            this.setAge(this.age + 1);
-        }
+        if (!this.level.isClientSide) this.setAge(this.age + 1);
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag nbt) {
-        super.addAdditionalSaveData(nbt);
-        nbt.putInt("Age", this.age);
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putInt("Age", this.age);
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag nbt) {
-        super.readAdditionalSaveData(nbt);
-        this.setAge(nbt.getInt("Age"));
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.setAge(tag.getInt("Age"));
     }
 
     @Override @Nullable
@@ -201,14 +197,12 @@ public class Tadpole extends AbstractFish {
 
     private void setAge(int age) {
         this.age = age;
-        if (this.age >= MAX_TADPOLE_AGE) {
-            this.growUp();
-        }
+        if (this.age >= MAX_TADPOLE_AGE) this.growUp();
     }
 
     private void growUp() {
         if (this.level instanceof ServerLevel server) {
-            Frog frog = WBEntities.FROG.get().create(this.level);
+            Frog frog = WBEntityTypes.FROG.get().create(this.level);
             if (frog == null) return;
 
             frog.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), this.getXRot());

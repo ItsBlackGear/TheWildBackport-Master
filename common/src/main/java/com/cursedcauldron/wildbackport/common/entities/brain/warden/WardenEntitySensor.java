@@ -23,30 +23,20 @@ public class WardenEntitySensor extends NearestLivingEntitySensor<Warden> {
     @Override
     protected void doTick(ServerLevel level, Warden warden) {
         super.doTick(level, warden);
-        getClosest(warden, target -> {
-            return target.getType() == EntityType.PLAYER;
-        }).or(() -> {
-            return getClosest(warden, target -> {
-                return target.getType() != EntityType.PLAYER;
-            });
-        }).ifPresentOrElse(target -> {
-            warden.getBrain().setMemory(MemoryModuleType.NEAREST_ATTACKABLE, target);
-        }, () -> {
-            warden.getBrain().eraseMemory(MemoryModuleType.NEAREST_ATTACKABLE);
-        });
+        findNearestTarget(warden, target -> target.getType() == EntityType.PLAYER).or(() -> findNearestTarget(warden, target -> target.getType() != EntityType.PLAYER)).ifPresentOrElse(target -> warden.getBrain().setMemory(MemoryModuleType.NEAREST_ATTACKABLE, target), () -> warden.getBrain().eraseMemory(MemoryModuleType.NEAREST_ATTACKABLE));
     }
 
-    private static Optional<LivingEntity> getClosest(Warden warden, Predicate<LivingEntity> targetFilter) {
-        return warden.getBrain().getMemory(MemoryModuleType.NEAREST_LIVING_ENTITIES).stream().flatMap(Collection::stream).filter(warden::isValidTarget).filter(targetFilter).findFirst();
+    private static Optional<LivingEntity> findNearestTarget(Warden warden, Predicate<LivingEntity> targetPredicate) {
+        return warden.getBrain().getMemory(MemoryModuleType.NEAREST_LIVING_ENTITIES).stream().flatMap(Collection::stream).filter(warden::isValidTarget).filter(targetPredicate).findFirst();
     }
 
     @Override
-    protected int radiusXZ() {
+    protected int getHorizontalExpansion() {
         return 24;
     }
 
     @Override
-    protected int radiusY() {
+    protected int getHeightExpansion() {
         return 24;
     }
 }

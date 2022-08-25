@@ -31,7 +31,7 @@ import java.util.Random;
 
 public class MangrovePropaguleBlock extends SaplingBlock implements SimpleWaterloggedBlock {
     private static final VoxelShape[] SHAPES = new VoxelShape[]{Block.box(7.0D, 13.0D, 7.0D, 9.0D, 16.0D, 9.0D), Block.box(7.0D, 10.0D, 7.0D, 9.0D, 16.0D, 9.0D), Block.box(7.0D, 7.0D, 7.0D, 9.0D, 16.0D, 9.0D), Block.box(7.0D, 3.0D, 7.0D, 9.0D, 16.0D, 9.0D), Block.box(7.0D, 0.0D, 7.0D, 9.0D, 16.0D, 9.0D)};
-    public static final IntegerProperty AGE = BlockProperties.AGE_4;
+    public static final IntegerProperty AGE = StateProperties.AGE_4;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
 
@@ -46,32 +46,32 @@ public class MangrovePropaguleBlock extends SaplingBlock implements SimpleWaterl
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState state, BlockGetter getter, BlockPos pos) {
-        return super.mayPlaceOn(state, getter, pos) || state.is(Blocks.CLAY);
+    protected boolean mayPlaceOn(BlockState state, BlockGetter block, BlockPos pos) {
+        return super.mayPlaceOn(state, block, pos) || state.is(Blocks.CLAY);
     }
 
-    @Override @Nullable
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        FluidState fluidState = context.getLevel().getFluidState(context.getClickedPos());
-        return super.getStateForPlacement(context).setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER).setValue(AGE, 4);
+    @Override @Nullable @SuppressWarnings("ConstantConditions")
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        FluidState fluidState = ctx.getLevel().getFluidState(ctx.getClickedPos());
+        return super.getStateForPlacement(ctx).setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER).setValue(AGE, 4);
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
-        Vec3 offset = state.getOffset(getter, pos);
+    public VoxelShape getShape(BlockState state, BlockGetter block, BlockPos pos, CollisionContext context) {
+        Vec3 offset = state.getOffset(block, pos);
         VoxelShape shape = !state.getValue(HANGING) ? SHAPES[4] : SHAPES[state.getValue(AGE)];
         return shape.move(offset.x, offset.y, offset.z);
     }
 
     @Override
-    public boolean canSurvive(BlockState state, LevelReader reader, BlockPos pos) {
-        return isHanging(state) ? reader.getBlockState(pos.above()).is(WBBlocks.MANGROVE_LEAVES.get()) : super.canSurvive(state, reader, pos);
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        return isHanging(state) ? level.getBlockState(pos.above()).is(WBBlocks.MANGROVE_LEAVES.get()) : super.canSurvive(state, level, pos);
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor accessor, BlockPos pos, BlockPos neighborPos) {
-        if (state.getValue(WATERLOGGED)) accessor.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(accessor));
-        return direction == Direction.UP && !state.canSurvive(accessor, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, direction, neighborState, accessor, pos, neighborPos);
+    public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos) {
+        if (state.getValue(WATERLOGGED)) level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+        return direction == Direction.UP && !state.canSurvive(level, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, direction, newState, level, pos, newPos);
     }
 
     @Override
@@ -94,7 +94,7 @@ public class MangrovePropaguleBlock extends SaplingBlock implements SimpleWaterl
     }
 
     @Override
-    public boolean isValidBonemealTarget(BlockGetter getter, BlockPos pos, BlockState state, boolean flag) {
+    public boolean isValidBonemealTarget(BlockGetter block, BlockPos pos, BlockState state, boolean flag) {
         return !isHanging(state) || !ageAtMax(state);
     }
 

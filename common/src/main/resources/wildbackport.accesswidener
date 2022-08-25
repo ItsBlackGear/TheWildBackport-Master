@@ -6,8 +6,20 @@ transitive-accessible class net/minecraft/world/level/levelgen/structure/pools/J
 
 transitive-accessible class net/minecraft/server/level/ServerLevel$EntityCallbacks
 transitive-accessible class net/minecraft/world/level/entity/PersistentEntitySectionManager$Callback
+transitive-accessible class net/minecraft/world/level/entity/TransientEntitySectionManager$Callback
 
 transitive-accessible class net/minecraft/core/Registry$RegistryBootstrap
 
+transitive-accessible class net/minecraft/client/renderer/RenderType$CompositeState
+transitive-accessible class net/minecraft/client/renderer/RenderType$CompositeRenderType
+
+transitive-accessible class net/minecraft/client/renderer/RenderStateShard$TextureStateShard
+transitive-accessible class net/minecraft/client/renderer/RenderStateShard$TransparencyStateShard
+transitive-accessible class net/minecraft/client/renderer/RenderStateShard$OverlayStateShard
+transitive-accessible class net/minecraft/client/renderer/RenderStateShard$CullStateShard
+transitive-accessible class net/minecraft/client/renderer/RenderStateShard$WriteMaskStateShard
+transitive-accessible class net/minecraft/client/renderer/RenderStateShard$ShaderStateShard
+
 transitive-accessible method net/minecraft/client/particle/HugeExplosionParticle <init> (Lnet/minecraft/client/multiplayer/ClientLevel;DDDDLnet/minecraft/client/particle/SpriteSet;)V
 transitive-accessible method net/minecraft/world/level/block/MultifaceBlock hasFace (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z
+transitive-accessible method net/minecraft/core/Registry registerSimple (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/Registry$RegistryBootstrap;)Lnet/minecraft/core/Registry;

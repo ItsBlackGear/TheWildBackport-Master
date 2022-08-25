@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
-public class BlockProperties {
+public class StateProperties {
     // Block Properties
     public static final BooleanProperty SHRIEKING   = BooleanProperty.create("shrieking");
     public static final BooleanProperty CAN_SUMMON  = BooleanProperty.create("can_summon");

@@ -4,6 +4,7 @@
   "package": "com.cursedcauldron.wildbackport.core.mixin.fabric",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "access.BiomeAccessor"
   ],
   "client": [
     "client.FogRendererMixin",

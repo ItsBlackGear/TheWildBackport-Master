@@ -1,17 +1,17 @@
 package com.cursedcauldron.wildbackport.common.entities.brain;
 
-import com.cursedcauldron.wildbackport.common.entities.brain.warden.ForgetAttackTarget;
+import com.cursedcauldron.wildbackport.common.entities.Warden;
 import com.cursedcauldron.wildbackport.common.entities.brain.warden.Digging;
 import com.cursedcauldron.wildbackport.common.entities.brain.warden.Dismount;
 import com.cursedcauldron.wildbackport.common.entities.brain.warden.Emerging;
+import com.cursedcauldron.wildbackport.common.entities.brain.warden.ForgetAttackTarget;
 import com.cursedcauldron.wildbackport.common.entities.brain.warden.GoToTargetLocation;
 import com.cursedcauldron.wildbackport.common.entities.brain.warden.Roar;
-import com.cursedcauldron.wildbackport.common.entities.brain.warden.SetRoarTarget;
+import com.cursedcauldron.wildbackport.common.entities.brain.warden.FindRoarTarget;
 import com.cursedcauldron.wildbackport.common.entities.brain.warden.SetWardenLookTarget;
 import com.cursedcauldron.wildbackport.common.entities.brain.warden.Sniffing;
 import com.cursedcauldron.wildbackport.common.entities.brain.warden.SonicBoom;
 import com.cursedcauldron.wildbackport.common.entities.brain.warden.TryToSniff;
-import com.cursedcauldron.wildbackport.common.entities.Warden;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBActivities;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBMemoryModules;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBSensorTypes;
@@ -49,24 +49,24 @@ import java.util.List;
 //<>
 
 public class WardenBrain {
-    private static final int DIGGING_DURATION   = Mth.ceil(100.0F);
-    public static final int EMERGE_DURATION     = Mth.ceil(133.59999F);
-    public static final int ROAR_DURATION       = Mth.ceil(84.0F);
-    private static final int SNIFFING_DURATION  = Mth.ceil(83.2F);
-    private static final List<SensorType<? extends Sensor<? super Warden>>> SENSORS = List.of(SensorType.NEAREST_PLAYERS, WBSensorTypes.WARDEN_ENTITY_SENSOR.get());
-    private static final List<MemoryModuleType<?>> MEMORIES = List.of(MemoryModuleType.NEAREST_LIVING_ENTITIES, MemoryModuleType.NEAREST_VISIBLE_LIVING_ENTITIES, MemoryModuleType.NEAREST_VISIBLE_PLAYER, MemoryModuleType.NEAREST_VISIBLE_ATTACKABLE_PLAYER, MemoryModuleType.NEAREST_VISIBLE_NEMESIS, MemoryModuleType.LOOK_TARGET, MemoryModuleType.WALK_TARGET, MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE, MemoryModuleType.PATH, MemoryModuleType.ATTACK_TARGET, MemoryModuleType.ATTACK_COOLING_DOWN, MemoryModuleType.NEAREST_ATTACKABLE, WBMemoryModules.ROAR_TARGET.get(), WBMemoryModules.DISTURBANCE_LOCATION.get(), WBMemoryModules.RECENT_PROJECTILE.get(), WBMemoryModules.IS_SNIFFING.get(), WBMemoryModules.IS_EMERGING.get(), WBMemoryModules.ROAR_SOUND_DELAY.get(), WBMemoryModules.DIG_COOLDOWN.get(), WBMemoryModules.ROAR_SOUND_COOLDOWN.get(), WBMemoryModules.SNIFF_COOLDOWN.get(), WBMemoryModules.TOUCH_COOLDOWN.get(), WBMemoryModules.VIBRATION_COOLDOWN.get(), WBMemoryModules.SONIC_BOOM_COOLDOWN.get(), WBMemoryModules.SONIC_BOOM_SOUND_COOLDOWN.get(), WBMemoryModules.SONIC_BOOM_SOUND_DELAY.get());
+    private static final int DIGGING_DURATION = Mth.ceil(100.0F);
+    public static final int EMERGE_DURATION = Mth.ceil(133.59999F);
+    public static final int ROAR_DURATION = Mth.ceil(84.0F);
+    private static final int SNIFFING_DURATION = Mth.ceil(83.2F);
+    private static final List<SensorType<? extends Sensor<? super Warden>>> SENSOR_TYPES = List.of(SensorType.NEAREST_PLAYERS, WBSensorTypes.WARDEN_ENTITY_SENSOR.get());
+    private static final List<MemoryModuleType<?>> MEMORY_TYPES = List.of(MemoryModuleType.NEAREST_LIVING_ENTITIES, MemoryModuleType.NEAREST_VISIBLE_LIVING_ENTITIES, MemoryModuleType.NEAREST_VISIBLE_PLAYER, MemoryModuleType.NEAREST_VISIBLE_ATTACKABLE_PLAYER, MemoryModuleType.NEAREST_VISIBLE_NEMESIS, MemoryModuleType.LOOK_TARGET, MemoryModuleType.WALK_TARGET, MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE, MemoryModuleType.PATH, MemoryModuleType.ATTACK_TARGET, MemoryModuleType.ATTACK_COOLING_DOWN, MemoryModuleType.NEAREST_ATTACKABLE, WBMemoryModules.ROAR_TARGET.get(), WBMemoryModules.DISTURBANCE_LOCATION.get(), WBMemoryModules.RECENT_PROJECTILE.get(), WBMemoryModules.IS_SNIFFING.get(), WBMemoryModules.IS_EMERGING.get(), WBMemoryModules.ROAR_SOUND_DELAY.get(), WBMemoryModules.DIG_COOLDOWN.get(), WBMemoryModules.ROAR_SOUND_COOLDOWN.get(), WBMemoryModules.SNIFF_COOLDOWN.get(), WBMemoryModules.TOUCH_COOLDOWN.get(), WBMemoryModules.VIBRATION_COOLDOWN.get(), WBMemoryModules.SONIC_BOOM_COOLDOWN.get(), WBMemoryModules.SONIC_BOOM_SOUND_COOLDOWN.get(), WBMemoryModules.SONIC_BOOM_SOUND_DELAY.get());
     private static final Behavior<Warden> DIG_COOLDOWN_SETTER = new Behavior<>(ImmutableMap.of(WBMemoryModules.DIG_COOLDOWN.get(), MemoryStatus.REGISTERED)) {
         @Override protected void start(ServerLevel level, Warden warden, long time) {
-            setDigCooldown(warden);
+            resetDigCooldown(warden);
         }
     };
 
-    public static void updateActivity(Warden warden) {
+    public static void updateActivities(Warden warden) {
         warden.getBrain().setActiveActivityToFirstValid(ImmutableList.of(WBActivities.EMERGE.get(), WBActivities.DIG.get(), WBActivities.ROAR.get(), Activity.FIGHT, WBActivities.INVESTIGATE.get(), WBActivities.SNIFF.get(), Activity.IDLE));
     }
 
     public static Brain<?> makeBrain(Warden warden, Dynamic<?> dynamic) {
-        Brain.Provider<Warden> provider = Brain.provider(MEMORIES, SENSORS);
+        Brain.Provider<Warden> provider = Brain.provider(MEMORY_TYPES, SENSOR_TYPES);
         Brain<Warden> brain = provider.makeBrain(dynamic);
         initCoreActivity(brain);
         initEmergeActivity(brain);
@@ -95,15 +95,15 @@ public class WardenBrain {
     }
 
     private static void initIdleActivity(Brain<Warden> brain) {
-        brain.addActivity(Activity.IDLE, 10, ImmutableList.of(new SetRoarTarget<>(Warden::getPrimeSuspect), new TryToSniff(), new RunOne<>(ImmutableMap.of(WBMemoryModules.IS_SNIFFING.get(), MemoryStatus.VALUE_ABSENT), ImmutableList.of(Pair.of(new RandomStroll(0.5F), 2), Pair.of(new DoNothing(30, 60), 1)))));
+        brain.addActivity(Activity.IDLE, 10, ImmutableList.of(new FindRoarTarget<>(Warden::getPrimeSuspect), new TryToSniff(), new RunOne<>(ImmutableMap.of(WBMemoryModules.IS_SNIFFING.get(), MemoryStatus.VALUE_ABSENT), ImmutableList.of(Pair.of(new RandomStroll(0.5F), 2), Pair.of(new DoNothing(30, 60), 1)))));
     }
 
     private static void initInvestigateActivity(Brain<Warden> brain) {
-        brain.addActivityAndRemoveMemoryWhenStopped(WBActivities.INVESTIGATE.get(), 5, ImmutableList.of(new SetRoarTarget<>(Warden::getPrimeSuspect), new GoToTargetLocation<>(WBMemoryModules.DISTURBANCE_LOCATION.get(), 2, 0.7F)), WBMemoryModules.DISTURBANCE_LOCATION.get());
+        brain.addActivityAndRemoveMemoryWhenStopped(WBActivities.INVESTIGATE.get(), 5, ImmutableList.of(new FindRoarTarget<>(Warden::getPrimeSuspect), new GoToTargetLocation<>(WBMemoryModules.DISTURBANCE_LOCATION.get(), 2, 0.7F)), WBMemoryModules.DISTURBANCE_LOCATION.get());
     }
 
     private static void initSniffingActivity(Brain<Warden> brain) {
-        brain.addActivityAndRemoveMemoryWhenStopped(WBActivities.SNIFF.get(), 5, ImmutableList.of(new SetRoarTarget<>(Warden::getPrimeSuspect), new Sniffing<>(SNIFFING_DURATION)), WBMemoryModules.IS_SNIFFING.get());
+        brain.addActivityAndRemoveMemoryWhenStopped(WBActivities.SNIFF.get(), 5, ImmutableList.of(new FindRoarTarget<>(Warden::getPrimeSuspect), new Sniffing<>(SNIFFING_DURATION)), WBMemoryModules.IS_SNIFFING.get());
     }
 
     private static void initRoarActivity(Brain<Warden> brain) {
@@ -111,29 +111,27 @@ public class WardenBrain {
     }
 
     private static void initFightActivity(Warden warden, Brain<Warden> brain) {
-        brain.addActivityAndRemoveMemoryWhenStopped(Activity.FIGHT, 10, ImmutableList.of(DIG_COOLDOWN_SETTER, new ForgetAttackTarget<>(target -> {
-            return !warden.getAngriness().isAngry() || !warden.isValidTarget(target);
-        }, WardenBrain::onTargetInvalid, false), new SetEntityLookTarget(target -> {
-            return isTarget(warden, target);
-        }, (float)warden.getAttributeValue(Attributes.FOLLOW_RANGE)), new SetWalkTargetFromAttackTargetIfTargetOutOfReach(1.2F), new SonicBoom(), new MeleeAttack(18)), MemoryModuleType.ATTACK_TARGET);
+        brain.addActivityAndRemoveMemoryWhenStopped(Activity.FIGHT, 10, ImmutableList.of(DIG_COOLDOWN_SETTER, new ForgetAttackTarget<>(entity -> !warden.getAngriness().isAngry() || !warden.isValidTarget(entity), WardenBrain::removeDeadSuspect, false), new SetEntityLookTarget(entity -> isTargeting(warden, entity), (float)warden.getAttributeValue(Attributes.FOLLOW_RANGE)), new SetWalkTargetFromAttackTargetIfTargetOutOfReach(1.2F), new SonicBoom(), new MeleeAttack(18)), MemoryModuleType.ATTACK_TARGET);
     }
 
-    private static boolean isTarget(Warden warden, LivingEntity entity) {
+    private static boolean isTargeting(Warden warden, LivingEntity entity) {
         return warden.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET).filter(target -> target == entity).isPresent();
     }
 
-    private static void onTargetInvalid(Warden warden, LivingEntity entity) {
-        if (!warden.isValidTarget(entity)) warden.removeSuspect(entity);
-        setDigCooldown(warden);
+    private static void removeDeadSuspect(Warden warden, LivingEntity suspect) {
+        if (!warden.isValidTarget(suspect)) warden.removeSuspect(suspect);
+        resetDigCooldown(warden);
     }
 
-    public static void setDigCooldown(LivingEntity entity) {
-        if (entity.getBrain().hasMemoryValue(WBMemoryModules.DIG_COOLDOWN.get())) entity.getBrain().setMemoryWithExpiry(WBMemoryModules.DIG_COOLDOWN.get(), Unit.INSTANCE, 1200L);
+    public static void resetDigCooldown(LivingEntity warden) {
+        if (warden.getBrain().hasMemoryValue(WBMemoryModules.DIG_COOLDOWN.get())) {
+            warden.getBrain().setMemoryWithExpiry(WBMemoryModules.DIG_COOLDOWN.get(), Unit.INSTANCE, 1200L);
+        }
     }
 
-    public static void setDisturbanceLocation(Warden warden, BlockPos pos) {
+    public static void lookAtDisturbance(Warden warden, BlockPos pos) {
         if (warden.level.getWorldBorder().isWithinBounds(pos) && warden.getPrimeSuspect().isEmpty() && warden.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET).isEmpty()) {
-            setDigCooldown(warden);
+            resetDigCooldown(warden);
             warden.getBrain().setMemoryWithExpiry(WBMemoryModules.SNIFF_COOLDOWN.get(), Unit.INSTANCE, 100L);
             warden.getBrain().setMemoryWithExpiry(MemoryModuleType.LOOK_TARGET, new BlockPosTracker(pos), 100L);
             warden.getBrain().setMemoryWithExpiry(WBMemoryModules.DISTURBANCE_LOCATION.get(), pos, 100L);

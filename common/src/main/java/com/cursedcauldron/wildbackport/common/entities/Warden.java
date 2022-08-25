@@ -11,7 +11,7 @@ import com.cursedcauldron.wildbackport.common.entities.warden.MobPositionSource;
 import com.cursedcauldron.wildbackport.common.entities.warden.VibrationHandler;
 import com.cursedcauldron.wildbackport.common.entities.warden.WardenAngerManager;
 import com.cursedcauldron.wildbackport.common.registry.WBMobEffects;
-import com.cursedcauldron.wildbackport.common.registry.entity.WBEntities;
+import com.cursedcauldron.wildbackport.common.registry.entity.WBEntityTypes;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBMemoryModules;
 import com.cursedcauldron.wildbackport.common.tag.WBGameEventTags;
 import com.cursedcauldron.wildbackport.common.utils.MobUtils;
@@ -60,8 +60,8 @@ import net.minecraft.world.level.gameevent.GameEventListener;
 import net.minecraft.world.level.gameevent.GameEventListenerRegistrar;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Random;
@@ -69,6 +69,9 @@ import java.util.Random;
 //<>
 
 public class Warden extends Monster implements VibrationHandler.VibrationConfig {
+    public static final byte PLAY_ATTACK_SOUND = 4;
+    public static final byte EARS_TWITCH = 61;
+    public static final byte SONIC_BOOM = 62;
     private static final EntityDataAccessor<Integer> ANGER = SynchedEntityData.defineId(Warden.class, EntityDataSerializers.INT);
     private int tendrilPitchEnd;
     private int tendrilPitchStart;
@@ -152,7 +155,8 @@ public class Warden extends Monster implements VibrationHandler.VibrationConfig 
         return 4.0F;
     }
 
-    @Nullable @Override
+    @Nullable
+    @Override
     protected SoundEvent getAmbientSound() {
         return !this.hasPose(Poses.ROARING.get()) && !this.isDiggingOrEmerging() ? this.getAngriness().getSound() : null;
     }
@@ -199,7 +203,7 @@ public class Warden extends Monster implements VibrationHandler.VibrationConfig 
         if (this.level instanceof ServerLevel server) {
             this.listener.tick(server);
             if (this.isPersistenceRequired() || this.requiresCustomPersistence()) {
-                WardenBrain.setDigCooldown(this);
+                WardenBrain.resetDigCooldown(this);
             }
         }
 
@@ -248,7 +252,7 @@ public class Warden extends Monster implements VibrationHandler.VibrationConfig 
             this.updateAnger();
         }
 
-        WardenBrain.updateActivity(this);
+        WardenBrain.updateActivities(this);
     }
 
     @Override
@@ -346,7 +350,7 @@ public class Warden extends Monster implements VibrationHandler.VibrationConfig 
 
     public boolean isValidTarget(@Nullable Entity entity) {
         if (entity instanceof LivingEntity living) {
-            return this.level == entity.level && EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(entity) && !this.isAlliedTo(entity) && living.getType() != EntityType.ARMOR_STAND && living.getType() != WBEntities.WARDEN.get() && !living.isInvulnerable() && !living.isDeadOrDying() && this.level.getWorldBorder().isWithinBounds(living.getBoundingBox());
+            return this.level == entity.level && EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(entity) && !this.isAlliedTo(entity) && living.getType() != EntityType.ARMOR_STAND && living.getType() != WBEntityTypes.WARDEN.get() && !living.isInvulnerable() && !living.isDeadOrDying() && this.level.getWorldBorder().isWithinBounds(living.getBoundingBox());
         }
 
         return false;
@@ -360,7 +364,7 @@ public class Warden extends Monster implements VibrationHandler.VibrationConfig 
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
-        WardenAngerManager.createCodec(this::isValidTarget).encodeStart(NbtOps.INSTANCE, this.angerManager).resultOrPartial(WildBackport.LOGGER::error).ifPresent(manager -> tag.put("anger", manager));
+        WardenAngerManager.codec(this::isValidTarget).encodeStart(NbtOps.INSTANCE, this.angerManager).resultOrPartial(WildBackport.LOGGER::error).ifPresent(manager -> tag.put("anger", manager));
 
     }
 
@@ -368,7 +372,7 @@ public class Warden extends Monster implements VibrationHandler.VibrationConfig 
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         if (tag.contains("anger")) {
-            WardenAngerManager.createCodec(this::isValidTarget).parse(new Dynamic<>(NbtOps.INSTANCE, tag.get("anger"))).resultOrPartial(WildBackport.LOGGER::error).ifPresent(manager -> this.angerManager = manager);
+            WardenAngerManager.codec(this::isValidTarget).parse(new Dynamic<>(NbtOps.INSTANCE, tag.get("anger"))).resultOrPartial(WildBackport.LOGGER::error).ifPresent(manager -> this.angerManager = manager);
             this.updateAnger();
         }
     }
@@ -382,7 +386,7 @@ public class Warden extends Monster implements VibrationHandler.VibrationConfig 
     }
 
     public int getPrimeSuspectAnger() {
-        return this.angerManager.getPrimeSuspectAnger();
+        return this.angerManager.getAngerFor(this.getTarget());
     }
 
     public void removeSuspect(Entity entity) {
@@ -395,7 +399,7 @@ public class Warden extends Monster implements VibrationHandler.VibrationConfig 
 
     public void increaseAngerAt(Entity entity, int amount, boolean listening) {
         if (!this.isNoAi() && this.isValidTarget(entity)) {
-            WardenBrain.setDigCooldown(this);
+            WardenBrain.resetDigCooldown(this);
             boolean targetNotPlayer = !(this.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET).orElse(null) instanceof Player);
             int anger = this.angerManager.increaseAngerAt(entity, amount);
             if (entity instanceof Player && targetNotPlayer && Angriness.getForAnger(anger).isAngry()) {
@@ -410,7 +414,8 @@ public class Warden extends Monster implements VibrationHandler.VibrationConfig 
         return this.getAngriness().isAngry() ? this.angerManager.getPrimeSuspect() : Optional.empty();
     }
 
-    @Nullable @Override
+    @Nullable
+    @Override
     public LivingEntity getTarget() {
         return this.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET).orElse(null);
     }
@@ -420,7 +425,8 @@ public class Warden extends Monster implements VibrationHandler.VibrationConfig 
         return false;
     }
 
-    @Nullable @Override
+    @Nullable
+    @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, MobSpawnType spawn, @Nullable SpawnGroupData data, @Nullable CompoundTag tag) {
         this.getBrain().setMemoryWithExpiry(WBMemoryModules.DIG_COOLDOWN.get(), Unit.INSTANCE, 1200L);
         if (spawn == MobSpawnType.TRIGGERED) {
@@ -471,7 +477,7 @@ public class Warden extends Monster implements VibrationHandler.VibrationConfig 
         if (!this.isNoAi() && !this.getBrain().hasMemoryValue(WBMemoryModules.TOUCH_COOLDOWN.get())) {
             this.getBrain().setMemoryWithExpiry(WBMemoryModules.TOUCH_COOLDOWN.get(), Unit.INSTANCE, 20L);
             this.increaseAngerAt(entity);
-            WardenBrain.setDisturbanceLocation(this, entity.blockPosition());
+            WardenBrain.lookAtDisturbance(this, entity.blockPosition());
         }
 
         super.doPush(entity);
@@ -518,14 +524,22 @@ public class Warden extends Monster implements VibrationHandler.VibrationConfig 
             if (!this.getAngriness().isAngry()) {
                 Optional<LivingEntity> primeSuspect = this.angerManager.getPrimeSuspect();
                 if (source != null || primeSuspect.isEmpty() || primeSuspect.get() == entity) {
-                    WardenBrain.setDisturbanceLocation(this, position);
+                    WardenBrain.lookAtDisturbance(this, position);
                 }
             }
         }
     }
 
-    @Nullable @Override
+    @Nullable
+    @Override
     public GameEventListenerRegistrar getGameEventListenerRegistrar() {
         return this.gameEventHandler;
+    }
+
+    public boolean closerThan(Entity entity, double xzRange, double yRange) {
+        double x = entity.getX() - this.getX();
+        double y = entity.getY() - this.getY();
+        double z = entity.getZ() - this.getZ();
+        return Mth.lengthSquared(x, z) < Mth.square(xzRange) && Mth.square(y) < Mth.square(yRange);
     }
 }

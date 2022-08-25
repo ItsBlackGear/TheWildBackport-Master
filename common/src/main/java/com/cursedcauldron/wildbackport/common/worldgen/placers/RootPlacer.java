@@ -2,7 +2,7 @@ package com.cursedcauldron.wildbackport.common.worldgen.placers;
 
 import com.cursedcauldron.wildbackport.common.registry.worldgen.RootPlacerType;
 import com.cursedcauldron.wildbackport.common.registry.worldgen.WBRegistries;
-import com.cursedcauldron.wildbackport.common.worldgen.decorator.LayerRootDecorator;
+import com.cursedcauldron.wildbackport.common.worldgen.decorator.AboveRootPlacement;
 import com.cursedcauldron.wildbackport.common.worldgen.features.RootedTreeConfig;
 import com.mojang.datafixers.Products;
 import com.mojang.serialization.Codec;
@@ -25,19 +25,19 @@ public abstract class RootPlacer {
     public static final Codec<RootPlacer> CODEC = WBRegistries.ROOT_PLACER_TYPES.getSecond().byNameCodec().dispatch(RootPlacer::getType, RootPlacerType::codec);
     protected final IntProvider trunkOffsetY;
     protected final BlockStateProvider rootProvider;
-    protected final Optional<LayerRootDecorator> aboveRootPlacement;
+    protected final Optional<AboveRootPlacement> aboveRootPlacement;
 
-    protected static <P extends RootPlacer> Products.P3<RecordCodecBuilder.Mu<P>, IntProvider, BlockStateProvider, Optional<LayerRootDecorator>> codec(RecordCodecBuilder.Instance<P> instance) {
+    protected static <P extends RootPlacer> Products.P3<RecordCodecBuilder.Mu<P>, IntProvider, BlockStateProvider, Optional<AboveRootPlacement>> codec(RecordCodecBuilder.Instance<P> instance) {
         return instance.group(IntProvider.CODEC.fieldOf("trunk_offset_y").forGetter(placer -> {
             return placer.trunkOffsetY;
         }), BlockStateProvider.CODEC.fieldOf("root_provider").forGetter(placer -> {
             return placer.rootProvider;
-        }), LayerRootDecorator.CODEC.optionalFieldOf("above_root_placement").forGetter(placer -> {
+        }), AboveRootPlacement.CODEC.optionalFieldOf("above_root_placement").forGetter(placer -> {
             return placer.aboveRootPlacement;
         }));
     }
 
-    public RootPlacer(IntProvider trunkOffsetY, BlockStateProvider rootProvider, Optional<LayerRootDecorator> aboveRootPlacement) {
+    public RootPlacer(IntProvider trunkOffsetY, BlockStateProvider rootProvider, Optional<AboveRootPlacement> aboveRootPlacement) {
         this.trunkOffsetY = trunkOffsetY;
         this.rootProvider = rootProvider;
         this.aboveRootPlacement = aboveRootPlacement;
@@ -55,9 +55,11 @@ public abstract class RootPlacer {
         if (this.canGrowThrough(level, pos)) {
             replacer.accept(pos, this.applyWaterlogging(level, pos, this.rootProvider.getState(random, pos)));
             if (this.aboveRootPlacement.isPresent()) {
-                LayerRootDecorator decorator = this.aboveRootPlacement.get();
+                AboveRootPlacement placement = this.aboveRootPlacement.get();
                 BlockPos above = pos.above();
-                if (random.nextFloat() < decorator.aboveRootPlacementChance() && level.isStateAtPosition(above, BlockBehaviour.BlockStateBase::isAir)) replacer.accept(above, this.applyWaterlogging(level, above, decorator.aboveRootProvider().getState(random, above)));
+                if (random.nextFloat() < placement.aboveRootPlacementChance() && level.isStateAtPosition(above, BlockBehaviour.BlockStateBase::isAir)) {
+                    replacer.accept(above, this.applyWaterlogging(level, above, placement.aboveRootProvider().getState(random, above)));
+                }
             }
         }
     }

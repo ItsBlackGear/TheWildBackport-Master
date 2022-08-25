@@ -4,7 +4,7 @@ import com.cursedcauldron.wildbackport.client.animation.api.AnimationState;
 import com.cursedcauldron.wildbackport.client.registry.WBSoundEvents;
 import com.cursedcauldron.wildbackport.common.entities.brain.FrogBrain;
 import com.cursedcauldron.wildbackport.common.entities.access.api.Poses;
-import com.cursedcauldron.wildbackport.common.registry.entity.WBEntities;
+import com.cursedcauldron.wildbackport.common.registry.entity.WBEntityTypes;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBMemoryModules;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBSensorTypes;
 import com.cursedcauldron.wildbackport.common.tag.WBBiomeTags;
@@ -240,7 +240,7 @@ public class Frog extends Animal {
 
     @Nullable @Override
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob mob) {
-        Frog frog = WBEntities.FROG.get().create(level);
+        Frog frog = WBEntityTypes.FROG.get().create(level);
         if (frog != null) FrogBrain.coolDownLongJump(frog, level.getRandom());
         return frog;
     }
