@@ -67,11 +67,11 @@ public class AllayBrain {
     public static void rememberNoteBlock(LivingEntity entity, BlockPos pos) {
         Brain<?> brain = entity.getBrain();
         GlobalPos globalPos = GlobalPos.of(entity.getLevel().dimension(), pos);
-        Optional<GlobalPos> likedNoteBlock = brain.getMemory(WBMemoryModules.LIKED_NOTEBLOCK.get());
-        if (likedNoteBlock.isEmpty()) {
+        Optional<GlobalPos> noteblock = brain.getMemory(WBMemoryModules.LIKED_NOTEBLOCK.get());
+        if (noteblock.isEmpty()) {
             brain.setMemory(WBMemoryModules.LIKED_NOTEBLOCK.get(), globalPos);
             brain.setMemory(WBMemoryModules.LIKED_NOTEBLOCK_COOLDOWN_TICKS.get(), 600);
-        } else if (likedNoteBlock.get().equals(globalPos)) {
+        } else if (noteblock.get().equals(globalPos)) {
             brain.setMemory(WBMemoryModules.LIKED_NOTEBLOCK_COOLDOWN_TICKS.get(), 600);
         }
     }
