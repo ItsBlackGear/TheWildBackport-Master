@@ -31,7 +31,7 @@ import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 
-public class VanillaInteraction {
+public class VanillaIntegration {
     public static void setup() {
         // Flammables
         addFlammable(WBBlocks.MANGROVE_LOG.get(), 5, 5);
@@ -116,7 +116,7 @@ public class VanillaInteraction {
     }
 
     public static void addCompostable(ItemLike item, float chance) {
-        ComposterBlock.COMPOSTABLES.put(item, chance);
+        ComposterBlock.COMPOSTABLES.put(item.asItem(), chance);
     }
 
     public static void addStrippable(Block from, Block to) {

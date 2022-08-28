@@ -5,10 +5,12 @@ import com.cursedcauldron.wildbackport.common.entities.Frog;
 import com.cursedcauldron.wildbackport.common.entities.Tadpole;
 import com.cursedcauldron.wildbackport.common.entities.Warden;
 import com.cursedcauldron.wildbackport.common.events.StructureGeneration;
+import com.cursedcauldron.wildbackport.common.registry.WBBlocks;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBEntityTypes;
 import com.cursedcauldron.wildbackport.common.registry.worldgen.WBWorldGeneration;
 import com.cursedcauldron.wildbackport.core.api.MobRegistry;
 import com.cursedcauldron.wildbackport.core.api.worldgen.BiomeModifier;
+import net.minecraft.world.level.block.ComposterBlock;
 
 public class CommonSetup {
     /**
@@ -20,7 +22,6 @@ public class CommonSetup {
         MobRegistry.registerAttributes(WBEntityTypes.FROG, Frog::createAttributes);
         MobRegistry.registerAttributes(WBEntityTypes.TADPOLE, Tadpole::createAttributes);
         MobRegistry.registerAttributes(WBEntityTypes.WARDEN, Warden::createAttributes);
-
     }
 
     /**
@@ -29,8 +30,7 @@ public class CommonSetup {
     public static void onPostCommon() {
         WBWorldGeneration.bootstrap();
         BiomeModifier.setup();
-        VanillaInteraction.setup();
-
+        VanillaIntegration.setup();
         StructureGeneration.registerAllayCages();
     }
 }
