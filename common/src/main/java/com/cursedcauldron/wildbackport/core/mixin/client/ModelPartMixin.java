@@ -73,7 +73,6 @@ public abstract class ModelPartMixin implements Animated, Drawable {
                     this.translateAndRotate(pose);
 
                     for (ModelPart part : this.children.values()) part.render(pose, consumer, light, delta, red, green, blue, alpha);
-
                     pose.popPose();
                 }
             }

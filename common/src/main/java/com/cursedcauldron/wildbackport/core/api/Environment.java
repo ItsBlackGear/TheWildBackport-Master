@@ -3,6 +3,11 @@ package com.cursedcauldron.wildbackport.core.api;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 
 public class Environment {
+    @ExpectPlatform
+    public static boolean isModLoaded(String modId) {
+        throw new AssertionError();
+    }
+
     public static boolean isForge() {
         return getPlatform() == Platform.FORGE;
     }

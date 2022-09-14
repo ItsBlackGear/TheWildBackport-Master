@@ -34,7 +34,6 @@
     "access.WoodTypeAccessor",
     "common.BlockEntityTypeMixin",
     "common.FlyNodeEvaluatorMixin",
-    "common.GoToWantedItemMixin",
     "common.LivingEntityMixin",
     "common.MobEffectMixin",
     "common.MobEffectMixin$MobEffectInstanceMixin",

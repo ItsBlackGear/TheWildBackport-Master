@@ -3,13 +3,17 @@
   "id": "wildbackport",
   "version": "${version}",
   "name": "TheWildBackport",
-  "description": "backport features from the wild update",
+  "description": "Backport features from the wild update",
   "authors": [
     "BlackGear",
     "Orcinus",
     "Dopadream"
   ],
-  "contact": {},
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/the-wild-backport",
+    "sources": "https://github.com/ItsBlackGear/TheWildBackport-Master",
+    "issues": "https://github.com/ItsBlackGear/TheWildBackport-Master/issues"
+  },
   "license": "All-Rights-Reserved",
   "icon": "icon.png",
   "environment": "*",
@@ -32,5 +36,12 @@
     "fabricloader": ">=0.14.8",
     "minecraft": ">=1.18.2",
     "terrablender": ">=1.0.0.59"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/fTzK9SP"
+      }
+    }
   }
 }

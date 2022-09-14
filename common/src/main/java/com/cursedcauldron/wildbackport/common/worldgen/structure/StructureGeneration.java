@@ -1,4 +1,4 @@
-package com.cursedcauldron.wildbackport.common.events;
+package com.cursedcauldron.wildbackport.common.worldgen.structure;
 
 import com.cursedcauldron.wildbackport.WildBackport;
 import com.cursedcauldron.wildbackport.core.mixin.access.StructureTemplatePoolAccessor;

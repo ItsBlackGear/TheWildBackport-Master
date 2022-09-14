@@ -1,14 +1,16 @@
 modLoader = "javafml"
 loaderVersion = "[40,)"
+issueTrackerURL = "https://github.com/ItsBlackGear/TheWildBackport-Master/issues"
 license = "All Rights Reserved"
 
 [[mods]]
     modId = "wildbackport"
     version = "${version}"
     displayName = "TheWildBackport"
+    displayURL = "https://www.curseforge.com/minecraft/mc-mods/the-wild-backport"
     logoFile = "icon.png"
     authors = "BlackGear, Orcinus, Dopadream"
-    description = '''backport features from the wild update'''
+    description = '''Backport features from the wild update'''
 
 [[dependencies.wildbackport]]
     modId = "forge"

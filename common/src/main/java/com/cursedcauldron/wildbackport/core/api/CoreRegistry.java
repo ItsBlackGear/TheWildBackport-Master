@@ -33,7 +33,7 @@ public abstract class CoreRegistry<T> {
         this.bootstrap();
     }
 
-    public abstract void bootstrap();
+    protected abstract void bootstrap();
 
     public static class DefaultRegistry<T> extends CoreRegistry<T> {
         public DefaultRegistry(Registry<T> registry, String modId) {

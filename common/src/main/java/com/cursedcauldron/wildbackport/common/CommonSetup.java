@@ -4,13 +4,17 @@ import com.cursedcauldron.wildbackport.common.entities.Allay;
 import com.cursedcauldron.wildbackport.common.entities.Frog;
 import com.cursedcauldron.wildbackport.common.entities.Tadpole;
 import com.cursedcauldron.wildbackport.common.entities.Warden;
-import com.cursedcauldron.wildbackport.common.events.StructureGeneration;
-import com.cursedcauldron.wildbackport.common.registry.WBBlocks;
+import com.cursedcauldron.wildbackport.common.entities.access.Recovery;
+import com.cursedcauldron.wildbackport.common.items.CompassItemPropertyFunction;
+import com.cursedcauldron.wildbackport.common.registry.WBItems;
+import com.cursedcauldron.wildbackport.common.worldgen.structure.StructureGeneration;
 import com.cursedcauldron.wildbackport.common.registry.entity.WBEntityTypes;
 import com.cursedcauldron.wildbackport.common.registry.worldgen.WBWorldGeneration;
 import com.cursedcauldron.wildbackport.core.api.MobRegistry;
 import com.cursedcauldron.wildbackport.core.api.worldgen.BiomeModifier;
-import net.minecraft.world.level.block.ComposterBlock;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 
 public class CommonSetup {
     /**

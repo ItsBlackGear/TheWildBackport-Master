@@ -1,7 +1,7 @@
 package com.cursedcauldron.wildbackport.common.worldgen.placers;
 
 import com.cursedcauldron.wildbackport.common.registry.worldgen.RootPlacerType;
-import com.cursedcauldron.wildbackport.common.registry.worldgen.WBRegistries;
+import com.cursedcauldron.wildbackport.common.registry.WBRegistries;
 import com.cursedcauldron.wildbackport.common.worldgen.decorator.AboveRootPlacement;
 import com.cursedcauldron.wildbackport.common.worldgen.features.RootedTreeConfig;
 import com.mojang.datafixers.Products;
@@ -22,7 +22,7 @@ import java.util.Random;
 import java.util.function.BiConsumer;
 
 public abstract class RootPlacer {
-    public static final Codec<RootPlacer> CODEC = WBRegistries.ROOT_PLACER_TYPES.getSecond().byNameCodec().dispatch(RootPlacer::getType, RootPlacerType::codec);
+    public static final Codec<RootPlacer> CODEC = WBRegistries.ROOT_PLACER_TYPES.registry().byNameCodec().dispatch(RootPlacer::getType, RootPlacerType::codec);
     protected final IntProvider trunkOffsetY;
     protected final BlockStateProvider rootProvider;
     protected final Optional<AboveRootPlacement> aboveRootPlacement;

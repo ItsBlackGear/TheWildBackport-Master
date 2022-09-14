@@ -2,9 +2,11 @@ package com.cursedcauldron.wildbackport.core.mixin.common;
 
 import com.cursedcauldron.wildbackport.WildBackport;
 import com.cursedcauldron.wildbackport.common.entities.Warden;
+import com.cursedcauldron.wildbackport.common.entities.access.Recovery;
 import com.cursedcauldron.wildbackport.common.entities.access.WardenTracker;
 import com.cursedcauldron.wildbackport.common.entities.warden.WardenSpawnTracker;
 import com.mojang.serialization.Dynamic;
+import net.minecraft.core.GlobalPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,12 +16,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Optional;
+
 //<>
 
 @Mixin(Player.class)
-public class PlayerMixin implements WardenTracker {
+public class PlayerMixin implements WardenTracker, Recovery {
     private final Player player = Player.class.cast(this);
     private WardenSpawnTracker spawnTracker = new WardenSpawnTracker(0, 0, 0);
+    private Optional<GlobalPos> lastDeathLocation = Optional.empty();
 
     @Inject(method = "tick", at = @At("TAIL"))
     private void wb$tick(CallbackInfo ci) {
@@ -44,5 +49,15 @@ public class PlayerMixin implements WardenTracker {
     @Override
     public WardenSpawnTracker getWardenSpawnTracker() {
         return this.spawnTracker;
+    }
+
+    @Override
+    public Optional<GlobalPos> getLastDeathLocation() {
+        return this.lastDeathLocation;
+    }
+
+    @Override
+    public void setLastDeathLocation(Optional<GlobalPos> location) {
+        this.lastDeathLocation = location;
     }
 }

@@ -22,16 +22,16 @@ public class WorldGenerator {
     }
 
     public static void mangroveSwamp(BiomeWriter writer) {
-        writer.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, WBWorldGeneration.DISK_GRASS);
-        writer.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WBWorldGeneration.TREES_MANGROVE);
+        writer.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, WBWorldGeneration.DISK_GRASS_PLACED);
+        writer.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WBWorldGeneration.TREES_MANGROVE_PLACED);
 
         writer.addSpawn(MobCategory.MONSTER, EntityType.SLIME, 1, 1, 1);
         writer.addSpawn(MobCategory.WATER_AMBIENT, EntityType.TROPICAL_FISH, 25, 8, 8);
     }
 
     public static void deepDark(BiomeWriter writer) {
-        writer.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, WBWorldGeneration.SCULK_VEIN);
-        writer.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, WBWorldGeneration.SCULK_PATCH_DEEP_DARK);
+        writer.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, WBWorldGeneration.SCULK_VEIN_PLACED);
+        writer.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, WBWorldGeneration.SCULK_PATCH_DEEP_DARK_PLACED);
     }
 
     public static void addFrogs(BiomeWriter writer) {

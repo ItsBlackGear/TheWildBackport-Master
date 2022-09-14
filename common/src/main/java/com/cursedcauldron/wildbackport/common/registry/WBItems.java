@@ -45,10 +45,12 @@ public class WBItems {
 
     // Deep Dark
     public static final Supplier<Item> ECHO_SHARD           = create("echo_shard", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final Supplier<Item> RECOVERY_COMPASS     = create("recovery_compass", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
 
     // Music
     public static final Supplier<Item> MUSIC_DISC_5         = create("music_disc_5", () -> RecordItemAccessor.createRecordItem(15, WBSoundEvents.MUSIC_DISC_5, new Item.Properties().stacksTo(1).tab(CreativeModeTab.TAB_MISC).rarity(Rarity.RARE)));
     public static final Supplier<Item> DISC_FRAGMENT_5      = create("disc_fragment_5", () -> new DiscFragmentItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+//    public static final Supplier<Item> GOAT_HORN            = create("goat_horn", () -> new GoatHornItem(new Item.Properties().stacksTo(1).tab(CreativeModeTab.TAB_MISC), InstrumentTags.GOAT_HORNS));
 
     private static <T extends Item> Supplier<T> create(String key, Supplier<T> item) {
         return ITEMS.register(key, item);

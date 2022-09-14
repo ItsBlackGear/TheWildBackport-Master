@@ -2,6 +2,7 @@ package com.cursedcauldron.wildbackport.core.mixin.client;
 
 import com.cursedcauldron.wildbackport.common.effects.EffectFactor;
 import com.cursedcauldron.wildbackport.common.registry.WBMobEffects;
+import com.cursedcauldron.wildbackport.core.api.Environment;
 import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
@@ -33,7 +34,6 @@ public abstract class LightTextureMixin {
     @Shadow @Final private GameRenderer renderer;
 
     private LocalPlayer getPlayer() {
-//        assert this.minecraft.player != null;
         return this.minecraft.player;
     }
 
@@ -53,8 +53,10 @@ public abstract class LightTextureMixin {
     //TODO simplify
     @Inject(method = "updateLightTexture(F)V", at = @At("HEAD"))
     private void updateLight(float delta, CallbackInfo ci) {
+        if (Environment.isModLoaded("lod")) return;
         if (this.updateLightTexture) {
             this.updateLightTexture = false;
+            this.minecraft.getProfiler().push("lightTex");
             ClientLevel level = this.minecraft.level;
             if (level != null) {
                 float skyDarken = level.getSkyDarken(1.0F);
@@ -126,6 +128,7 @@ public abstract class LightTextureMixin {
                 }
 
                 this.lightTexture.upload();
+                this.minecraft.getProfiler().pop();
             }
         }
     }

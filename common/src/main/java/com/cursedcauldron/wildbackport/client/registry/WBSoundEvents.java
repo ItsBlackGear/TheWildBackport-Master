@@ -79,7 +79,7 @@ public class WBSoundEvents {
     // Items
     public static final SoundEvent BUCKED_EMPTY_TADPOLE                     = create("item.bucket.empty_tadpole");
     public static final SoundEvent BUCKED_FILL_TADPOLE                      = create("item.bucket.fill_tadpole");
-    public static final ImmutableList<SoundEvent> GOAT_HORN_SOUND_VARIANTS  = IntStream.range(0, 8).mapToObj(value -> {
+    public static final ImmutableList<SoundEvent> GOAT_HORN_SOUNDS = IntStream.range(0, 8).mapToObj(value -> {
         return create("item.goat_horn.sound." + value);
     }).collect(ImmutableList.toImmutableList());
 
